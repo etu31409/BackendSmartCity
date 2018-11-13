@@ -4,6 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -11,6 +18,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     NgbModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
+    AppRoutingModule
+    // other imports here
   ],
   providers: [],
   bootstrap: [AppComponent]
