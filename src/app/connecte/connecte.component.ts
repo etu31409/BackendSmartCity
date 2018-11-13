@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnecteComponent implements OnInit {
 
+  title: String = "NConnect";
+
   constructor() { }
 
   ngOnInit() {
