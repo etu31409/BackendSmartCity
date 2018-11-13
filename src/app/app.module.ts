@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { RouterModule, Routes } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
 import { ConnecteComponent } from './connecte/connecte.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { ConnecteComponent } from './connecte/connecte.component';
   imports: [
     BrowserModule,
     NgbModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
