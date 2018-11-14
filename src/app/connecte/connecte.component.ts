@@ -6,7 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connecte.component.css']
 })
 export class ConnecteComponent implements OnInit {
-  
+  commerces: any[] = [
+    {
+      "commerceId": 1,
+      "nomCommerce": "Garden Cart",
+    },
+    {
+      "commerceId": 2,
+      "nomCommerce": "Hammer",
+    },
+    {
+      "commerceId": 3,
+      "nomCommerce": "H&M",
+    },
+    {
+      "commerceId": 4,
+      "nomCommerce": "Pizza hut",
+    },
+  ];
   constructor() { }
 
   ngOnInit() {
