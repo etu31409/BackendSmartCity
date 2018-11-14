@@ -7,12 +7,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnecteComponent } from './connecte/connecte.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnecteComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
