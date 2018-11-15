@@ -8,6 +8,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConnecteComponent } from './connecte/connecte.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { CompteComponent } from './compte/compte.component';
+import { AideComponent } from './aide/aide.component';
+import { EditerComponent } from './editer/editer.component';
 
 
 @NgModule({
@@ -15,6 +18,9 @@ import { ConnexionComponent } from './connexion/connexion.component';
     AppComponent,
     ConnecteComponent,
     ConnexionComponent,
+    CompteComponent,
+    AideComponent,
+    EditerComponent,
   ],
   imports: [
     BrowserModule,

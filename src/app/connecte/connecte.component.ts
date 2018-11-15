@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connecte.component.css']
 })
 export class ConnecteComponent implements OnInit {
-  titreCommerce:string="Mes commerces";
+  title:string="Mes commerces";
   commerces: any[] = [
     {
       "commerceId": 1,
