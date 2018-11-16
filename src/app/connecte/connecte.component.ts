@@ -31,7 +31,7 @@ export class ConnecteComponent implements OnInit {
   ];
   
   constructor(
-    private boutiqueService:BoutiqueService
+    //private boutiqueService:BoutiqueService
   ) { }
 
   ngOnInit() {

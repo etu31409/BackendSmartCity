@@ -10,7 +10,7 @@ import { AideComponent } from './aide/aide.component';
 const routes: Routes = [
   {path: 'connecte', component: ConnecteComponent },
   {path:'connexion', component: ConnexionComponent},
-  {path:'editer/id', component: EditerComponent},
+  {path:'editer/:id', component: EditerComponent},
   {path:'aide', component: AideComponent},
   {path:'compte', component: CompteComponent},
   {path: '', redirectTo: '/connexion', pathMatch: 'full' },
