@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BoutiqueService } from '../boutique.service';
+import { Commerce } from '../Model/Commerce';
 
 @Component({
   selector: 'app-connecte',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connecte.component.css']
 })
 export class ConnecteComponent implements OnInit {
+  //quand on récupère le clients, on vérifie si c'est des commerces ou office du tourisme
   title:string="Mes commerces";
-  commerces: any[] = [
+  //commerces: Commerce[];
+  commerces: Commerce[] = [
     {
       "commerceId": 1,
       "nomCommerce": "Garden Cart",
@@ -25,9 +29,13 @@ export class ConnecteComponent implements OnInit {
       "nomCommerce": "Pizza hut",
     },
   ];
-  constructor() { }
+  
+  constructor(
+    private boutiqueService:BoutiqueService
+  ) { }
 
   ngOnInit() {
+    //this.commerces = this.boutiqueService.getCommerces();
   }
 
 }
