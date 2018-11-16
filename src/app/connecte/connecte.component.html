@@ -8,12 +8,14 @@
           <tr>
             <th>Commerce ID</th>
             <th>Nom</th>
+            <th>Modifier</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="commerces">
             <tr *ngFor='let commerce of commerces'>
                 <td>{{ commerce.commerceId }}</td>
                 <td>{{ commerce.nomCommerce | lowercase }}</td>
+                <td><a routerLink="/editer">Éditer</a></td>
               </tr>
         </tbody>
       </table>
