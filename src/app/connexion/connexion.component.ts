@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-connexion',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent implements OnInit {
-
+  loginForm = new FormGroup({
+    login: new FormControl('', Validators.required),
+    motDePasse: new FormControl('', Validators.required)
+  });
   constructor() { }
 
   ngOnInit() {

@@ -10,8 +10,8 @@ import { Commerce } from '../Model/Commerce';
 export class ConnecteComponent implements OnInit {
   //quand on récupère le clients, on vérifie si c'est des commerces ou office du tourisme
   title:string="Mes commerces";
-  //commerces: Commerce[];
-  commerces: Commerce[] = [
+  commerces: Commerce[];
+  /*commerces: Commerce[] = [
     {
       "commerceId": 1,
       "nomCommerce": "Garden Cart",
@@ -29,13 +29,16 @@ export class ConnecteComponent implements OnInit {
       "nomCommerce": "Pizza hut",
     },
   ];
-  
+  */
   constructor(
-    //private boutiqueService:BoutiqueService
+    private boutiqueService:BoutiqueService
   ) { }
 
   ngOnInit() {
-    //this.commerces = this.boutiqueService.getCommerces();
+    this.getCommerces();
   }
 
+  getCommerces():void{
+    this.commerces = this.boutiqueService.getCommerces();
+  }
 }

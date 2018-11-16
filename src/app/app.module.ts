@@ -11,6 +11,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { CompteComponent } from './compte/compte.component';
 import { AideComponent } from './aide/aide.component';
 import { EditerComponent } from './editer/editer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EditerComponent } from './editer/editer.component';
   imports: [
     BrowserModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

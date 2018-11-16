@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 import {Commerce} from './Model/Commerce';
-import { ThrowStmt } from '@angular/compiler';
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +28,6 @@ export class BoutiqueService {
     },
   ];
   constructor(
-    private http: HttpClient
   ) { }
 
   getCommerces():Commerce[]{
@@ -40,5 +36,9 @@ export class BoutiqueService {
 
   getCommerce(id:number):Commerce{
     return this.commerces.find(commerce => commerce.commerceId === id);
+  }
+
+  updateCommerce(commerce:Commerce):void{
+    this.commerces[this.commerces.indexOf(commerce)] = commerce;
   }
 }

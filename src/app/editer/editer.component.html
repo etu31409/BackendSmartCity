@@ -1,2 +1,17 @@
 <h3>Editer</h3>
-
+<div *ngIf="commerce">
+  <h2>{{commerce.nom | uppercase}}</h2>
+  <div>
+      <form [formGroup]="editerCommerceForm" (ngSubmit)="save()">
+          <p>
+              <label>
+                Nom :
+                <input type="text" formControlName="nomCommerce" required>
+              </label>
+          </p>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!editerCommerceForm.valid">Enregistrer</button>
+      </form>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" (click)="goBack()">Retour</button>
+    
+</div>
