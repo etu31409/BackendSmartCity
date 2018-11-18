@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: 'connecte', component: ConnecteComponent },
   {path:'connexion', component: ConnexionComponent},
   {path:'editer/:id', component: EditerComponent},
+  {path:'editer', component: EditerComponent},
   {path:'aide', component: AideComponent},
   {path:'compte', component: CompteComponent},
   {path: '', redirectTo: '/connexion', pathMatch: 'full' },

@@ -14,6 +14,11 @@ export class EditerComponent implements OnInit {
   commerce:Commerce;
   editerCommerceForm = new FormGroup({
     nomCommerce: new FormControl('', Validators.required),
+    adresse : new FormGroup({
+      rue: new FormControl('', Validators.required),
+      codePostal:new FormControl('', Validators.required),
+      numero: new FormControl('', Validators.required)
+    }),
   });
   constructor(
     private route: ActivatedRoute,
@@ -23,8 +28,22 @@ export class EditerComponent implements OnInit {
 
   ngOnInit() {
     this.getCommerce();
+    if(this.commerce != null){
+      this.updateChamps();
+    }
   }
 
+  updateChamps():void{
+    this.editerCommerceForm.patchValue({
+      nomCommerce:this.commerce.nomCommerce,
+      rue:this.commerce.adresse.rue,
+      adresse:{
+        rue:this.commerce.adresse.rue,
+        numero:this.commerce.adresse.numero,
+        codePostal:this.commerce.adresse.codePostal
+      }
+    });
+  }
   getCommerce():void{
     const id = +this.route.snapshot.paramMap.get('id');
     this.commerce = this.boutiqueService.getCommerce(id);
