@@ -11,25 +11,6 @@ export class ConnecteComponent implements OnInit {
   //quand on récupère le clients, on vérifie si c'est des commerces ou office du tourisme
   title:string="Mes commerces";
   commerces: Commerce[];
-  /*commerces: Commerce[] = [
-    {
-      "commerceId": 1,
-      "nomCommerce": "Garden Cart",
-    },
-    {
-      "commerceId": 2,
-      "nomCommerce": "Hammer",
-    },
-    {
-      "commerceId": 3,
-      "nomCommerce": "H&M",
-    },
-    {
-      "commerceId": 4,
-      "nomCommerce": "Pizza hut",
-    },
-  ];
-  */
   constructor(
     private boutiqueService:BoutiqueService
   ) { }

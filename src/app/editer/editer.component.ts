@@ -54,7 +54,12 @@ export class EditerComponent implements OnInit {
   }
 
   save():void{
-    this.boutiqueService.updateCommerce(this.commerce);
+    this.commerce.nomCommerce = this.editerCommerceForm.get("nomCommerce").value;
+    this.commerce.adresse.codePostal = this.editerCommerceForm.get("adresse").get("codePostal").value;
+    this.commerce.adresse.rue = this.editerCommerceForm.get("adresse").get("rue").value;
+    this.commerce.adresse.numero = this.editerCommerceForm.get("adresse").get("numero").value;
+    
+    this.boutiqueService.updateCommerce(this.commerce, +this.route.snapshot.paramMap.get('id'));
     this.goBack();
   }
 }

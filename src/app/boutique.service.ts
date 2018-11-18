@@ -62,7 +62,10 @@ export class BoutiqueService {
     return this.commerces.find(commerce => commerce.commerceId === id);
   }
 
-  updateCommerce(commerce:Commerce):void{
-    this.commerces[this.commerces.indexOf(commerce)] = commerce;
+  updateCommerce(commerce:Commerce, id:number):void{
+    this.commerces[id - 1].nomCommerce = commerce.nomCommerce;
+    this.commerces[id - 1].adresse.codePostal = commerce.adresse.codePostal;
+    this.commerces[id - 1].adresse.numero = commerce.adresse.numero;
+    this.commerces[id - 1].adresse.rue = commerce.adresse.rue;
   }
 }
