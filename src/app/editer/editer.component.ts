@@ -16,8 +16,9 @@ export class EditerComponent implements OnInit {
     nomCommerce: new FormControl('', Validators.required),
     adresse: new FormGroup({
       rue: new FormControl('', Validators.required),
-      codePostal: new FormControl('', Validators.required),
-      numero: new FormControl('', Validators.required)
+      //codePostal: new FormControl('', Validators.pattern('\d{4}')),
+      codePostal: new FormControl('', [Validators.minLength(4), Validators.maxLength(4)]),
+      numero: new FormControl('',Validators.minLength(1))
     }),
   });
   constructor(
