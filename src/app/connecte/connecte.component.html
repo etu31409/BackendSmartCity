@@ -6,15 +6,15 @@
              *ngIf='commerces && commerces.length'>
         <thead>
           <tr>
-            <th>Commerce ID</th>
             <th>Nom</th>
-            <th>Modifier</th>
+            <th>Adresse</th>
+            <th>Modifier / Supprimer</th>
           </tr>
         </thead>
         <tbody class="commerces">
             <tr *ngFor='let commerce of commerces'>
-                <td>{{ commerce.commerceId }}</td>
                 <td>{{ commerce.nomCommerce}}</td>
+                <td>{{ commerce.adresse.rue}},  {{commerce.adresse.numero}}</td>
                 <td><a routerLink="/editer/{{commerce.commerceId}}">Éditer</a></td>
             </tr>
         </tbody>
