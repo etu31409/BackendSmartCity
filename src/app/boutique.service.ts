@@ -7,8 +7,9 @@ import {Commerce} from './Model/Commerce';
   providedIn: 'root'
 })
 export class BoutiqueService {
-  private boutiquesUrl = 'api/boutiques';  // URL to web api
+  private boutiquesUrl = 'api/boutiques';  // URL to web api  
 
+  //Tableau de commerces
   commerces: Commerce[] = [
     {
       "commerceId": 1,
@@ -51,6 +52,7 @@ export class BoutiqueService {
       }
     },
   ];
+
   constructor(
   ) { }
 
@@ -62,10 +64,14 @@ export class BoutiqueService {
     return this.commerces.find(commerce => commerce.commerceId === id);
   }
 
-  updateCommerce(commerce:Commerce, id:number):void{
-    this.commerces[id - 1].nomCommerce = commerce.nomCommerce;
-    this.commerces[id - 1].adresse.codePostal = commerce.adresse.codePostal;
-    this.commerces[id - 1].adresse.numero = commerce.adresse.numero;
-    this.commerces[id - 1].adresse.rue = commerce.adresse.rue;
+  updateCommerce(commerce:Commerce):void{
+    this.commerces[commerce.commerceId - 1].nomCommerce = commerce.nomCommerce;
+    this.commerces[commerce.commerceId - 1].adresse.codePostal = commerce.adresse.codePostal;
+    this.commerces[commerce.commerceId - 1].adresse.numero = commerce.adresse.numero;
+    this.commerces[commerce.commerceId - 1].adresse.rue = commerce.adresse.rue;
+  }
+
+  deleteCommerce(commerce : Commerce): void{
+    this.commerces.splice(this.commerces.indexOf(commerce),1);
   }
 }

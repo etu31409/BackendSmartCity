@@ -14,7 +14,7 @@
         <tbody class="commerces">
             <tr *ngFor='let commerce of commerces'>
                 <td>{{ commerce.commerceId }}</td>
-                <td>{{ commerce.nomCommerce | lowercase }}</td>
+                <td>{{ commerce.nomCommerce}}</td>
                 <td><a routerLink="/editer/{{commerce.commerceId}}">Éditer</a></td>
             </tr>
         </tbody>

@@ -1,5 +1,5 @@
-<h3>Editer</h3>
 <div *ngIf="commerce">
+    <h3>Editer</h3>
     <h2>{{commerce.nom | uppercase}}</h2>
 </div>
 <div *ngIf="!commerce">
@@ -37,8 +37,9 @@
                 </p>
           </div>
           <button class="btn btn-lg btn-primary" type="submit" [disabled]="!editerCommerceForm.valid">Enregistrer</button>
-          <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
       </form>
+      <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
+      <button class="btn btn-lg btn-primary" (click)="delete()">Supprimer</button>
     </div>
     
     
