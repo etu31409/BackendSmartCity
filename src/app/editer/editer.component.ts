@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class EditerComponent implements OnInit {
   commerce: Commerce;
-  editerCommerceForm = new FormGroup({
+  editCommerceForm = new FormGroup({
     nomCommerce: new FormControl('', Validators.required),
     adresse: new FormGroup({
       rue: new FormControl('', Validators.required),
@@ -30,12 +30,12 @@ export class EditerComponent implements OnInit {
   ngOnInit() {
     this.getCommerce();
     if (this.commerce != null) {
-      this.updateChamps();
+      this.preFillForm();
     }
   }
 
-  updateChamps(): void {
-    this.editerCommerceForm.patchValue({
+  preFillForm(): void {
+    this.editCommerceForm.patchValue({
       nomCommerce: this.commerce.nomCommerce,
       rue: this.commerce.adresse.rue,
       adresse: {
@@ -61,10 +61,10 @@ export class EditerComponent implements OnInit {
       this.commerce.commerceId = this.boutiqueService.commerces[this.boutiqueService.commerces.length - 1].commerceId + 1;
       this.boutiqueService.commerces.push(this.commerce);
     }
-    this.commerce.nomCommerce = this.editerCommerceForm.get("nomCommerce").value;
-    this.commerce.adresse.codePostal = this.editerCommerceForm.get("adresse").get("codePostal").value;
-    this.commerce.adresse.rue = this.editerCommerceForm.get("adresse").get("rue").value;
-    this.commerce.adresse.numero = this.editerCommerceForm.get("adresse").get("numero").value;
+    this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
+    this.commerce.adresse.codePostal = this.editCommerceForm.get("adresse").get("codePostal").value;
+    this.commerce.adresse.rue = this.editCommerceForm.get("adresse").get("rue").value;
+    this.commerce.adresse.numero = this.editCommerceForm.get("adresse").get("numero").value;
 
     this.boutiqueService.updateCommerce(this.commerce);
     this.goBack();

@@ -1,12 +1,11 @@
 <div *ngIf="commerce">
-    <h3>Editer</h3>
-    <h2>{{commerce.nom | uppercase}}</h2>
+    <h2>{{commerce.nomCommerce}}</h2>
 </div>
 <div *ngIf="!commerce">
     <h2>Nouveau commerce</h2>
 </div>
 <div>
-    <form [formGroup]="editerCommerceForm" (ngSubmit)="save()">
+    <form [formGroup]="editCommerceForm">
         <p>
             <label>
                 Nom :
@@ -38,7 +37,7 @@
         </div>
     </form>
     <div class="buttonFlex">
-        <button class="btn btn-lg btn-primary" (click)="save()" [disabled]="!editerCommerceForm.valid">Enregistrer</button>
+        <button class="btn btn-lg btn-primary" (click)="save()" [disabled]="!editCommerceForm.valid">Enregistrer</button>
         <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
         <button *ngIf="commerce" class="btn btn-lg btn-primary" (click)="delete()">Supprimer</button>
     </div>
