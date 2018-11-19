@@ -1,6 +1,10 @@
+.buttonFlex{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 button{
-    text-align: center;
-    margin:auto;
-    display:block;
-    margin-top:20px;
+    margin-left:2%;
+    margin-right:2%;
 }

@@ -5,42 +5,41 @@
 <div *ngIf="!commerce">
     <h2>Nouveau commerce</h2>
 </div>
-  <div>
-      <form [formGroup]="editerCommerceForm" (ngSubmit)="save()">
-          <p>
-              <label>
+<div>
+    <form [formGroup]="editerCommerceForm" (ngSubmit)="save()">
+        <p>
+            <label>
                 Nom :
                 <input type="text" formControlName="nomCommerce" required>
-              </label>
-          </p>
-          <div  formGroupName="adresse">
+            </label>
+        </p>
+        <div formGroupName="adresse">
             <h5>
                 Adresse :
             </h5>
             <p>
                 <label>
-                        Rue :
-                        <input type="text" formControlName="rue" required>
+                    Rue :
+                    <input type="text" formControlName="rue" required>
                 </label>
             </p>
             <p>
-                    <label>
-                        Numéro :
-                        <input type="text" formControlName="numero" required>
-                    </label>
-                </p>
+                <label>
+                    Numéro :
+                    <input type="text" formControlName="numero" required>
+                </label>
+            </p>
             <p>
-                    <label>
-                        Code postal :
-                        <input type="text" formControlName="codePostal" required>
-                    </label>
-                </p>
-          </div>
-          <button class="btn btn-lg btn-primary" type="submit" [disabled]="!editerCommerceForm.valid">Enregistrer</button>
-      </form>
-      <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
-      <button class="btn btn-lg btn-primary" (click)="delete()">Supprimer</button>
+                <label>
+                    Code postal :
+                    <input type="text" formControlName="codePostal" required>
+                </label>
+            </p>
+        </div>
+    </form>
+    <div class="buttonFlex">
+        <button class="btn btn-lg btn-primary" (click)="save()" [disabled]="!editerCommerceForm.valid">Enregistrer</button>
+        <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
+        <button *ngIf="commerce" class="btn btn-lg btn-primary" (click)="delete()">Supprimer</button>
     </div>
-    
-    
-
+</div>
