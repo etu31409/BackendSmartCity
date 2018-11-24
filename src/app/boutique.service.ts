@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import {Commerce} from './Model/Commerce';
 import { HttpClient } from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,10 @@ export class BoutiqueService {
 
   getCommercesObservables(): Observable<Commerce[]>{
     return this.http.get<Commerce[]>(`http://localhost:5000/api/Commerces`);
+  }
+
+  getCommercesFakeDate():Observable<Commerce[]>{
+    return this.http.get<Commerce[]>("./assets/fakedata.json")
+    .pipe(map(commerce => Object.assign(new Commerce(), commerce)));  
   }
 }

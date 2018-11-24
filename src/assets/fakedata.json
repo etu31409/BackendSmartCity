@@ -1,0 +1,42 @@
+[
+    {
+      "commerceId": 1,
+      "nomCommerce": "Garden Cart",
+      "adresse":
+      {
+        "rue": "Rue de fer",
+        "codePostal":"5000",
+        "numero": 12
+      }
+    },
+    {
+      "commerceId": 2,
+      "nomCommerce": "Hammer",
+      "adresse":
+      {
+        "rue": "Rue Godefroid",
+        "codePostal":"5000",
+        "numero": 2
+      }
+    },
+    {
+      "commerceId": 3,
+      "nomCommerce": "H&M",
+      "adresse":
+      {
+        "rue": "Rue de fer",
+        "codePostal":"5000",
+        "numero": 10
+      }
+    },
+    {
+      "commerceId": 4,
+      "nomCommerce": "Pizza hut",
+      "adresse":
+      {
+        "rue": "Rue de l'Ange",
+        "codePostal":"5000",
+        "numero": 30
+      }
+    }
+  ]
