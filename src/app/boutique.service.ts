@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { Observable} from 'rxjs';
 import {Commerce} from './Model/Commerce';
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -53,12 +53,11 @@ export class BoutiqueService {
     },
   ];
 
-  constructor(
-  ) { }
+  constructor(private http:HttpClient) { }
 
   getCommerces():Commerce[]{
     return this.commerces;
-  }
+}
 
   getCommerce(id:number):Commerce{
     return this.commerces.find(commerce => commerce.commerceId === id);
@@ -73,5 +72,9 @@ export class BoutiqueService {
 
   deleteCommerce(commerce : Commerce): void{
     this.commerces.splice(this.commerces.indexOf(commerce),1);
+  }
+
+  getCommercesObservables(): Observable<Commerce[]>{
+    return this.http.get<Commerce[]>(`http://localhost:5000/api/Commerces`);
   }
 }

@@ -12,7 +12,7 @@ import { CompteComponent } from './compte/compte.component';
 import { AideComponent } from './aide/aide.component';
 import { EditerComponent } from './editer/editer.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import{HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     NgbModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
