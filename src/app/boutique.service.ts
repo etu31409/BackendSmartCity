@@ -76,26 +76,17 @@ export class BoutiqueService {
     }
   ];
 
-  users:User[] = [
-    {
-      "id":1,
-      "nom":"Romain",
-      "prenom":"François",
-      "numeroDeTelephone":47345987,
-      "motDePasse":"test123",
-      "estCommercant":true,
-      "adresseMail":"françoisRomain@gmail.com"
-    },
+  users:User = 
     {
       "id":2,
-      "nom":"Pozzi",
-      "prenom":"Nicolas",
+      "nom":"Legris",
+      "prenom":"Gandalf",
       "numeroDeTelephone":47347887,
       "motDePasse":"123test",
       "estCommercant":true,
-      "adresseMail":"NicolasPozzi@gmail.com"
-    }
-  ];
+      "adresseMail":"legrisGandalf@gmail.com",
+      "role":"admin"
+    };
 
   constructor(private http:HttpClient) { }
 
@@ -135,5 +126,9 @@ export class BoutiqueService {
   checkUser(login:string, motDePasse:string):boolean{
     //devra faire appel à l'API, si l'api renvoit les bon token c'est bon
     return true;
+  }
+
+  getUser():User{
+    return this.users;
   }
 }

@@ -6,4 +6,5 @@ export class User{
     estCommercant:boolean;
     numeroDeTelephone:number;
     motDePasse:string;  
+    role:string;
 }

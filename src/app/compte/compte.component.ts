@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../Model/User';
+import { BoutiqueService } from '../boutique.service';
 
 @Component({
   selector: 'app-compte',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./compte.component.css']
 })
 export class CompteComponent implements OnInit {
-
-  constructor() { }
+user:User;
+  constructor(private boutiqueService:BoutiqueService) { }
 
   ngOnInit() {
+    this.user = this.boutiqueService.getUser();
   }
 
 }
