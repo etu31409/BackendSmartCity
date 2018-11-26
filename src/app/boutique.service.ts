@@ -13,7 +13,8 @@ import { Categorie } from './Model/Categorie';
 export class BoutiqueService {
   private boutiquesUrl = 'api/boutiques';  // URL to web api  
 
-  //Tableau de commerces
+  //$ → Convention pour signifier une liste d'Observables
+  commerces$ : Observable<Commerce[]>;
   commerces: Commerce[] = [
     {
       "commerceId": 1,
@@ -122,12 +123,13 @@ export class BoutiqueService {
   }
 
   getCommercesFakeDate():Observable<Commerce[]>{
-    return this.http.get<RootObject>("./assets/fakedata.json")
+    this.commerces$ = this.http.get<RootObject>("./assets/fakedata.json")
     .pipe(
       map(
         tabCommerces => tabCommerces.commerces
         )
-      );  
+      );
+    return this.commerces$;   
   }
 
   checkUser(login:string, motDePasse:string):boolean{
