@@ -21,7 +21,11 @@ export class BoutiqueService {
         "codePostal":"5000",
         "numero": 12
       },
-      "categorie":"Magasin"
+      "categorie":
+      {
+        "libelle":"Magasin",
+        "categorieMere":null
+      }
     },
     {
       "commerceId": 2,
@@ -32,7 +36,11 @@ export class BoutiqueService {
         "codePostal":"5000",
         "numero": 2
       },
-      "categorie":"Bar"
+      "categorie":
+      {
+        "libelle":"Bar",
+        "categorieMere":null
+      }
     },
     {
       "commerceId": 3,
@@ -43,7 +51,10 @@ export class BoutiqueService {
         "codePostal":"5000",
         "numero": 10
       },
-      "categorie":"Magasin"
+      "categorie":
+      {
+        "libelle":"Magasin", "categorieMere":null
+      }
     },
     {
       "commerceId": 4,
@@ -54,7 +65,10 @@ export class BoutiqueService {
         "codePostal":"5000",
         "numero": 30
       },
-      "categorie":"Restaurant"
+      "categorie":
+      {
+        "libelle":"Restaurant", "categorieMere":null
+      }
     },
   ];
 

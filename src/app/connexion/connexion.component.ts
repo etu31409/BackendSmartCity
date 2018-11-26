@@ -16,4 +16,9 @@ export class ConnexionComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkUser(){
+    var login = this.loginForm.get("login");
+    var motDePasse = this.loginForm.get("motDePasse");
+    alert(login.value +" → "+ motDePasse.value);
+  }
 }
