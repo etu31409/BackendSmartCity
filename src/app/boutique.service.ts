@@ -3,6 +3,7 @@ import { Observable} from 'rxjs';
 import {Commerce} from './Model/Commerce';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import { User } from './Model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,27 @@ export class BoutiqueService {
     },
   ];
 
+  users:User[] = [
+    {
+      "id":1,
+      "nom":"Romain",
+      "prenom":"François",
+      "numeroDeTelephone":47345987,
+      "motDePasse":"test123",
+      "estCommercant":true,
+      "adresseMail":"françoisRomain@gmail.com"
+    },
+    {
+      "id":2,
+      "nom":"Pozzi",
+      "prenom":"Nicolas",
+      "numeroDeTelephone":47347887,
+      "motDePasse":"123test",
+      "estCommercant":true,
+      "adresseMail":"NicolasPozzi@gmail.com"
+    }
+  ];
+
   constructor(private http:HttpClient) { }
 
   getCommerces():Commerce[]{
@@ -100,5 +122,10 @@ export class BoutiqueService {
   getCommercesFakeDate():Observable<Commerce[]>{
     return this.http.get<Commerce[]>("./assets/fakedata.json")
     .pipe(map(commerce => Object.assign(new Commerce(), commerce)));  
+  }
+
+  checkUser(login:string, motDePasse:string):boolean{
+    //devra faire appel à l'API, si l'api renvoit les bon token c'est bon
+    return true;
   }
 }
