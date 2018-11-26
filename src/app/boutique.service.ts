@@ -20,7 +20,8 @@ export class BoutiqueService {
         "rue": "Rue de fer",
         "codePostal":"5000",
         "numero": 12
-      }
+      },
+      "categorie":"Magasin"
     },
     {
       "commerceId": 2,
@@ -30,7 +31,8 @@ export class BoutiqueService {
         "rue": "Rue Godefroid",
         "codePostal":"5000",
         "numero": 2
-      }
+      },
+      "categorie":"Bar"
     },
     {
       "commerceId": 3,
@@ -40,7 +42,8 @@ export class BoutiqueService {
         "rue": "Rue de fer",
         "codePostal":"5000",
         "numero": 10
-      }
+      },
+      "categorie":"Magasin"
     },
     {
       "commerceId": 4,
@@ -50,7 +53,8 @@ export class BoutiqueService {
         "rue": "Rue de l'Ange",
         "codePostal":"5000",
         "numero": 30
-      }
+      },
+      "categorie":"Restaurant"
     },
   ];
 

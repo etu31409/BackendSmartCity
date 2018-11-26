@@ -8,6 +8,7 @@
           <tr>
             <th>Nom</th>
             <th>Adresse</th>
+            <th>Catégorie</th>
             <th>Modifier / Supprimer</th>
           </tr>
         </thead>
@@ -15,6 +16,7 @@
             <tr *ngFor='let commerce of commerces'>
                 <td>{{ commerce.nomCommerce}}</td>
                 <td>{{ commerce.adresse.rue}},  {{commerce.adresse.numero}}</td>
+                <td>{{commerce.categorie}}</td>
                 <td><a routerLink="/editer/{{commerce.commerceId}}">Éditer</a></td>
             </tr>
         </tbody>
