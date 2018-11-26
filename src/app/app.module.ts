@@ -13,6 +13,7 @@ import { AideComponent } from './aide/aide.component';
 import { EditerComponent } from './editer/editer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule} from '@angular/common/http';
+import { ActualiteComponent } from './actualite/actualite.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import{HttpClientModule} from '@angular/common/http';
     CompteComponent,
     AideComponent,
     EditerComponent,
+    ActualiteComponent,
   ],
   imports: [
     BrowserModule,
