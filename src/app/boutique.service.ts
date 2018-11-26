@@ -4,6 +4,8 @@ import {Commerce} from './Model/Commerce';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { User } from './Model/User';
+import { RootObject } from './Model/backEndSmartCity';
+import { Categorie } from './Model/Categorie';
 
 @Injectable({
   providedIn: 'root'
@@ -70,7 +72,7 @@ export class BoutiqueService {
       {
         "libelle":"Restaurant", "categorieMere":null
       }
-    },
+    }
   ];
 
   users:User[] = [
@@ -120,8 +122,12 @@ export class BoutiqueService {
   }
 
   getCommercesFakeDate():Observable<Commerce[]>{
-    return this.http.get<Commerce[]>("./assets/fakedata.json")
-    .pipe(map(commerce => Object.assign(new Commerce(), commerce)));  
+    return this.http.get<RootObject>("./assets/fakedata.json")
+    .pipe(
+      map(
+        tabCommerces => tabCommerces.commerces
+        )
+      );  
   }
 
   checkUser(login:string, motDePasse:string):boolean{

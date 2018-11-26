@@ -1,4 +1,6 @@
-[
+{
+  "commerces":
+  [
     {
       "commerceId": 1,
       "nomCommerce": "Garden Cart",
@@ -7,6 +9,11 @@
         "rue": "Rue de fer",
         "codePostal":"5000",
         "numero": 12
+      },
+      "categorie":
+      {
+        "libelle":"Magasin",
+        "categorieMere":null
       }
     },
     {
@@ -17,6 +24,11 @@
         "rue": "Rue Godefroid",
         "codePostal":"5000",
         "numero": 2
+      },
+      "categorie":
+      {
+        "libelle":"Bar",
+        "categorieMere":null
       }
     },
     {
@@ -27,6 +39,10 @@
         "rue": "Rue de fer",
         "codePostal":"5000",
         "numero": 10
+      },
+      "categorie":
+      {
+        "libelle":"Magasin", "categorieMere":null
       }
     },
     {
@@ -37,6 +53,11 @@
         "rue": "Rue de l'Ange",
         "codePostal":"5000",
         "numero": 30
+      },
+      "categorie":
+      {
+        "libelle":"Restaurant", "categorieMere":null
       }
     }
   ]
+}
