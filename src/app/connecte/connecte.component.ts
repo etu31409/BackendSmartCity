@@ -21,11 +21,12 @@ export class ConnecteComponent implements OnInit {
   }
 
   getCommerces():void{
-    //this.commerces = this.boutiqueService.getCommerces();
-    this.boutiqueService.getCommercesFakeDate().subscribe(
+    this.commerces = this.boutiqueService.getCommerces();
+    /*this.boutiqueService.getCommercesFakeDate().subscribe(
       commerces => {
         this.commerces = commerces;
       }
     );
+    */
   }
 }
