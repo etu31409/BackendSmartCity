@@ -1,3 +1,5 @@
+import { Categorie } from "./Categorie";
+
 export class Commerce{
     commerceId:number;
     nomCommerce:string;
@@ -12,7 +14,3 @@ export class Adresse{
     numero:number;
 }
 
-export class Categorie{
-    libelle:string;
-    categorieMere:Categorie;
-}
