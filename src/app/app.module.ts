@@ -14,6 +14,7 @@ import { EditerComponent } from './editer/editer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule} from '@angular/common/http';
 import { ActualiteComponent } from './actualite/actualite.component';
+import { HoraireComponent } from './horaire/horaire.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ActualiteComponent } from './actualite/actualite.component';
     AideComponent,
     EditerComponent,
     ActualiteComponent,
+    HoraireComponent,
   ],
   imports: [
     BrowserModule,
