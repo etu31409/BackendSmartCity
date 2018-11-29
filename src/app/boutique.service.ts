@@ -11,6 +11,7 @@ import { Categorie } from './Model/Categorie';
   providedIn: 'root'
 })
 export class BoutiqueService {
+  private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
   private boutiquesUrl = 'api/boutiques';  // URL to web api  
 
   //$ → Convention pour signifier une liste d'Observables
@@ -110,7 +111,7 @@ export class BoutiqueService {
   }
 
   getCommercesObservables(): Observable<Commerce[]>{
-    return this.http.get<Commerce[]>(`http://localhost:5000/api/Commerces`);
+    return this.http.get<Commerce[]>(this.baseUrlApi+`Commerces`);
   }
 
   getCommercesFakeDate():Observable<Commerce[]>{
