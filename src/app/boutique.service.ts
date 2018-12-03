@@ -7,7 +7,6 @@ import { User } from './Model/User';
 import { RootObject } from './Model/backEndSmartCity';
 import { Categorie } from './Model/Categorie';
 import { HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,7 @@ export class BoutiqueService {
   private boutiquesUrl = 'api/boutiques';  // URL to web api  
   private  httpOptions = {
     headers: new HttpHeaders({
-      'Authorization':  'Bearer ' + this.auth.getToken()
+      'Authorization':  'Bearer ' + localStorage.getItem("token")
     })
   };
 
@@ -75,7 +74,7 @@ export class BoutiqueService {
   ngOnInit() {
      
   }
-  constructor(private http:HttpClient, private auth:AuthService) { }
+  constructor(private http:HttpClient) { }
 
   
   getCommerces():Commerce[]{

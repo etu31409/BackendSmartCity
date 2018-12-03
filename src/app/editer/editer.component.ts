@@ -25,9 +25,6 @@ export class EditerComponent implements OnInit {
 
   ngOnInit() {
     this.getCommerce();
-    if (this.commerce != null) {
-      this.preFillForm();
-    }
   }
 
   preFillForm(): void {
@@ -39,7 +36,14 @@ export class EditerComponent implements OnInit {
   }
   getCommerce(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.boutiqueService.getCommerce(id).subscribe(commerce => this.commerce = commerce);
+    this.boutiqueService.getCommerce(id).subscribe(commerce => 
+      {
+        this.commerce = commerce;
+        if (this.commerce != null) {
+          this.preFillForm();
+        }
+      });
+    
   }
 
   goBack(): void {
