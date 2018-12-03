@@ -6,13 +6,21 @@ import {map} from 'rxjs/operators';
 import { User } from './Model/User';
 import { RootObject } from './Model/backEndSmartCity';
 import { Categorie } from './Model/Categorie';
+import { HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoutiqueService {
   private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
+  //private baseUrlApi = "http://localhost:5000/api/";
   private boutiquesUrl = 'api/boutiques';  // URL to web api  
+  private  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization':  'Bearer ' + this.auth.getToken()
+    })
+  };
 
   //$ → Convention pour signifier une liste d'Observables
   commerces$ : Observable<Commerce[]>;
@@ -20,90 +28,70 @@ export class BoutiqueService {
     {
       "commerceId": 1,
       "nomCommerce": "Garden Cart",
-      "adresse":
-      {
-        "rue": "Rue de fer",
-        "codePostal":"5000",
-        "numero": 12
-      },
-      "categorie":
+      "rue": "Rue de fer",
+      "numero":10,
+      "Idcategorie":
       {
         "libelle":"Magasin",
-        "categorieMere":null
+        "idCategorie":1
       }
     },
     {
       "commerceId": 2,
       "nomCommerce": "Hammer",
-      "adresse":
-      {
-        "rue": "Rue Godefroid",
-        "codePostal":"5000",
-        "numero": 2
-      },
-      "categorie":
+      "rue": "Rue Godefroid",
+      "numero":10,
+      "Idcategorie":
       {
         "libelle":"Bar",
-        "categorieMere":null
+        "idCategorie":2
       }
     },
     {
       "commerceId": 3,
       "nomCommerce": "H&M",
-      "adresse":
+      "rue": "Rue de fer",
+      "numero": 10
+      ,
+      "Idcategorie":
       {
-        "rue": "Rue de fer",
-        "codePostal":"5000",
-        "numero": 10
-      },
-      "categorie":
-      {
-        "libelle":"Magasin", "categorieMere":null
+        "libelle":"Magasin", 
+        "idCategorie":1
       }
     },
     {
       "commerceId": 4,
       "nomCommerce": "Pizza hut",
-      "adresse":
+      "rue": "Rue de l'Ange",
+      "numero": 30
+      ,
+      "Idcategorie":
       {
-        "rue": "Rue de l'Ange",
-        "codePostal":"5000",
-        "numero": 30
-      },
-      "categorie":
-      {
-        "libelle":"Restaurant", "categorieMere":null
+        "libelle":"Restaurant", 
+        "idCategorie":1
       }
     }
   ];
+  ngOnInit() {
+     
+  }
+  constructor(private http:HttpClient, private auth:AuthService) { }
 
-  users:User = 
-    {
-      "id":2,
-      "nom":"Legris",
-      "prenom":"Gandalf",
-      "numeroDeTelephone":47347887,
-      "motDePasse":"123test",
-      "estCommercant":true,
-      "adresseMail":"legrisGandalf@gmail.com",
-      "role":"admin"
-    };
-
-  constructor(private http:HttpClient) { }
-
+  
   getCommerces():Commerce[]{
     return this.commerces;
 }
 
-  getCommerce(id:number):Commerce{
-    return this.commerces.find(commerce => commerce.commerceId === id);
+  getCommerce(id:number):Observable<Commerce>{
+    //return this.commerces.find(commerce => commerce.commerceId === id);
+    return this.http.get<Commerce>(`${this.baseUrlApi}Commerces/${id}`, this.httpOptions);
+
   }
 
   updateCommerce(commerce:Commerce):void{
     this.commerces[commerce.commerceId - 1].nomCommerce = commerce.nomCommerce;
-    this.commerces[commerce.commerceId - 1].adresse.codePostal = commerce.adresse.codePostal;
-    this.commerces[commerce.commerceId - 1].adresse.numero = commerce.adresse.numero;
-    this.commerces[commerce.commerceId - 1].adresse.rue = commerce.adresse.rue;
+    this.commerces[commerce.commerceId - 1].numero = commerce.numero;
+    this.commerces[commerce.commerceId - 1].rue = commerce.rue;
   }
 
   deleteCommerce(commerce : Commerce): void{
@@ -111,7 +99,8 @@ export class BoutiqueService {
   }
 
   getCommercesObservables(): Observable<Commerce[]>{
-    return this.http.get<Commerce[]>(this.baseUrlApi+`Commerces`);
+    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces`, this.httpOptions)
+    ;
   }
 
   getCommercesFakeDate():Observable<Commerce[]>{
@@ -122,14 +111,5 @@ export class BoutiqueService {
         )
       );
     return this.commerces$;   
-  }
-
-  checkUser(login:string, motDePasse:string):boolean{
-    //devra faire appel à l'API, si l'api renvoit les bon token c'est bon
-    return true;
-  }
-
-  getUser():User{
-    return this.users;
   }
 }

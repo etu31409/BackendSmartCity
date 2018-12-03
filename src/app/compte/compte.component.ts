@@ -12,7 +12,7 @@ user:User;
   constructor(private boutiqueService:BoutiqueService) { }
 
   ngOnInit() {
-    this.user = this.boutiqueService.getUser();
+    
   }
 
 }

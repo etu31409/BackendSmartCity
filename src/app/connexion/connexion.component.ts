@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BoutiqueService } from '../boutique.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-connexion',
@@ -12,7 +12,7 @@ export class ConnexionComponent implements OnInit {
     login: new FormControl('', Validators.required),
     motDePasse: new FormControl('', Validators.required)
   });
-  constructor(private boutiqueService:BoutiqueService) { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit() {
   }
@@ -20,6 +20,6 @@ export class ConnexionComponent implements OnInit {
   checkUser(){
     var login = this.loginForm.get("login").value;
     var motDePasse = this.loginForm.get("motDePasse").value;
-    this.boutiqueService.checkUser(login, motDePasse);
+    this.authService.loginUser(login, motDePasse);
   }
 }

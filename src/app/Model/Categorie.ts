@@ -1,4 +1,4 @@
 export class Categorie{
     libelle:string;
-    categorieMere:Categorie;
+    idCategorie:number;
 }

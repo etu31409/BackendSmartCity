@@ -15,9 +15,9 @@
         <tbody class="commerces">
             <tr *ngFor='let commerce of commerces'>
                 <td>{{ commerce.nomCommerce}}</td>
-                <td>{{ commerce.adresse.rue}},  {{commerce.adresse.numero}}</td>
-                <td>{{commerce.categorie.libelle}}</td>
-                <td><a routerLink="/editer/{{commerce.commerceId}}">Éditer</a></td>
+                <td>{{ commerce.rue}},  {{commerce.numero}}</td>
+                <td>{{commerce.Idcategorie}}</td>
+                <td><a routerLink="/editer/{{commerce.idCommerce}}">Éditer</a></td>
             </tr>
         </tbody>
       </table>
