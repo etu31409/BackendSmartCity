@@ -87,14 +87,20 @@ export class BoutiqueService {
 
   }
 
+  addCommerce(commerce:Commerce):void{
+    this.http.post<Commerce>(`${this.baseUrlApi}Commerces`, this.httpOptions);
+  }
+
   updateCommerce(commerce:Commerce):void{
-    this.commerces[commerce.commerceId - 1].nomCommerce = commerce.nomCommerce;
-    this.commerces[commerce.commerceId - 1].numero = commerce.numero;
-    this.commerces[commerce.commerceId - 1].rue = commerce.rue;
+    // this.commerces[commerce.commerceId - 1].nomCommerce = commerce.nomCommerce;
+    // this.commerces[commerce.commerceId - 1].numero = commerce.numero;
+    // this.commerces[commerce.commerceId - 1].rue = commerce.rue;
+    this.http.put<Commerce>(`${this.baseUrlApi}Commerces/${commerce.commerceId}`, this.httpOptions);
   }
 
   deleteCommerce(commerce : Commerce): void{
-    this.commerces.splice(this.commerces.indexOf(commerce),1);
+    // this.commerces.splice(this.commerces.indexOf(commerce),1);
+    this.http.delete<Commerce>(`${this.baseUrlApi}Commerces/${commerce.commerceId}`, this.httpOptions);
   }
 
   getCommercesObservables(): Observable<Commerce[]>{

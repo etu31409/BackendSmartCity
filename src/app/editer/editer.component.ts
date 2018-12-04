@@ -51,16 +51,31 @@ export class EditerComponent implements OnInit {
   }
 
   save(): void {
+    let isNewCommerce = false;
     if (this.commerce == null) {
       this.commerce = new Commerce();
-      this.commerce.commerceId = this.boutiqueService.commerces[this.boutiqueService.commerces.length - 1].commerceId + 1;
-      this.boutiqueService.commerces.push(this.commerce);
+      isNewCommerce = true;
     }
-    this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
-    this.commerce.rue = this.editCommerceForm.get("rue").value;
-    this.commerce.numero = this.editCommerceForm.get("numero").value;
-
-    this.boutiqueService.updateCommerce(this.commerce);
+      // this.commerce.commerceId = this.boutiqueService.commerces[this.boutiqueService.commerces.length - 1].commerceId + 1;
+      // this.boutiqueService.commerces.push(this.commerce);
+      this.boutiqueService.getCommercesObservables().subscribe(
+        commerces => {
+          (this.commerce.commerceId) ? this.commerce.commerceId = commerces[commerces.length].commerceId +1 :"";
+          this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
+          this.commerce.rue = this.editCommerceForm.get("rue").value;
+          this.commerce.numero = this.editCommerceForm.get("numero").value;
+        }
+      );
+    
+    // this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
+    // this.commerce.rue = this.editCommerceForm.get("rue").value;
+    // this.commerce.numero = this.editCommerceForm.get("numero").value;
+    if(isNewCommerce){
+      this.boutiqueService.updateCommerce(this.commerce);
+    }
+    else{
+      this.boutiqueService.addCommerce(this.commerce);
+    }
     this.goBack();
   }
 
