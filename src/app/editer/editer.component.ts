@@ -35,6 +35,7 @@ export class EditerComponent implements OnInit {
     });
   }
   getCommerce(): void {
+    //si nouveau commerce, va mettre 0 dans l'url, aucun commerce n'a 0 comme identifiant
     const id = +this.route.snapshot.paramMap.get('id');
     this.boutiqueService.getCommerce(id).subscribe(commerce => 
       {
@@ -70,11 +71,11 @@ export class EditerComponent implements OnInit {
     // this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
     // this.commerce.rue = this.editCommerceForm.get("rue").value;
     // this.commerce.numero = this.editCommerceForm.get("numero").value;
-    if(isNewCommerce){
-      this.boutiqueService.updateCommerce(this.commerce);
+    if(!isNewCommerce){
+      this.boutiqueService.updateCommerce(this.commerce).subscribe();
     }
     else{
-      this.boutiqueService.addCommerce(this.commerce);
+      this.boutiqueService.addCommerce(this.commerce).subscribe();
     }
     this.goBack();
   }
