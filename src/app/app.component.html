@@ -4,8 +4,10 @@
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" routerLink="/compte">Mon compte</a>
             <a class="p-2 text-dark" routerLink="/aide">Aide</a>
-            <a class="p-2 text-dark" routerLink="">Déconnexion</a>
+            <a class="p-2 text-dark" routerLink="" *ngIf="!authService.isAuthenticated()">Connexion</a>
+            <a class="p-2 text-dark" routerLink="/" (click)="authService.logout()" *ngIf="authService.isAuthenticated()">Déconnexion</a>
         </nav>
+        
     </div>
 </header>
 <h1 id="title">{{title}}</h1>

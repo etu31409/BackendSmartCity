@@ -5,11 +5,13 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { EditerComponent } from './editer/editer.component';
 import { CompteComponent } from './compte/compte.component';
 import { AideComponent } from './aide/aide.component';
+import { ConnexionDetailGuard } from './connexion/connexion-detail.guard';
 
 
 const routes: Routes = [
   {path: 'connecte', component: ConnecteComponent },
-  {path:'connexion', component: ConnexionComponent},
+  {path:'connexion',
+  canActivate:[ConnexionDetailGuard], component: ConnexionComponent},
   {path:'editer/:id', component: EditerComponent},
   {path:'editer', component: EditerComponent},
   {path:'aide', component: AideComponent},

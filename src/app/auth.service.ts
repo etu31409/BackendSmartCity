@@ -13,6 +13,7 @@ import { Token } from './Model/token';
   providedIn: 'root'
 })
 export class AuthService {
+  TOKEN_KEY = "token";
   //private baseUrlApi = "http://localhost:5000/api/";
   private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
   private httpOptions = {
@@ -31,13 +32,20 @@ export class AuthService {
     this.http.post<Token>(`${this.baseUrlApi}jwt`, body, this.httpOptions).subscribe(res =>{
       console.log(res);
       this.token = res.access_token;
-      localStorage.removeItem("token");
-      localStorage.setItem("token", this.token);
+      //localStorage.removeItem(this.TOKEN_KEY);
+      localStorage.setItem(this.TOKEN_KEY, this.token);
     });
-    
   }
 
   getToken():string{
     return this.token;
+  }
+
+  isAuthenticated():boolean{
+    return !!localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  logout(){
+    localStorage.removeItem(this.TOKEN_KEY);
   }
 }
