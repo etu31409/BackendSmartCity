@@ -31,7 +31,7 @@ export class AuthService {
     this.http.post<Token>(`${this.baseUrlApi}jwt`, body, this.httpOptions).subscribe(res =>{
       console.log(res);
       this.token = res.access_token;
-      //stockage sous forme de cookie
+      localStorage.removeItem("token");
       localStorage.setItem("token", this.token);
     });
     

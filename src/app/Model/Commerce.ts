@@ -1,11 +1,30 @@
 import { Categorie } from "./Categorie";
+import { Actualite } from "./Actualite";
+import { Personne } from "./Personne";
+import { OpeningPeriod } from "./OpeningPeriod";
 
 export class Commerce{
-    commerceId:number;
+    idCommerce:number;
     nomCommerce:string;
     rue:string;
     numero:number;
-    Idcategorie:Categorie;
+    description:string;
+    produitPhare:string;
+    parcoursProduitPhare:string;
+    numeroGSM:number;
+    numeroFixe:number;
+    adresseMail:string;
+    urlPageFacebook:string;
+    longitude:number;
+    latitude:number;
+    idCategorie:number;
+    idPersonne:number;
+    rowVersion:number;
+    idCategorieNavigation:Categorie;
+    idPersonneNavigation:Personne;
+    actualite:Actualite[];
+    imageCommerce:ImageCommerce[];
+    openingPeriod:OpeningPeriod[];
 }
 
 

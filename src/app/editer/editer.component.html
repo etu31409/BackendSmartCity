@@ -12,7 +12,19 @@
                 <input type="text" formControlName="nomCommerce" required>
             </label>
         </p>
-      
+        <form [formGroup]="formCategorie">
+            <p>
+                <label>
+                    Catégorie :
+                    <select formControlName="categorie">
+                        <option *ngFor="let cat of categories; let i=index" [ngValue]="i">
+                            {{cat.nom}}
+                        </option>
+                    </select>
+                </label>
+            </p>
+        </form>
+        
         <h5>
             Adresse :
         </h5>
@@ -26,6 +38,60 @@
             <label>
                 Numéro :
                 <input type="text" formControlName="numero" required>
+            </label>
+        </p>
+        <p>
+            <label>
+                Adresse mail :
+                <input type="text" formControlName="adresseMail" required>
+            </label>
+        </p>
+        <p>
+            <label>
+                Telephone mobile :
+                <input type="text" [formControl]="telephoneMobile">
+            </label>
+        </p>
+        <p>
+            <label>
+                Telephone fixe :
+                <input type="text" [formControl]="telephoneFixe">
+            </label>
+        </p>
+        <p>
+            <label>
+                Description :
+                <input type="text" [formControl]="description">
+            </label>
+        </p>
+        <p>
+            <label>
+                Produit phare :
+                <input type="text" [formControl]="produitPhare" >
+            </label>
+        </p>
+        <p>
+            <label>
+                Parcours produit phare :
+                <input type="text" [formControl]="parcoursProduitPhare" >
+            </label>
+        </p>
+        <p>
+            <label>
+                Page facebook :
+                <input type="text" [formControl]="urlPageFacebook">
+            </label>
+        </p>
+        <p>
+            <label>
+                Lattitude :
+                <input type="text" [formControl]="latitude" >
+            </label>
+        </p>
+        <p>
+            <label>
+                Longitude :
+                <input type="text" [formControl]="longitude" >
             </label>
         </p>
     </form>
