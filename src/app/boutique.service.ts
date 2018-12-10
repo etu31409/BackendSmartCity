@@ -13,7 +13,6 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class BoutiqueService {
   private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
-  //private baseUrlApi = "http://localhost:5000/api/";
   private boutiquesUrl = 'api/boutiques';  // URL to web api  
   private  httpOptions = {
     headers: new HttpHeaders({
@@ -47,8 +46,7 @@ export class BoutiqueService {
   }
 
   getCommercesObservables(): Observable<Commerce[]>{
-    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0`, this.httpOptions)
-    ;
+    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0`, this.httpOptions);
   }
 
   getCommercesFakeDate():Observable<Commerce[]>{
