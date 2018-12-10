@@ -35,6 +35,7 @@ export class AuthService {
       this.token = res.access_token;
       localStorage.setItem(this.TOKEN_KEY, this.token);
       this.router.navigate(['/connecte']);
+      location.reload();
     });
   }
 

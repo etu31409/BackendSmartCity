@@ -141,6 +141,7 @@ export class EditerComponent implements OnInit {
     // this.commerce.numero = this.editCommerceForm.get("numero").value;
     
     //this.goBack();
+    location.reload();
     this.router.navigate(['/connecte']);
   }
 

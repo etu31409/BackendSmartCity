@@ -22,5 +22,6 @@ export class ConnexionComponent implements OnInit {
     var login = this.loginForm.get("login").value;
     var motDePasse = this.loginForm.get("motDePasse").value;
     this.authService.loginUser(login, motDePasse);
+    location.reload();
   }
 }
