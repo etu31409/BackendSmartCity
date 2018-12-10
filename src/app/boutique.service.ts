@@ -46,8 +46,7 @@ export class BoutiqueService {
   }
 
   getCommercesObservables(): Observable<Commerce[]>{
-    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0`, this.httpOptions)
-    ;
+    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0`, this.httpOptions);
   }
 
   getCommercesFakeDate():Observable<Commerce[]>{
