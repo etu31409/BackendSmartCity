@@ -5,17 +5,16 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { EditerComponent } from './editer/editer.component';
 import { CompteComponent } from './compte/compte.component';
 import { AideComponent } from './aide/aide.component';
-import { ConnexionDetailGuard } from './connexion/connexion-detail.guard';
-
+import { ConnecteDetailGuard } from './connecte-detail.guard';
+import { EditerDetailGuard } from './editer/editer-detail.guard';
 
 const routes: Routes = [
-  {path: 'connecte', component: ConnecteComponent },
-  {path:'connexion',
-  canActivate:[ConnexionDetailGuard], component: ConnexionComponent},
-  {path:'editer/:id', component: EditerComponent},
-  {path:'editer', component: EditerComponent},
-  {path:'aide', component: AideComponent},
-  {path:'compte', component: CompteComponent},
+  {path: 'connecte', canActivate : [ConnecteDetailGuard], component: ConnecteComponent },
+  {path:'connexion', component: ConnexionComponent},
+  {path:'editer/:id', canActivate : [EditerDetailGuard], component: EditerComponent},
+  {path:'editer', canActivate : [ConnecteDetailGuard], component: EditerComponent},
+  {path:'aide', canActivate : [ConnecteDetailGuard], component: AideComponent},
+  {path:'compte', canActivate : [ConnecteDetailGuard], component: CompteComponent},
   {path: '', redirectTo: '/connexion', pathMatch: 'full' },
 ];
 

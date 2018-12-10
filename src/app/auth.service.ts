@@ -8,6 +8,7 @@ import { RootObject } from './Model/backEndSmartCity';
 import { Categorie } from './Model/Categorie';
 import { HttpHeaders } from '@angular/common/http';
 import { Token } from './Model/token';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AuthService {
     })
   };
   private token:string;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   loginUser(login:string, motDePasse:string){
     let body="{\n" +
@@ -32,8 +33,8 @@ export class AuthService {
     this.http.post<Token>(`${this.baseUrlApi}jwt`, body, this.httpOptions).subscribe(res =>{
       console.log(res);
       this.token = res.access_token;
-      //localStorage.removeItem(this.TOKEN_KEY);
       localStorage.setItem(this.TOKEN_KEY, this.token);
+      this.router.navigate(['/connecte']);
     });
   }
 

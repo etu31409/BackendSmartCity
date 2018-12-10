@@ -102,12 +102,12 @@ export class EditerComponent implements OnInit {
       // this.boutiqueService.commerces.push(this.commerce);
       this.boutiqueService.getCommercesObservables().subscribe(
         commerces => {
-          if(isNewCommerce) this.commerce.idCommerce = commerces[commerces.length - 1].idCommerce +1;
+          //if(isNewCommerce) this.commerce.idCommerce = commerces[commerces.length - 1].idCommerce +1;
+          if(isNewCommerce) this.commerce.idCommerce = null;
           this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
           this.commerce.rue = this.editCommerceForm.get("rue").value;
           this.commerce.numero = this.editCommerceForm.get("numero").value;
           this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
-          //TODO ajouter un formulaire catégorie
           this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
           this.commerce.actualite = null;
           this.commerce.idCategorieNavigation = null;
