@@ -29,11 +29,6 @@ export class BoutiqueService {
   }
   constructor(private http:HttpClient) { }
 
-  
-  /*getCommerces():Commerce[]{
-    return this.commerces;
-  }
-*/
   getCommerce(id:number):Observable<Commerce>{
     return this.http.get<Commerce>(`${this.baseUrlApi}Commerces/${id}`, this.httpOptions);
 
@@ -44,7 +39,6 @@ export class BoutiqueService {
   }
 
   updateCommerce(commerce:Commerce):Observable<Commerce>{
-    this.httpOptions
     return this.http.put<Commerce>(`${this.baseUrlApi}Commerces/${commerce.idCommerce}`, commerce, this.httpOptions);
   }
 

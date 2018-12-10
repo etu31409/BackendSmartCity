@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { BoutiqueService } from '../boutique.service';
 import { Commerce } from '../Model/Commerce';
@@ -48,7 +48,8 @@ export class EditerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private boutiqueService: BoutiqueService
+    private boutiqueService: BoutiqueService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -125,11 +126,11 @@ export class EditerComponent implements OnInit {
           this.commerce.urlPageFacebook = this.urlPageFacebook.value;
           this.commerce.idPersonneNavigation = null;
           this.commerce.openingPeriod = null;
-          this.commerce.rowVersion = null;
           if(!isNewCommerce){
             this.boutiqueService.updateCommerce(this.commerce).subscribe();
           }
           else{
+            this.commerce.rowVersion = null;
             this.boutiqueService.addCommerce(this.commerce).subscribe();
           }
         }
@@ -139,7 +140,8 @@ export class EditerComponent implements OnInit {
     // this.commerce.rue = this.editCommerceForm.get("rue").value;
     // this.commerce.numero = this.editCommerceForm.get("numero").value;
     
-    this.goBack();
+    //this.goBack();
+    this.router.navigate(['/connecte']);
   }
 
   delete(): void{
