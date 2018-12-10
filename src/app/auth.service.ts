@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import {Commerce} from './Model/Commerce';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import { User } from './Model/User';
-import { RootObject } from './Model/backEndSmartCity';
-import { Categorie } from './Model/Categorie';
 import { HttpHeaders } from '@angular/common/http';
 import { Token } from './Model/token';
 import { Router } from '@angular/router';
@@ -22,6 +17,7 @@ export class AuthService {
     })
   };
   private token:string;
+  private myObservable:Observable<number>;
   constructor(private http:HttpClient, private router:Router) { }
 
   loginUser(login:string, motDePasse:string){
@@ -34,8 +30,17 @@ export class AuthService {
       this.token = res.access_token;
       localStorage.setItem(this.TOKEN_KEY, this.token);
       this.router.navigate(['/connecte']);
-      location.reload();
+      this.myObservable = Observable.create(
+        observer=>{
+          this.token;
+        }
+      );
     });
+  }
+
+  notify():Observable<number>{
+    //creer un observable pour notifier boutiqueService que le token à changé
+    return this.myObservable;
   }
 
   getToken():string{

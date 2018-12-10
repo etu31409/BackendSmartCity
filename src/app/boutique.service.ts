@@ -3,9 +3,7 @@ import { Observable} from 'rxjs';
 import {Commerce} from './Model/Commerce';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import { User } from './Model/User';
 import { RootObject } from './Model/backEndSmartCity';
-import { Categorie } from './Model/Categorie';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
