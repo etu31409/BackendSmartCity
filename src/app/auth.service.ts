@@ -32,14 +32,18 @@ export class AuthService {
       this.router.navigate(['/connecte']);
       this.myObservable = Observable.create(
         observer=>{
-          this.token;
-        }
+          //observer = this.token;
+          observer.next(this.token);
+          observer.complete();
+          console.log("On crée un observable");
+          }
       );
     });
   }
 
   notify():Observable<number>{
     //creer un observable pour notifier boutiqueService que le token à changé
+    console.log("On notifie");
     return this.myObservable;
   }
 

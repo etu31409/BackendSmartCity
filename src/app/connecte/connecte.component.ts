@@ -11,7 +11,6 @@ export class ConnecteComponent implements OnInit {
   //quand on récupère le clients, on vérifie si c'est des commerces ou office du tourisme
   title:string="Mes commerces";
   commerces: Commerce[];
-  commercesObs: Commerce[];
 
   constructor(
     private boutiqueService:BoutiqueService) { }
@@ -21,7 +20,7 @@ export class ConnecteComponent implements OnInit {
   }
 
   getCommerces():void{
-    this.boutiqueService.getCommercesObservables().subscribe(
+    this.boutiqueService.getCommerces().subscribe(
       commerces => {
         this.commerces = commerces;
         console.log(this.commerces);

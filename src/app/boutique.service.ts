@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { RootObject } from './Model/backEndSmartCity';
 import { HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class BoutiqueService {
   private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
   private boutiquesUrl = 'api/boutiques';  // URL to web api  
+  private token:number;
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -22,9 +24,25 @@ export class BoutiqueService {
   //$ → Convention pour signifier une liste d'Observables
   commerces$ : Observable<Commerce[]>;
   ngOnInit() {
-     
+    const myObserver = {
+      next: x => {
+        this.token = x,
+        console.log("Token à jour !")
+      },
+      complete: () => this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization':  'Bearer ' + this.token
+        })
+      }
+    };
+
+    this.authService.notify().subscribe(
+      myObserver
+    );
   }
-  constructor(private http:HttpClient) { }
+
+  constructor(private http:HttpClient, private authService:AuthService) { }
 
   getCommerce(id:number):Observable<Commerce>{
     return this.http.get<Commerce>(`${this.baseUrlApi}Commerces/${id}`, this.httpOptions);
@@ -43,17 +61,7 @@ export class BoutiqueService {
     return this.http.delete<Commerce>(`${this.baseUrlApi}Commerces/${commerce.idCommerce}`, this.httpOptions);
   }
 
-  getCommercesObservables(): Observable<Commerce[]>{
-    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0`, this.httpOptions);
-  }
-
-  getCommercesFakeDate():Observable<Commerce[]>{
-    this.commerces$ = this.http.get<RootObject>("./assets/fakedata.json")
-    .pipe(
-      map(
-        tabCommerces => tabCommerces.commerces
-        )
-      );
-    return this.commerces$;   
+  getCommerces(): Observable<Commerce[]>{
+    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0&all=false`, this.httpOptions);
   }
 }

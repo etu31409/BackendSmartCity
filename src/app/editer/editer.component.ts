@@ -101,7 +101,7 @@ export class EditerComponent implements OnInit {
     }
       // this.commerce.commerceId = this.boutiqueService.commerces[this.boutiqueService.commerces.length - 1].commerceId + 1;
       // this.boutiqueService.commerces.push(this.commerce);
-      this.boutiqueService.getCommercesObservables().subscribe(
+      this.boutiqueService.getCommerces().subscribe(
         commerces => {
           //if(isNewCommerce) this.commerce.idCommerce = commerces[commerces.length - 1].idCommerce +1;
           if(isNewCommerce) this.commerce.idCommerce = null;
