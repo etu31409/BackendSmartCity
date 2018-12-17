@@ -96,8 +96,19 @@
         </p>
     </form>
     <h3>Photo(s) :</h3>
+    <div *ngIf="commerce">
+        <div *ngIf="commerce.imageCommerce">
+            <div *ngFor="let photo of commerce.imageCommerce">
+                <img class="images" src="{{photo.url}}"/> 
+            </div>
+        </div>
+    </div>
     <app-actualite></app-actualite>
-    <app-horaire></app-horaire>
+    <div *ngIf="commerce">
+        <div *ngIf="commerce.openingPeriod">
+            <app-horaire [openingPeriod]='commerce.openingPeriod'></app-horaire>
+        </div>
+    </div>
     <div class="buttonFlex">
         <button class="btn btn-lg btn-primary" (click)="save()" [disabled]="!editCommerceForm.valid">Enregistrer</button>
         <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>

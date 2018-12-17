@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import {Commerce} from './Model/Commerce';
+import {OpeningPeriod} from './Model/OpeningPeriod';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class BoutiqueService {
   };
 
   commerces$ : Observable<Commerce[]>;
-  
+
   constructor(private http:HttpClient, private authService:AuthService) { 
     this.authService.notify().subscribe(
       token=>{
@@ -53,6 +55,9 @@ export class BoutiqueService {
   }
 
   getCommerces(): Observable<Commerce[]>{
-    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0&all=false`, this.httpOptions);
+    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0&all=false`, this.httpOptions)
+    .pipe(
+      map(commerces => commerces.map(commerce => Object.assign(new Commerce(), commerce)))
+    );
   }
 }
