@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import {Commerce} from './Model/Commerce';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import { RootObject } from './Model/backEndSmartCity';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 
@@ -21,28 +19,21 @@ export class BoutiqueService {
     })
   };
 
-  //$ → Convention pour signifier une liste d'Observables
   commerces$ : Observable<Commerce[]>;
-  ngOnInit() {
-    const myObserver = {
-      next: x => {
-        this.token = x,
-        console.log("Token à jour !")
-      },
-      complete: () => this.httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization':  'Bearer ' + this.token
-        })
-      }
-    };
-
+  
+  constructor(private http:HttpClient, private authService:AuthService) { 
     this.authService.notify().subscribe(
-      myObserver
+      token=>{
+        console.log("Token mis à jour: "+token);
+        this.httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization':  'Bearer ' + token
+          })
+        };
+      }
     );
   }
-
-  constructor(private http:HttpClient, private authService:AuthService) { }
 
   getCommerce(id:number):Observable<Commerce>{
     return this.http.get<Commerce>(`${this.baseUrlApi}Commerces/${id}`, this.httpOptions);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable, Subscriber} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Token } from './Model/token';
@@ -18,7 +18,15 @@ export class AuthService {
   };
   private token:string;
   private myObservable:Observable<number>;
-  constructor(private http:HttpClient, private router:Router) { }
+  private tokenObservable:Observable<string>;
+  private tokenSubscriber: Subscriber<string>;
+  constructor(private http:HttpClient, private router:Router) {
+    this.tokenObservable=
+    Observable.create(subscriber=>{
+      this.tokenSubscriber=subscriber;
+    });
+
+   }
 
   loginUser(login:string, motDePasse:string){
     let body="{\n" +
@@ -28,23 +36,14 @@ export class AuthService {
     this.http.post<Token>(`${this.baseUrlApi}jwt`, body, this.httpOptions).subscribe(res =>{
       console.log(res);
       this.token = res.access_token;
+      this.tokenSubscriber.next(this.token);
       localStorage.setItem(this.TOKEN_KEY, this.token);
       this.router.navigate(['/connecte']);
-      this.myObservable = Observable.create(
-        observer=>{
-          //observer = this.token;
-          observer.next(this.token);
-          observer.complete();
-          console.log("On crée un observable");
-          }
-      );
     });
   }
 
-  notify():Observable<number>{
-    //creer un observable pour notifier boutiqueService que le token à changé
-    console.log("On notifie");
-    return this.myObservable;
+  notify():Observable<string>{
+    return this.tokenObservable;
   }
 
   getToken():string{

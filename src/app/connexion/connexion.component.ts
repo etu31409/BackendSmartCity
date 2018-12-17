@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { BoutiqueService } from '../boutique.service';
 
 @Component({
   selector: 'app-connexion',
@@ -10,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class ConnexionComponent implements OnInit {
   loginForm = new FormGroup({
-    login: new FormControl('', Validators.required),
+    login: new FormControl('', Validators.required),  
     motDePasse: new FormControl('', Validators.required)
   });
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, private boutiqueService: BoutiqueService) { }
 
   ngOnInit() {
   }
