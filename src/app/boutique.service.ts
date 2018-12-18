@@ -60,4 +60,8 @@ export class BoutiqueService {
       map(commerces => commerces.map(commerce => Object.assign(new Commerce(), commerce)))
     );
   }
+
+  addImage(file : any):Observable<any>{
+    return this.http.post<any>(`${this.baseUrlApi}Image`, file, this.httpOptions);
+  }
 }

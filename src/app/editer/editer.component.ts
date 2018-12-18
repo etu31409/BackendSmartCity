@@ -25,13 +25,16 @@ export class EditerComponent implements OnInit {
     });
   commerce: Commerce;
 
+  file= new FormControl('');
+
   editCommerceForm = new FormGroup({
     nomCommerce: new FormControl('', Validators.required),
     rue: new FormControl('', Validators.required),
     numero:new FormControl('', [Validators.minLength(1), Validators.required]),
     adresseMail: new FormControl('',Validators.required),
-    
   });
+  uploadImage = new FormGroup({});
+
   //TODO récupérer les catégorie depuis l'API
   categories = [
     {
@@ -115,8 +118,6 @@ export class EditerComponent implements OnInit {
           //this.commerce.idPersonne = this.authService.getIdUser();
           this.commerce.idPersonne = 1;
           this.commerce.imageCommerce = null;
-          this.commerce.latitude = this.latitude.value;
-          this.commerce.longitude = this.longitude.value;
           this.commerce.numeroFixe = this.telephoneFixe.value;
           this.commerce.numeroGSM = this.telephoneMobile.value;
           this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
@@ -134,11 +135,6 @@ export class EditerComponent implements OnInit {
         }
       );
     
-    // this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
-    // this.commerce.rue = this.editCommerceForm.get("rue").value;
-    // this.commerce.numero = this.editCommerceForm.get("numero").value;
-    
-    //this.goBack();
     location.reload();
     this.router.navigate(['/connecte']);
   }
@@ -146,5 +142,10 @@ export class EditerComponent implements OnInit {
   delete(): void{
     this.boutiqueService.deleteCommerce(this.commerce).subscribe();
     this.goBack();
+  }
+
+  upload(): void{
+    var test = this.boutiqueService.addImage(this.file).subscribe();
+    alert(test);
   }
 }

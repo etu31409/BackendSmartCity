@@ -82,18 +82,6 @@
                 <input type="text" [formControl]="urlPageFacebook">
             </label>
         </p>
-        <p>
-            <label>
-                Lattitude :
-                <input type="text" [formControl]="latitude" >
-            </label>
-        </p>
-        <p>
-            <label>
-                Longitude :
-                <input type="text" [formControl]="longitude" >
-            </label>
-        </p>
     </form>
     <h3>Photo(s) :</h3>
     <div *ngIf="commerce">
@@ -103,6 +91,18 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <!--- upload d'une image --->
+        <form [formGroup]="uploadImage">
+            <div>
+                <p>Upload one or more files using this form:</p>
+                <input type="file" [formControl]="file"/>
+                <button (click)="upload()">Upload</button>
+            </div>
+        </form> 
+    </div>
+
     <app-actualite></app-actualite>
     <div *ngIf="commerce">
         <div *ngIf="commerce.openingPeriod">
