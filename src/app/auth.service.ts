@@ -20,6 +20,8 @@ export class AuthService {
   private myObservable:Observable<number>;
   private tokenObservable:Observable<string>;
   private tokenSubscriber: Subscriber<string>;
+
+  
   constructor(private http:HttpClient, private router:Router) {
     this.tokenObservable=
     Observable.create(subscriber=>{

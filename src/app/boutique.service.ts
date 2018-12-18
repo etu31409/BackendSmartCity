@@ -13,7 +13,6 @@ import {map} from 'rxjs/operators';
 export class BoutiqueService {
   private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
   private boutiquesUrl = 'api/boutiques';  // URL to web api  
-  private token:number;
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
