@@ -15,12 +15,15 @@
         <form [formGroup]="formCategorie">
             <p>
                 <label>
-                    Catégorie :
-                    <select formControlName="categorie">
-                        <option *ngFor="let cat of categories; let i=index" [ngValue]="i">
-                            {{cat.nom}}
-                        </option>
-                    </select>
+                    <div *ngIf="commerce">
+                            Catégorie :
+                            <select formControlName="categorie">
+                                <option *ngFor="let cat of categories">
+                                        {{cat.nom}}
+                                </option>
+                            </select>
+                    </div>
+                    
                 </label>
             </p>
         </form>
