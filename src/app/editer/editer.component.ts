@@ -81,6 +81,7 @@ export class EditerComponent implements OnInit {
       numero: this.commerce.numero,
       adresseMail:this.commerce.adresseMail,
     });
+    //Ajouter la catégorie
     this.telephoneMobile.patchValue(this.commerce.numeroGSM);
     this.telephoneFixe.patchValue(this.commerce.numeroFixe);
     this.description.patchValue(this.commerce.description);
@@ -104,8 +105,9 @@ export class EditerComponent implements OnInit {
     }
       this.boutiqueService.getCommerces().subscribe(
         commerces => {
-          //if(isNewCommerce) this.commerce.idCommerce = commerces[commerces.length - 1].idCommerce +1;
+          
           if(isNewCommerce) this.commerce.idCommerce = null;
+
           this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
           this.commerce.rue = this.editCommerceForm.get("rue").value;
           this.commerce.numero = this.editCommerceForm.get("numero").value;
@@ -125,6 +127,7 @@ export class EditerComponent implements OnInit {
           this.commerce.urlPageFacebook = this.urlPageFacebook.value;
           this.commerce.idPersonneNavigation = null;
           this.commerce.openingPeriod = null;
+
           if(!isNewCommerce){
             this.boutiqueService.updateCommerce(this.commerce).subscribe();
           }
@@ -134,8 +137,6 @@ export class EditerComponent implements OnInit {
           }
         }
       );
-    
-    location.reload();
     this.router.navigate(['/connecte']);
   }
 
@@ -145,7 +146,7 @@ export class EditerComponent implements OnInit {
   }
 
   upload(): void{
-    var test = this.boutiqueService.addImage(this.file).subscribe();
+    var test = this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
     alert(test);
   }
 }

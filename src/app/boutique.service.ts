@@ -12,7 +12,6 @@ import {map} from 'rxjs/operators';
 })
 export class BoutiqueService {
   private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
-  private boutiquesUrl = 'api/boutiques';  // URL to web api  
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -46,7 +45,7 @@ export class BoutiqueService {
   }
 
   updateCommerce(commerce:Commerce):Observable<Commerce>{
-    return this.http.put<Commerce>(`${this.baseUrlApi}Commerces/${commerce.idCommerce}`, commerce, this.httpOptions);
+    return this.http.put<Commerce>(`${this.baseUrlApi}Commerces`, commerce, this.httpOptions);
   }
 
   deleteCommerce(commerce : Commerce): Observable<Commerce>{
@@ -60,7 +59,15 @@ export class BoutiqueService {
     );
   }
 
-  addImage(file : any):Observable<any>{
-    return this.http.post<any>(`${this.baseUrlApi}Image`, file, this.httpOptions);
+  addImage(file : any, idCommerce : number):Observable<any>{
+    var Options = {
+      headers: new HttpHeaders({
+        'Content-Type':  'multipart/form-data',
+        'Authorization':  'Bearer ' + localStorage.getItem("token"),
+        //Passer l'id dans body et non headers
+        'IdCommerce': idCommerce.toString()
+      })
+    };
+    return this.http.post<any>(`${this.baseUrlApi}Image`, file, Options);
   }
 }
