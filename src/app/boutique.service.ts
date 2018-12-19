@@ -65,7 +65,7 @@ export class BoutiqueService {
         'Content-Type':  'multipart/form-data',
         'Authorization':  'Bearer ' + localStorage.getItem("token"),
         //Passer l'id dans body et non headers
-        'IdCommerce': idCommerce.toString()
+        'idCommerce': idCommerce.toString()
       })
     };
     return this.http.post<any>(`${this.baseUrlApi}Image`, file, Options);
