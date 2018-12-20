@@ -1,3 +1,33 @@
-<p>
-  edit-horaire works!
-</p>
+<div *ngIf="elem">
+  <h2>IdHoraire : {{elem.idHoraire}}</h2>
+</div>
+<div *ngIf="!elem">
+  <h2>Nouvelle plage horaire</h2>
+</div>
+<div>
+  <form [formGroup]="editOpeningPeriod">
+      <p>
+          <label>
+              Heure de début :
+              <input type="text">
+          </label>
+      </p>    
+      <p>
+          <label>
+              Heure de fin :
+              <input type="text">
+          </label>
+      </p>
+      <p>
+          <label>
+              Jour :
+              <input type="text">
+          </label>
+      </p>
+  </form>
+
+  <div class="buttonFlex">
+      <button class="btn btn-lg btn-primary" (click)="save()">Enregistrer</button>
+      <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
+  </div>
+</div>
