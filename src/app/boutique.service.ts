@@ -73,10 +73,13 @@ export class BoutiqueService {
     return this.http.post<any>(`${this.baseUrlApi}Image`, file, Options);
   }
 
-  updateHoraire(elem : OpeningPeriod): Observable<OpeningPeriod>{
+  updateOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
     return this.http.put<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${elem.idHoraire}`, elem, this.httpOptions)
   }
-  deleteHoraire(elem : OpeningPeriod): Observable<OpeningPeriod>{
+  deleteOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
     return this.http.delete<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${elem.idHoraire}`, this.httpOptions);
+  }
+  addOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
+    return this.http.post<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/Shop/`, elem, this.httpOptions);
   }
 }

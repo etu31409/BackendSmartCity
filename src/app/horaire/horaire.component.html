@@ -1,10 +1,11 @@
 <h3>Horaires :</h3>
+<button (click)="newHoraire()">Ajouter une nouvelle plage horaire</button>
 <ul *ngFor="let elem of openingPeriod">
     <li>
         <p>Heure de début : {{elem.horaireDebut}}</p>
         <p>Heure de fin : {{elem.horaireFin}}</p>
         <p>Jour de la semaine : {{jour(elem.jour)}}</p>
-        <button (click)="modifHoraire(elem)">Modifier</button>
-        <button (click)="delHoraire(elem)">Supprimer</button>
+        <button (click)="modifOpeningPeriod(elem)">Modifier</button>
+        <button (click)="delOpeningPeriod(elem)">Supprimer</button>
     </li>
 </ul>

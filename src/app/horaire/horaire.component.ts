@@ -42,11 +42,16 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
 
   //TODO: Refresh page Apres avoir effectué une action
 
-  modifHoraire(elem : OpeningPeriod):void{
-    this.boutiqueService.updateHoraire(elem).subscribe();
+  newOpeningPeriod(){
+    var elem;
+    this.boutiqueService.addOpeningPeriod(elem).subscribe();
   }
 
-  delHoraire(elem : OpeningPeriod):void{
-    this.boutiqueService.deleteHoraire(elem).subscribe();
+  modifOpeningPeriod(elem : OpeningPeriod):void{
+    this.boutiqueService.updateOpeningPeriod(elem).subscribe();
+  }
+
+  delOpeningPeriod(elem : OpeningPeriod):void{
+    this.boutiqueService.deleteOpeningPeriod(elem).subscribe();
   }
 }
