@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import {map} from 'rxjs/operators';
-import { Horaire } from './Model/Horaire';
+import {TransferFile} from './Model/TransferFile';
 
 @Injectable({
   providedIn: 'root'
@@ -66,10 +66,9 @@ export class BoutiqueService {
       headers: new HttpHeaders({
         'Content-Type':  'multipart/form-data',
         'Authorization':  'Bearer ' + localStorage.getItem("token"),
-        //fixme:Passer l'id dans body et non headers
-        'idCommerce': idCommerce.toString()
       })
     };
+    var tf = new TransferFile(file, idCommerce.toString());
     return this.http.post<any>(`${this.baseUrlApi}Image`, file, Options);
   }
 
@@ -81,5 +80,8 @@ export class BoutiqueService {
   }
   addOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
     return this.http.post<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/Shop/`, elem, this.httpOptions);
+  }
+  getOpeningPeriod(id: number): Observable<OpeningPeriod>{
+    return this.http.get<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${id}`, this.httpOptions);
   }
 }

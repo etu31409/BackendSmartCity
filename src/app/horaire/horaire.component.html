@@ -5,7 +5,7 @@
         <p>Heure de début : {{elem.horaireDebut}}</p>
         <p>Heure de fin : {{elem.horaireFin}}</p>
         <p>Jour de la semaine : {{jour(elem.jour)}}</p>
-        <button (click)="modifOpeningPeriod(elem)">Modifier</button>
+        <a routerLink="/editer-horaire/{{elem.idHoraire}}"><button>Modifier</button></a>
         <button (click)="delOpeningPeriod(elem)">Supprimer</button>
     </li>
 </ul>

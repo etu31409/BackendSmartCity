@@ -143,6 +143,5 @@ export class EditerComponent implements OnInit {
 
   upload(): void {
     var test = this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
-    alert(test);
   }
 }

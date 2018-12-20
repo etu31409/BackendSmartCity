@@ -1,4 +1,4 @@
-export interface OpeningPeriod{
+export class OpeningPeriod{
     idHoraire:number;
     horaireDebut: Date;
     horaireFin:Date;

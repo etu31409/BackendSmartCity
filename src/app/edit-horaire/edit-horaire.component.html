@@ -1,7 +1,7 @@
-<div *ngIf="elem">
+<div *ngIf="openinPeriod">
   <h2>IdHoraire : {{elem.idHoraire}}</h2>
 </div>
-<div *ngIf="!elem">
+<div *ngIf="!openinPeriod">
   <h2>Nouvelle plage horaire</h2>
 </div>
 <div>
@@ -9,19 +9,19 @@
       <p>
           <label>
               Heure de début :
-              <input type="text">
+              <input type="text" formControlName="start">
           </label>
       </p>    
       <p>
           <label>
               Heure de fin :
-              <input type="text">
+              <input type="text" formControlName="end">
           </label>
       </p>
       <p>
           <label>
               Jour :
-              <input type="text">
+              <input type="text" formControlName="day">
           </label>
       </p>
   </form>
