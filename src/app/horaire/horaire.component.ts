@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OpeningPeriod } from '../Model/OpeningPeriod';
 import { FormGroup, FormControl } from '@angular/forms';
+import { BoutiqueService } from '../boutique.service';
+import { Horaire } from '../Model/Horaire';
 
 @Component({
   selector: 'app-horaire',
@@ -9,6 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class HoraireComponent implements OnInit {
 @Input() openingPeriod:OpeningPeriod[];
+
 private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
   private openingPeriodForm = new FormGroup({
       heureDebut: new FormControl(''),
@@ -16,7 +19,9 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
     }
   );
 
-  constructor() { }
+  constructor(
+    private boutiqueService: BoutiqueService
+  ) { }
 
   ngOnInit() {
   }
@@ -35,4 +40,13 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
     return jour;
   }
 
+  //TODO: Refresh page Apres avoir effectué une action
+
+  modifHoraire(elem : OpeningPeriod):void{
+    this.boutiqueService.updateHoraire(elem).subscribe();
+  }
+
+  delHoraire(elem : OpeningPeriod):void{
+    this.boutiqueService.deleteHoraire(elem).subscribe();
+  }
 }

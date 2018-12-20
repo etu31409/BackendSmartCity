@@ -6,12 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import {map} from 'rxjs/operators';
+import { Horaire } from './Model/Horaire';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoutiqueService {
   private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
+  //private baseUrlApi = "http://localhost:5000/api/";
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -64,10 +66,17 @@ export class BoutiqueService {
       headers: new HttpHeaders({
         'Content-Type':  'multipart/form-data',
         'Authorization':  'Bearer ' + localStorage.getItem("token"),
-        //Passer l'id dans body et non headers
+        //fixme:Passer l'id dans body et non headers
         'idCommerce': idCommerce.toString()
       })
     };
     return this.http.post<any>(`${this.baseUrlApi}Image`, file, Options);
+  }
+
+  updateHoraire(elem : OpeningPeriod): Observable<OpeningPeriod>{
+    return this.http.put<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${elem.idHoraire}`, elem, this.httpOptions)
+  }
+  deleteHoraire(elem : OpeningPeriod): Observable<OpeningPeriod>{
+    return this.http.delete<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${elem.idHoraire}`, this.httpOptions);
   }
 }

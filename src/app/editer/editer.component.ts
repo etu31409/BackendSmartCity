@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { BoutiqueService } from '../boutique.service';
 import { Commerce } from '../Model/Commerce';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editer',
@@ -11,40 +11,40 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
   styleUrls: ['./editer.component.css']
 })
 export class EditerComponent implements OnInit {
-  telephoneMobile= new FormControl('');
-  telephoneFixe= new FormControl('');
-  description= new FormControl('');
-  produitPhare= new FormControl('');
-  parcoursProduitPhare= new FormControl('');
-  urlPageFacebook=new FormControl('');
-  latitude= new FormControl('');
-  longitude= new FormControl('');
+  telephoneMobile = new FormControl('');
+  telephoneFixe = new FormControl('');
+  description = new FormControl('');
+  produitPhare = new FormControl('');
+  parcoursProduitPhare = new FormControl('');
+  urlPageFacebook = new FormControl('');
+  latitude = new FormControl('');
+  longitude = new FormControl('');
   formCategorie = new FormGroup(
     {
-      categorie :new FormControl('')
+      categorie: new FormControl('')
     });
   commerce: Commerce;
 
-  file= new FormControl('');
+  file = new FormControl('');
 
   editCommerceForm = new FormGroup({
     nomCommerce: new FormControl('', Validators.required),
     rue: new FormControl('', Validators.required),
-    numero:new FormControl('', [Validators.minLength(1), Validators.required]),
-    adresseMail: new FormControl('',Validators.required),
+    numero: new FormControl('', [Validators.minLength(1), Validators.required]),
+    adresseMail: new FormControl('', Validators.required),
   });
   uploadImage = new FormGroup({});
 
   //TODO récupérer les catégorie depuis l'API
   categories = [
     {
-      nom:"Restaurant"
+      nom: "Restaurant"
     },
     {
-      nom:"Magasin"
+      nom: "Magasin"
     },
     {
-      nom:"Bar"
+      nom: "Bar"
     }
   ];
 
@@ -52,7 +52,7 @@ export class EditerComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private boutiqueService: BoutiqueService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -62,15 +62,13 @@ export class EditerComponent implements OnInit {
   getCommerce(): void {
     //si nouveau commerce, va mettre 0 dans l'url, aucun commerce n'a 0 comme identifiant
     const id = +this.route.snapshot.paramMap.get('id');
-    if(id != 0)
-    {
-      this.boutiqueService.getCommerce(id).subscribe(commerce => 
-        {
-          this.commerce = commerce;
-          if (this.commerce != null) {
-            this.preFillForm();
-          }
-        });
+    if (id != 0) {
+      this.boutiqueService.getCommerce(id).subscribe(commerce => {
+        this.commerce = commerce;
+        if (this.commerce != null) {
+          this.preFillForm();
+        }
+      });
     }
   }
 
@@ -79,11 +77,11 @@ export class EditerComponent implements OnInit {
       nomCommerce: this.commerce.nomCommerce,
       rue: this.commerce.rue,
       numero: this.commerce.numero,
-      adresseMail:this.commerce.adresseMail,
+      adresseMail: this.commerce.adresseMail,
     });
     //Ajouter la catégorie
     this.formCategorie.patchValue({
-      categorie : this.commerce.idCategorie
+      categorie: this.commerce.idCategorie
     });
     this.telephoneMobile.patchValue(this.commerce.numeroGSM);
     this.telephoneFixe.patchValue(this.commerce.numeroFixe);
@@ -92,9 +90,9 @@ export class EditerComponent implements OnInit {
     this.parcoursProduitPhare.patchValue(this.commerce.parcoursProduitPhare);
     this.urlPageFacebook.patchValue(this.commerce.urlPageFacebook);
     this.latitude.patchValue(this.commerce.latitude);
-    this.longitude.patchValue(this.commerce.longitude); 
+    this.longitude.patchValue(this.commerce.longitude);
   }
-  
+
 
   goBack(): void {
     this.location.back();
@@ -106,50 +104,44 @@ export class EditerComponent implements OnInit {
       this.commerce = new Commerce();
       isNewCommerce = true;
     }
-      // this.boutiqueService.getCommerces().subscribe(
-      //   commerces => {
-          
-          
-      //   }
-      // );
-      if(isNewCommerce) this.commerce.idCommerce = null;
+    if (isNewCommerce) this.commerce.idCommerce = null;
 
-          this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
-          this.commerce.rue = this.editCommerceForm.get("rue").value;
-          this.commerce.numero = this.editCommerceForm.get("numero").value;
-          this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
-          this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
-          this.commerce.actualite = null;
-          this.commerce.idCategorieNavigation = null;
-          this.commerce.description = this.description.value;
-          //TODO : récupérer dans les tokens du user l'id de le personne (et aussi le rôle)
-          //this.commerce.idPersonne = this.authService.getIdUser();
-          this.commerce.idPersonne = 1;
-          this.commerce.imageCommerce = null;
-          this.commerce.numeroFixe = this.telephoneFixe.value;
-          this.commerce.numeroGSM = this.telephoneMobile.value;
-          this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
-          this.commerce.produitPhare = this.produitPhare.value;
-          this.commerce.urlPageFacebook = this.urlPageFacebook.value;
-          this.commerce.idPersonneNavigation = null;
-          this.commerce.openingPeriod = null;
+    this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
+    this.commerce.rue = this.editCommerceForm.get("rue").value;
+    this.commerce.numero = this.editCommerceForm.get("numero").value;
+    this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
+    this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
+    this.commerce.actualite = null;
+    this.commerce.idCategorieNavigation = null;
+    this.commerce.description = this.description.value;
+    //TODO : récupérer dans les tokens du user l'id de le personne (et aussi le rôle)
+    //this.commerce.idPersonne = this.authService.getIdUser();
+    this.commerce.idPersonne = 1;
+    this.commerce.imageCommerce = null;
+    this.commerce.numeroFixe = this.telephoneFixe.value;
+    this.commerce.numeroGSM = this.telephoneMobile.value;
+    this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
+    this.commerce.produitPhare = this.produitPhare.value;
+    this.commerce.urlPageFacebook = this.urlPageFacebook.value;
+    this.commerce.idPersonneNavigation = null;
+    this.commerce.openingPeriod = null;
 
-          if(!isNewCommerce){
-            this.boutiqueService.updateCommerce(this.commerce).subscribe();
-          }
-          else{
-            this.commerce.rowVersion = null;
-            this.boutiqueService.addCommerce(this.commerce).subscribe();
-          }
+    if (!isNewCommerce) {
+      this.boutiqueService.updateCommerce(this.commerce).subscribe();
+    }
+    else {
+      this.commerce.rowVersion = null;
+      this.boutiqueService.addCommerce(this.commerce).subscribe();
+    }
     this.router.navigate(['/connecte']);
   }
 
-  delete(): void{
+  delete(): void {
     this.boutiqueService.deleteCommerce(this.commerce).subscribe();
     this.goBack();
   }
 
-  upload(): void{
+  upload(): void {
     var test = this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
     alert(test);
   }
