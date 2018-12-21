@@ -1,7 +1,7 @@
 export class OpeningPeriod{
     idHoraire:number;
-    horaireDebut: Date;
-    horaireFin:Date;
+    horaireDebut: String;
+    horaireFin:String;
     jour:number;
     idCommerce:number;
     dureeOuverture:Date;

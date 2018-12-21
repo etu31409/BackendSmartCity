@@ -12,8 +12,8 @@ import {TransferFile} from './Model/TransferFile';
   providedIn: 'root'
 })
 export class BoutiqueService {
-  private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
-  //private baseUrlApi = "http://localhost:5000/api/";
+  //private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
+  private baseUrlApi = "http://localhost:5000/api/";
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -79,7 +79,7 @@ export class BoutiqueService {
     return this.http.delete<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${elem.idHoraire}`, this.httpOptions);
   }
   addOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
-    return this.http.post<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/Shop/`, elem, this.httpOptions);
+    return this.http.post<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/Shop/${elem.idCommerce}`, elem, this.httpOptions);
   }
   getOpeningPeriod(id: number): Observable<OpeningPeriod>{
     return this.http.get<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${id}`, this.httpOptions);

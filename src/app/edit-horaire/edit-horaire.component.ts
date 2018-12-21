@@ -11,6 +11,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./edit-horaire.component.css']
 })
 export class EditHoraireComponent implements OnInit {
+  private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
 
   editOpeningPeriod = new FormGroup({
     start: new FormControl('', Validators.required),
@@ -62,11 +64,14 @@ export class EditHoraireComponent implements OnInit {
       isNewOpeningPeriod = true;
     }
     if (isNewOpeningPeriod) this.openingPeriod.idHoraire = null;
-
-    this.openingPeriod.horaireDebut = this.editOpeningPeriod.get("start").value;
-    this.openingPeriod.horaireFin = this.editOpeningPeriod.get("end").value;
-    this.openingPeriod.jour = this.editOpeningPeriod.get("day").value;
-
+    //this.openingPeriod.horaireDebut = new Date(this.editOpeningPeriod.get("start").value);
+    //this.openingPeriod.horaireFin = new Date(this.editOpeningPeriod.get("end").value);
+    this.openingPeriod.horaireDebut = new Date(10).toJSON();
+    this.openingPeriod.horaireFin = new Date(17).toJSON();
+    //this.openingPeriod.jour = this.tabJour.findIndex(this.editOpeningPeriod.get("day").value) ;
+    this.openingPeriod.jour = 1;
+    this.openingPeriod.idCommerce = 13;
+    
     if (!isNewOpeningPeriod) {
       this.boutiqueService.updateOpeningPeriod(this.openingPeriod).subscribe();
     }

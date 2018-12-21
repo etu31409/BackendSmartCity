@@ -17,6 +17,7 @@ const routes: Routes = [
   {path:'aide', canActivate : [ConnecteDetailGuard], component: AideComponent},
   {path:'compte', canActivate : [ConnecteDetailGuard], component: CompteComponent},
   {path:'editer-horaire', canActivate : [ConnecteDetailGuard], component: EditHoraireComponent},
+  {path:'editer-horaire/:id', canActivate : [EditerDetailGuard], component: EditHoraireComponent},
   {path: '', redirectTo: '/connexion', pathMatch: 'full' },
 ];
 

@@ -20,8 +20,13 @@
       </p>
       <p>
           <label>
-              Jour :
-              <input type="text" formControlName="day">
+              Jour :              
+                <select formControlName="day">
+                    <option *ngFor="let jour of tabJour">
+                            {{jour}}
+                    </option>
+                </select>
+    
           </label>
       </p>
   </form>

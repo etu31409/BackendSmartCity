@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   TOKEN_KEY = "token";
-  private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
+  //private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
+  private baseUrlApi = "http://localhost:5000/api/";
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
