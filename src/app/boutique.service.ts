@@ -7,13 +7,14 @@ import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import {map} from 'rxjs/operators';
 import {TransferFile} from './Model/TransferFile';
+import { Constantes } from './Constantes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoutiqueService {
-  //private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
-  private baseUrlApi = "http://localhost:5000/api/";
+  private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
+  //private baseUrlApi = "http://localhost:5000/api/";
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -38,27 +39,30 @@ export class BoutiqueService {
   }
 
   getCommerce(id:number):Observable<Commerce>{
-    return this.http.get<Commerce>(`${this.baseUrlApi}Commerces/${id}`, this.httpOptions);
+    return this.http.get<Commerce>(`${Constantes.URL_API}Commerces/${id}`, this.httpOptions);
 
   }
 
   addCommerce(commerce:Commerce):Observable<Commerce>{
-    return this.http.post<Commerce>(`${this.baseUrlApi}Commerces`, commerce, this.httpOptions);
+    return this.http.post<Commerce>(`${Constantes.URL_API}Commerces`, commerce, this.httpOptions);
   }
 
   updateCommerce(commerce:Commerce):Observable<Commerce>{
-    return this.http.put<Commerce>(`${this.baseUrlApi}Commerces`, commerce, this.httpOptions);
+    return this.http.put<Commerce>(`${Constantes.URL_API}Commerces`, commerce, this.httpOptions);
   }
 
   deleteCommerce(commerce : Commerce): Observable<Commerce>{
-    return this.http.delete<Commerce>(`${this.baseUrlApi}Commerces/${commerce.idCommerce}`, this.httpOptions);
+    return this.http.delete<Commerce>(`${Constantes.URL_API}Commerces/${commerce.idCommerce}`, this.httpOptions);
   }
 
   getCommerces(): Observable<Commerce[]>{
-    return this.http.get<Commerce[]>(`${this.baseUrlApi}Commerces?categorie=0&all=false`, this.httpOptions)
+    /*
+    return this.http.get<Commerce[]>(`${Constantes.URL_API}Commerces?categorie=0&all=false`, this.httpOptions)
     .pipe(
       map(commerces => commerces.map(commerce => Object.assign(new Commerce(), commerce)))
     );
+    */
+   return this.http.get<Commerce[]>(`${Constantes.URL_API}Commerces?categorie=0&all=false`, this.httpOptions);
   }
 
   addImage(file : any, idCommerce : number):Observable<any>{
@@ -69,19 +73,19 @@ export class BoutiqueService {
       })
     };
     var tf = new TransferFile(file, idCommerce.toString());
-    return this.http.post<any>(`${this.baseUrlApi}Image`, file, Options);
+    return this.http.post<any>(`${Constantes.URL_API}Image`, file, Options);
   }
 
   updateOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
-    return this.http.put<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${elem.idHoraire}`, elem, this.httpOptions)
+    return this.http.put<OpeningPeriod>(`${Constantes.URL_API}OpeningPeriods/${elem.idHoraire}`, elem, this.httpOptions)
   }
   deleteOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
-    return this.http.delete<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${elem.idHoraire}`, this.httpOptions);
+    return this.http.delete<OpeningPeriod>(`${Constantes.URL_API}OpeningPeriods/${elem.idHoraire}`, this.httpOptions);
   }
   addOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
-    return this.http.post<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/Shop/${elem.idCommerce}`, elem, this.httpOptions);
+    return this.http.post<OpeningPeriod>(`${Constantes.URL_API}OpeningPeriods/Shop/${elem.idCommerce}`, elem, this.httpOptions);
   }
   getOpeningPeriod(id: number): Observable<OpeningPeriod>{
-    return this.http.get<OpeningPeriod>(`${this.baseUrlApi}OpeningPeriods/${id}`, this.httpOptions);
+    return this.http.get<OpeningPeriod>(`${Constantes.URL_API}OpeningPeriods/${id}`, this.httpOptions);
   }
 }

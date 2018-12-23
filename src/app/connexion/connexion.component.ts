@@ -14,6 +14,10 @@ export class ConnexionComponent implements OnInit {
     login: new FormControl('', Validators.required),  
     motDePasse: new FormControl('', Validators.required)
   });
+  //on instancie boutique service içi pour s'abonner à l'observable dans authservice 
+  //(dans le constructeur de BoutiqueService, on s'abonne à l'observalbe via notify()), 
+  //sinon pas possible de créer un Subscriber
+  //si pas personne ne s'est abonné à lui
   constructor(private authService:AuthService, private boutiqueService: BoutiqueService) { }
 
   ngOnInit() {

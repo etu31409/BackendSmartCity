@@ -1,5 +1,6 @@
 <h3>Mon compte :</h3>
-<div class='card-body'>
+<div *ngIf="user">
+  <div class='card-body'>
     <div class='table-responsive'>
       <table class='table'>
         <thead>
@@ -28,3 +29,4 @@
       </table>
     </div>
   </div>
+</div>

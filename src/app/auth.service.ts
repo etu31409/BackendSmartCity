@@ -4,14 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Token } from './Model/token';
 import { Router } from '@angular/router';
+import { Constantes } from './Constantes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   TOKEN_KEY = "token";
-  //private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
-  private baseUrlApi = "http://localhost:5000/api/";
+  private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
+  //private baseUrlApi = "http://localhost:5000/api/";
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -37,7 +38,7 @@ export class AuthService {
     "\t\"Username\":\""+login+"\",\n" +
     "\t\"Password\":\""+motDePasse+"\"\n" +
     "}";
-    this.http.post<Token>(`${this.baseUrlApi}jwt`, body, this.httpOptions).subscribe(res =>{
+    this.http.post<Token>(`${Constantes.URL_API}jwt`, body, this.httpOptions).subscribe(res =>{
       console.log(res);
       this.token = res.access_token;
       this.tokenSubscriber.next(this.token);
@@ -48,10 +49,6 @@ export class AuthService {
 
   notify():Observable<string>{
     return this.tokenObservable;
-  }
-
-  getToken():string{
-    return this.token;
   }
 
   isAuthenticated():boolean{
