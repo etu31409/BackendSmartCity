@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import {map} from 'rxjs/operators';
 import {TransferFile} from './Model/TransferFile';
 import { Constantes } from './Constantes';
+import { User } from './Model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -87,5 +88,9 @@ export class BoutiqueService {
   }
   getOpeningPeriod(id: number): Observable<OpeningPeriod>{
     return this.http.get<OpeningPeriod>(`${Constantes.URL_API}OpeningPeriods/${id}`, this.httpOptions);
+  }
+
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${Constantes.URL_API}Users/${id}`, this.httpOptions);
   }
 }

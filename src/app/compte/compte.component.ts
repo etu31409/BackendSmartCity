@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../Model/User';
 import { BoutiqueService } from '../boutique.service';
 import { AuthService } from '../auth.service';
-import { Token } from '@angular/compiler';
+import { parseLazyRoute } from '@angular/compiler/src/aot/lazy_routes';
+import { getDefaultService } from 'selenium-webdriver/chrome';
+import { User } from '../Model/User';
 
 @Component({
   selector: 'app-compte',
@@ -11,17 +12,25 @@ import { Token } from '@angular/compiler';
 })
 export class CompteComponent implements OnInit {
 
-  private token:string;
-  constructor(private boutiqueService:BoutiqueService, private authService:AuthService) { 
-    this.authService.notify().subscribe(
-      token => {
-        this.token = token;
+  private user:User;
+  constructor(private authService:AuthService, private boutiqueService:BoutiqueService) { 
+  }
+
+  ngOnInit() {
+    let userId = this.getUserId();
+    this.boutiqueService.getUser(userId).subscribe(
+      user =>{
+        this.user = user;
+        console.log("User : " + user.email);
       }
     );
   }
 
-  ngOnInit() {
-    
+  getUserId(){
+    let token = this.authService.getToken();
+    let jwt_token = token.split('.');
+    let userId = JSON.parse(atob(jwt_token[1])).uid;
+    return userId;
   }
 
 }
