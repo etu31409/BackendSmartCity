@@ -13,7 +13,9 @@ import { User } from '../Model/User';
 export class CompteComponent implements OnInit {
 
   private user:User;
+  private roles:string;
   constructor(private authService:AuthService, private boutiqueService:BoutiqueService) { 
+    
   }
 
   ngOnInit() {
@@ -21,7 +23,11 @@ export class CompteComponent implements OnInit {
     this.boutiqueService.getUser(userId).subscribe(
       user =>{
         this.user = user;
-        console.log("User : " + user.email);
+        this.roles="";
+        for(let userRole of user.userRoles)
+        {
+          this.roles += userRole.role.name + "    ";
+        }
       }
     );
   }
