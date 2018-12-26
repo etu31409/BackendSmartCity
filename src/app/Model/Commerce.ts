@@ -18,10 +18,10 @@ export class Commerce{
     longitude:number;
     latitude:number;
     idCategorie:number;
-    idPersonne:number;
+    IdUser:number;
     rowVersion:number;
     idCategorieNavigation:Categorie;
-    idPersonneNavigation:Personne;
+    idUserNavigation:Personne;
     actualite:Actualite[];
     imageCommerce:ImageCommerce[];
     openingPeriod:OpeningPeriod[];

@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { BoutiqueService } from '../boutique.service';
 import { Commerce } from '../Model/Commerce';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'app-editer',
@@ -111,19 +112,18 @@ export class EditerComponent implements OnInit {
     this.commerce.numero = this.editCommerceForm.get("numero").value;
     this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
     this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
-    this.commerce.actualite = null;
-    this.commerce.idCategorieNavigation = null;
+    // this.commerce.actualite = null;
+    // this.commerce.idCategorieNavigation = null;
     this.commerce.description = this.description.value;
     //TODO : récupérer dans les tokens du user l'id de le personne (et aussi le rôle)
-    //this.commerce.idPersonne = this.authService.getIdUser();
-    this.commerce.idPersonne = 1;
+    this.commerce.IdUser = Utils.getUserId();
     this.commerce.imageCommerce = null;
     this.commerce.numeroFixe = this.telephoneFixe.value;
     this.commerce.numeroGSM = this.telephoneMobile.value;
     this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
     this.commerce.produitPhare = this.produitPhare.value;
     this.commerce.urlPageFacebook = this.urlPageFacebook.value;
-    this.commerce.idPersonneNavigation = null;
+    this.commerce.idUserNavigation = null;
     this.commerce.openingPeriod = null;
 
     if (!isNewCommerce) {
