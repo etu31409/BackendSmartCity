@@ -17,11 +17,12 @@ export class CompteComponent implements OnInit {
   private roles:string;
   private token:string;
   constructor(private authService:AuthService, private boutiqueService:BoutiqueService) { 
-    this.authService.notify().subscribe(
-      token=>{
-        this.token = token;
-      }
-    );
+    // this.authService.notify().subscribe(
+    //   token=>{
+    //     this.token = token;
+    //   }
+    // );
+    //si on s'abonne içi, désabonne le token dans boutiqueService
   }
 
   ngOnInit() {
