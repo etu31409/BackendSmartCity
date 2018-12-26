@@ -8,17 +8,16 @@ export class Commerce{
     nomCommerce:string;
     rue:string;
     numero:number;
+    adresseMail:string;
+
     description:string;
     produitPhare:string;
     parcoursProduitPhare:string;
-    numeroGSM:number;
+    numeroGsm:number;
     numeroFixe:number;
-    adresseMail:string;
     urlPageFacebook:string;
-    longitude:number;
-    latitude:number;
     idCategorie:number;
-    IdUser:number;
+    idUser:number;
     rowVersion:number;
     idCategorieNavigation:Categorie;
     idUserNavigation:Personne;

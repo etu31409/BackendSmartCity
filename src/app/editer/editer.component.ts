@@ -18,8 +18,6 @@ export class EditerComponent implements OnInit {
   produitPhare = new FormControl('');
   parcoursProduitPhare = new FormControl('');
   urlPageFacebook = new FormControl('');
-  latitude = new FormControl('');
-  longitude = new FormControl('');
   formCategorie = new FormGroup(
     {
       categorie: new FormControl('')
@@ -84,14 +82,12 @@ export class EditerComponent implements OnInit {
     this.formCategorie.patchValue({
       categorie: this.commerce.idCategorie
     });
-    this.telephoneMobile.patchValue(this.commerce.numeroGSM);
+    this.telephoneMobile.patchValue(this.commerce.numeroGsm);
     this.telephoneFixe.patchValue(this.commerce.numeroFixe);
     this.description.patchValue(this.commerce.description);
     this.produitPhare.patchValue(this.commerce.produitPhare);
     this.parcoursProduitPhare.patchValue(this.commerce.parcoursProduitPhare);
     this.urlPageFacebook.patchValue(this.commerce.urlPageFacebook);
-    this.latitude.patchValue(this.commerce.latitude);
-    this.longitude.patchValue(this.commerce.longitude);
   }
 
 
@@ -111,26 +107,26 @@ export class EditerComponent implements OnInit {
     this.commerce.rue = this.editCommerceForm.get("rue").value;
     this.commerce.numero = this.editCommerceForm.get("numero").value;
     this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
-    this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
+    //this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
     // this.commerce.actualite = null;
     // this.commerce.idCategorieNavigation = null;
     this.commerce.description = this.description.value;
     //TODO : récupérer dans les tokens du user l'id de le personne (et aussi le rôle)
-    this.commerce.IdUser = Utils.getUserId();
-    this.commerce.imageCommerce = null;
-    this.commerce.numeroFixe = this.telephoneFixe.value;
-    this.commerce.numeroGSM = this.telephoneMobile.value;
-    this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
-    this.commerce.produitPhare = this.produitPhare.value;
-    this.commerce.urlPageFacebook = this.urlPageFacebook.value;
-    this.commerce.idUserNavigation = null;
-    this.commerce.openingPeriod = null;
+    // this.commerce.IdUser = Utils.getUserId();
+    // this.commerce.imageCommerce = null;
+    // this.commerce.numeroFixe = this.telephoneFixe.value;
+    // this.commerce.numeroGSM = this.telephoneMobile.value;
+    // this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
+    // this.commerce.produitPhare = this.produitPhare.value;
+    // this.commerce.urlPageFacebook = this.urlPageFacebook.value;
+    // this.commerce.idUserNavigation = null;
+    // this.commerce.openingPeriod = null;
 
     if (!isNewCommerce) {
       this.boutiqueService.updateCommerce(this.commerce).subscribe();
     }
     else {
-      this.commerce.rowVersion = null;
+      //this.commerce.rowVersion = null;
       this.boutiqueService.addCommerce(this.commerce).subscribe();
     }
     this.router.navigate(['/connecte']);
