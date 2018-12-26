@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { parseLazyRoute } from '@angular/compiler/src/aot/lazy_routes';
 import { getDefaultService } from 'selenium-webdriver/chrome';
 import { User } from '../Model/User';
+import { Constantes } from '../Constantes';
 
 @Component({
   selector: 'app-compte',
@@ -14,8 +15,13 @@ export class CompteComponent implements OnInit {
 
   private user:User;
   private roles:string;
+  private token:string;
   constructor(private authService:AuthService, private boutiqueService:BoutiqueService) { 
-    
+    this.authService.notify().subscribe(
+      token=>{
+        this.token = token;
+      }
+    );
   }
 
   ngOnInit() {
@@ -33,8 +39,9 @@ export class CompteComponent implements OnInit {
   }
 
   getUserId(){
-    let token = this.authService.getToken();
-    let jwt_token = token.split('.');
+    //this.token = this.authService.getToken();
+    this.token = localStorage.getItem(Constantes.TOKEN_ID);
+    let jwt_token = this.token.split('.');
     let userId = JSON.parse(atob(jwt_token[1])).uid;
     return userId;
   }

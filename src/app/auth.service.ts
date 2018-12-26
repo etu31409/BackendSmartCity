@@ -10,11 +10,6 @@ import { Constantes } from './Constantes';
   providedIn: 'root'
 })
 export class AuthService {
-  private TOKEN_ID = "access_token";
-  private expires_in= "expires_in";
-  private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
-  //private baseUrlApi = "http://localhost:5000/api/";
-
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -41,7 +36,7 @@ export class AuthService {
       console.log(res);
       this.token = res.access_token;
       this.tokenSubscriber.next(res.access_token);
-      localStorage.setItem(this.TOKEN_ID, (res.access_token));
+      localStorage.setItem(Constantes.TOKEN_ID, (res.access_token));
       this.router.navigate(['/connecte']);
     });
   }
@@ -50,15 +45,12 @@ export class AuthService {
     return this.tokenObservable;
   }
 
-  getToken():string{
-    return this.token;
-  }
 
   isAuthenticated():boolean{
-    return !!localStorage.getItem(this.TOKEN_ID);
+    return !!localStorage.getItem(Constantes.TOKEN_ID);
   }
 
   logout(){
-    localStorage.removeItem(this.TOKEN_ID);
+    localStorage.removeItem(Constantes.TOKEN_ID);
   }
 }

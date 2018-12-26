@@ -14,16 +14,12 @@ import { User } from './Model/User';
   providedIn: 'root'
 })
 export class BoutiqueService {
-  private baseUrlApi = "https://sc-nconnect.azurewebsites.net/api/";
-  //private baseUrlApi = "http://localhost:5000/api/";
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization':  'Bearer ' + localStorage.getItem("token")
+      'Authorization':  'Bearer ' + localStorage.getItem(Constantes.TOKEN_ID)
     })
   };
-
-  commerces$ : Observable<Commerce[]>;
 
   constructor(private http:HttpClient, private authService:AuthService) { 
     this.authService.notify().subscribe(
@@ -51,7 +47,7 @@ export class BoutiqueService {
   updateCommerce(commerce:Commerce):Observable<Commerce>{
     return this.http.put<Commerce>(`${Constantes.URL_API}Commerces`, commerce, this.httpOptions);
   }
-
+  
   deleteCommerce(commerce : Commerce): Observable<Commerce>{
     return this.http.delete<Commerce>(`${Constantes.URL_API}Commerces/${commerce.idCommerce}`, this.httpOptions);
   }
@@ -63,6 +59,7 @@ export class BoutiqueService {
       map(commerces => commerces.map(commerce => Object.assign(new Commerce(), commerce)))
     );
     */
+   //console.log(this.httpOptions.headers.get("Authorization"));
    return this.http.get<Commerce[]>(`${Constantes.URL_API}Commerces?categorie=0&all=false`, this.httpOptions);
   }
 

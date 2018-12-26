@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./connecte.component.css']
 })
 export class ConnecteComponent implements OnInit {
-  //quand on récupère le clients, on vérifie si c'est des commerces ou office du tourisme
   title:string="Mes commerces";
   commerces: Commerce[];
 
