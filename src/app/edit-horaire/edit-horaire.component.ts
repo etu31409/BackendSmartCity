@@ -63,6 +63,7 @@ export class EditHoraireComponent implements OnInit {
       this.openingPeriod = new OpeningPeriod();
       isNewOpeningPeriod = true;
     }
+    
     if (isNewOpeningPeriod) this.openingPeriod.idHoraire = null;
     //this.openingPeriod.horaireDebut = new Date(this.editOpeningPeriod.get("start").value);
     //this.openingPeriod.horaireFin = new Date(this.editOpeningPeriod.get("end").value);

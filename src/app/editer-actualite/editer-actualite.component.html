@@ -1,3 +1,28 @@
-<p>
-  editer-actualite works!
-</p>
+<div *ngIf="actualite">
+    <h2>{{actualite.libelle}}</h2>
+</div>
+<div *ngIf="!actualite">
+    <h2>Nouvelle actualitée </h2>
+</div>
+
+<div>
+    <form [formGroup]="editActualiteForm">
+        <p>
+            <label>
+                Libellé :
+                <input type="text" formControlName="libelle">
+            </label>
+        </p>    
+        <p>
+            <label>
+                Texte :
+                <input type="text" formControlName="texte">
+            </label>
+        </p>
+    </form>
+      
+    <div class="buttonFlex">
+        <button class="btn btn-lg btn-primary" (click)="save()">Enregistrer</button>
+        <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
+    </div>
+</div>

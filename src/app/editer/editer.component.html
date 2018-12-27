@@ -108,7 +108,7 @@
 
     <div *ngIf="commerce">
         <div *ngIf="commerce.actualite">
-                <app-actualite [actualite]='commerce.actualite'></app-actualite>
+                <app-actualite [actualite]='commerce.actualite' [idCommerce]='commerce.idCommerce'></app-actualite>
         </div>
         <div *ngIf="commerce.openingPeriod">
             <app-horaire [openingPeriod]='commerce.openingPeriod'></app-horaire>

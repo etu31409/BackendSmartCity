@@ -94,15 +94,15 @@ export class BoutiqueService {
   }
 
   deleteActualite(elem: Actualite): Observable<Actualite> {
-    return this.http.delete<Actualite>(`${Constantes.URL_API}Actualite/${elem.idActualite}`, this.httpOptions);
+    return this.http.delete<Actualite>(`${Constantes.URL_API}Actualites/${elem.idActualite}`, this.httpOptions);
   }
   addActualite(elem:Actualite):Observable<Actualite>{
-    return this.http.post<Actualite>(`${Constantes.URL_API}Actualite/${elem.idActualite}`, elem, this.httpOptions);
+    return this.http.post<Actualite>(`${Constantes.URL_API}Actualites/${elem.idActualite}`, elem, this.httpOptions);
   }
   updateActualite(elem:Actualite):Observable<Actualite>{
-    return this.http.put<Actualite>(`${Constantes.URL_API}Actualite/${elem.idActualite}`, elem, this.httpOptions)
+    return this.http.put<Actualite>(`${Constantes.URL_API}Actualites/${elem.idActualite}`, elem, this.httpOptions)
   }
   getActualite(id:number):Observable<Actualite>{
-    return this.http.get<Actualite>(`${Constantes.URL_API}Actualite/${id}`, this.httpOptions);
+    return this.http.get<Actualite>(`${Constantes.URL_API}Actualites/${id}`, this.httpOptions);
   }
 }

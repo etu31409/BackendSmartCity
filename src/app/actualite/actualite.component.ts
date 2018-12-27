@@ -10,7 +10,7 @@ import { Actualite } from '../Model/Actualite';
 export class ActualiteComponent implements OnInit {
 
   @Input() actualite:Actualite[];
-
+  @Input() idCommerce:number;
   constructor(private boutiqueService:BoutiqueService) { }
 
   ngOnInit() {
@@ -19,5 +19,6 @@ export class ActualiteComponent implements OnInit {
 
   delActualite(elem){
     this.boutiqueService.deleteActualite(elem).subscribe();
+    //recharger la page ou relancer un getCommerce pour que la liste des commerces soit à jour
   }
 }
