@@ -101,26 +101,26 @@ export class EditerComponent implements OnInit {
       this.commerce = new Commerce();
       isNewCommerce = true;
     }
-    if (isNewCommerce) this.commerce.idCommerce = null;
+    //if (isNewCommerce) this.commerce.idCommerce = null;
 
     this.commerce.nomCommerce = this.editCommerceForm.get("nomCommerce").value;
     this.commerce.rue = this.editCommerceForm.get("rue").value;
     this.commerce.numero = this.editCommerceForm.get("numero").value;
     this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
-    //this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
-    // this.commerce.actualite = null;
-    // this.commerce.idCategorieNavigation = null;
+    this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
+    this.commerce.actualite = null;
+    this.commerce.idCategorieNavigation = null;
     this.commerce.description = this.description.value;
     //TODO : récupérer dans les tokens du user l'id de le personne (et aussi le rôle)
-    // this.commerce.IdUser = Utils.getUserId();
-    // this.commerce.imageCommerce = null;
-    // this.commerce.numeroFixe = this.telephoneFixe.value;
-    // this.commerce.numeroGSM = this.telephoneMobile.value;
-    // this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
-    // this.commerce.produitPhare = this.produitPhare.value;
-    // this.commerce.urlPageFacebook = this.urlPageFacebook.value;
-    // this.commerce.idUserNavigation = null;
-    // this.commerce.openingPeriod = null;
+    this.commerce.idUser = Utils.getUserId();
+    this.commerce.imageCommerce = null;
+    this.commerce.numeroFixe = this.telephoneFixe.value;
+    this.commerce.numeroGsm = this.telephoneMobile.value;
+    this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
+    this.commerce.produitPhare = this.produitPhare.value;
+    this.commerce.urlPageFacebook = this.urlPageFacebook.value;
+    this.commerce.idUserNavigation = null;
+    this.commerce.openingPeriod = null;
 
     if (!isNewCommerce) {
       this.boutiqueService.updateCommerce(this.commerce).subscribe();
