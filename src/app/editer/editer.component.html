@@ -106,8 +106,10 @@
         </form> 
     </div>
 
-    <app-actualite></app-actualite>
     <div *ngIf="commerce">
+        <div *ngIf="commerce.actualite">
+                <app-actualite [actualite]='commerce.actualite'></app-actualite>
+        </div>
         <div *ngIf="commerce.openingPeriod">
             <app-horaire [openingPeriod]='commerce.openingPeriod'></app-horaire>
         </div>

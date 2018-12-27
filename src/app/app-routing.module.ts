@@ -8,6 +8,7 @@ import { AideComponent } from './aide/aide.component';
 import { ConnecteDetailGuard } from './connecte-detail.guard';
 import { EditerDetailGuard } from './editer/editer-detail.guard';
 import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
+import { EditerActualiteComponent } from './editer-actualite/editer-actualite.component';
 
 const routes: Routes = [
   {path: 'connecte', canActivate : [ConnecteDetailGuard], component: ConnecteComponent },
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path:'compte', canActivate : [ConnecteDetailGuard], component: CompteComponent},
   {path:'editer-horaire', canActivate : [ConnecteDetailGuard], component: EditHoraireComponent},
   {path:'editer-horaire/:id', canActivate : [EditerDetailGuard], component: EditHoraireComponent},
+  {path:'editer-actualite/:id', canActivate : [EditerDetailGuard], component: EditerActualiteComponent},
+  {path:'editer-actualite', canActivate : [ConnecteDetailGuard], component: EditerActualiteComponent},
   {path: '', redirectTo: '/connexion', pathMatch: 'full' },
 ];
 

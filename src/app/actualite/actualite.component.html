@@ -1,1 +1,11 @@
 <h3>Actualité(s) :</h3>
+<button routerLink="/editer-actualite/">Ajouter une nouvelle Actualité</button>
+<ul *ngFor="let elem of actualite">
+    <li>
+        <p>Id : {{elem.idActualite}}</p>
+        <p>Libellé : {{elem.libelle}}</p>
+        <p>Texte : {{elem.texte}}</p>
+        <a routerLink="/editer-actualite/{{elem.idActualite}}"><button>Modifier</button></a>
+        <button (click)="delActualite(elem)">Supprimer</button>
+    </li>
+</ul>

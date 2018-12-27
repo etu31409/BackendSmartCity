@@ -16,6 +16,7 @@ import{HttpClientModule} from '@angular/common/http';
 import { ActualiteComponent } from './actualite/actualite.component';
 import { HoraireComponent } from './horaire/horaire.component';
 import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
+import { EditerActualiteComponent } from './editer-actualite/editer-actualite.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
     ActualiteComponent,
     HoraireComponent,
     EditHoraireComponent,
+    EditerActualiteComponent,
   ],
   imports: [
     BrowserModule,

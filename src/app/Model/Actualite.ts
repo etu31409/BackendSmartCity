@@ -1,7 +1,9 @@
 export class Actualite
 {
-    id:number;
+    idActualite:number;
     libelle:string;
     texte:string;
     date:Date;
+    idCommerce:number;
+    idSiteTouristique:number;
 }

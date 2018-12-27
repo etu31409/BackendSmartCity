@@ -9,11 +9,13 @@ import {map} from 'rxjs/operators';
 import {TransferFile} from './Model/TransferFile';
 import { Constantes } from './Constantes';
 import { User } from './Model/User';
+import { Actualite } from './Model/Actualite';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoutiqueService {
+
   private  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -89,5 +91,18 @@ export class BoutiqueService {
 
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${Constantes.URL_API}Users/${id}`, this.httpOptions);
+  }
+
+  deleteActualite(elem: Actualite): Observable<Actualite> {
+    return this.http.delete<Actualite>(`${Constantes.URL_API}Actualite/${elem.idActualite}`, this.httpOptions);
+  }
+  addActualite(elem:Actualite):Observable<Actualite>{
+    return this.http.post<Actualite>(`${Constantes.URL_API}Actualite/${elem.idActualite}`, elem, this.httpOptions);
+  }
+  updateActualite(elem:Actualite):Observable<Actualite>{
+    return this.http.put<Actualite>(`${Constantes.URL_API}Actualite/${elem.idActualite}`, elem, this.httpOptions)
+  }
+  getActualite(id:number):Observable<Actualite>{
+    return this.http.get<Actualite>(`${Constantes.URL_API}Actualite/${id}`, this.httpOptions);
   }
 }
