@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BoutiqueService } from '../boutique.service';
 import { Actualite } from '../Model/Actualite';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-actualite',
@@ -12,7 +13,7 @@ export class ActualiteComponent implements OnInit {
 
   @Input() actualite:Actualite[];
   @Input() idCommerce:number;
-  constructor(private boutiqueService:BoutiqueService, private router: Router) { }
+  constructor(private boutiqueService:BoutiqueService, private router: Router, private location: Location) { }
 
   ngOnInit() {}
 
@@ -21,7 +22,10 @@ export class ActualiteComponent implements OnInit {
   }
 
   delActualite(elem){
-    this.boutiqueService.deleteActualite(elem).subscribe();
-    //recharger la page ou relancer un getCommerce pour que la liste des commerces soit à jour
+    this.boutiqueService.deleteActualite(elem).subscribe(
+      elem =>{
+        window.location.reload();
+      }
+    );
   }
 }

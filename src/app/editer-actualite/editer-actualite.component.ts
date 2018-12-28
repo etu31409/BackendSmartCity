@@ -62,11 +62,18 @@ export class EditerActualiteComponent implements OnInit {
     this.actualite.libelle = this.editActualiteForm.get("libelle").value;
     this.actualite.texte = this.editActualiteForm.get("texte").value;
     if(isNewActualite){
-      this.boutiqueService.addActualite(this.actualite).subscribe();
+      this.boutiqueService.addActualite(this.actualite).subscribe(
+        elem =>{
+          this.goBack();
+        }
+      );
     }
     else{
-      this.boutiqueService.updateActualite(this.actualite).subscribe();
+      this.boutiqueService.updateActualite(this.actualite).subscribe(
+        elem =>{
+          this.goBack();
+        }
+      );
     }
-    this.goBack();
   }
 }
