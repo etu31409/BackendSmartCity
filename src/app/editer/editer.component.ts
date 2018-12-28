@@ -20,7 +20,7 @@ export class EditerComponent implements OnInit {
   urlPageFacebook = new FormControl('');
   formCategorie = new FormGroup(
     {
-      categorie: new FormControl('')
+      categorie: new FormControl('', Validators.required)
     });
   commerce: Commerce;
 
@@ -78,8 +78,8 @@ export class EditerComponent implements OnInit {
       numero: this.commerce.numero,
       adresseMail: this.commerce.adresseMail,
     });
-    //Ajouter la catégorie
-    this.formCategorie.patchValue({
+    //maj de la catégorie
+    this.formCategorie.setValue({
       categorie: this.commerce.idCategorie
     });
     this.telephoneMobile.patchValue(this.commerce.numeroGsm);
@@ -108,20 +108,15 @@ export class EditerComponent implements OnInit {
     this.commerce.rue = this.editCommerceForm.get("rue").value;
     this.commerce.numero = this.editCommerceForm.get("numero").value;
     this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
-    this.commerce.idCategorie = this.formCategorie.get("categorie").value + 1;
-    this.commerce.actualite = null;
-    this.commerce.idCategorieNavigation = null;
+    let test = this.formCategorie.get("categorie").value;
+    this.commerce.idCategorie = this.categoryName(this.formCategorie.get("categorie").value);
     this.commerce.description = this.description.value;
-    //TODO : récupérer dans les tokens du user l'id de le personne (et aussi le rôle)
     this.commerce.idUser = Utils.getUserId();
-    this.commerce.imageCommerce = null;
     this.commerce.numeroFixe = this.telephoneFixe.value;
     this.commerce.numeroGsm = this.telephoneMobile.value;
     this.commerce.parcoursProduitPhare = this.parcoursProduitPhare.value;
     this.commerce.produitPhare = this.produitPhare.value;
     this.commerce.urlPageFacebook = this.urlPageFacebook.value;
-    this.commerce.idUserNavigation = null;
-    this.commerce.openingPeriod = null;
 
     if (!isNewCommerce) {
       this.boutiqueService.updateCommerce(this.commerce).subscribe(
@@ -147,5 +142,19 @@ export class EditerComponent implements OnInit {
 
   upload(): void {
     var test = this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
+  }
+
+  categoryName(name:string){
+    switch(name){
+      case this.categories[0].nom :
+        return 1;
+        break;
+      case this.categories[1].nom :
+        return 2;
+        break;
+      case this.categories[2].nom :
+        return 3;
+        break;
+    }
   }
 }
