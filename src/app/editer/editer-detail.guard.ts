@@ -13,7 +13,7 @@ export class EditerDetailGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let id =  +next.url[1].path;
     if(this.authService.isAuthenticated()){
-        if(isNaN(id) || id < 1)
+        if(isNaN(id) || id < 0)
         {
           this.router.navigate(['/connecte']);
           return false;

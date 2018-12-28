@@ -92,7 +92,8 @@ export class EditerComponent implements OnInit {
 
 
   goBack(): void {
-    this.location.back();
+    //this.location.back();
+    this.router.navigate(['/connecte']);
   }
 
   save(): void {

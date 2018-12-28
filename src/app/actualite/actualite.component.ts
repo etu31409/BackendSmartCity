@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BoutiqueService } from '../boutique.service';
 import { Actualite } from '../Model/Actualite';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualite',
@@ -11,10 +12,12 @@ export class ActualiteComponent implements OnInit {
 
   @Input() actualite:Actualite[];
   @Input() idCommerce:number;
-  constructor(private boutiqueService:BoutiqueService) { }
+  constructor(private boutiqueService:BoutiqueService, private router: Router) { }
 
-  ngOnInit() {
-    
+  ngOnInit() {}
+
+  routeToActualiteDetail(){
+    this.router.navigate(['/editer-actualite', 0, this.idCommerce]);
   }
 
   delActualite(elem){

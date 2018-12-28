@@ -1,5 +1,5 @@
 <h3>Actualité(s) :</h3>
-<button routerLink="/editer-actualite/{{0}}/{{idCommerce}}/">Ajouter une nouvelle Actualité</button>
+<button (click)='routeToActualiteDetail()'>Ajouter une nouvelle Actualité</button>
 <ul *ngFor="let elem of actualite">
     <li>
         <p>Id : {{elem.idActualite}}</p>

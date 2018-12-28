@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BoutiqueService } from '../boutique.service';
 import { Actualite } from '../Model/Actualite';
 import { Location } from '@angular/common';
@@ -20,7 +20,8 @@ export class EditerActualiteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private boutiqueService: BoutiqueService,
-    private location: Location) { }
+    private location: Location,
+    private router: Router) { }
 
   ngOnInit() {
     this.getActualite();
@@ -45,7 +46,8 @@ export class EditerActualiteComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    //this.location.back();
+    this.router.navigate(['/editer', this.idCommerce]);
   }
 
   save():void{
@@ -65,5 +67,6 @@ export class EditerActualiteComponent implements OnInit {
     else{
       this.boutiqueService.updateActualite(this.actualite).subscribe();
     }
+    this.goBack();
   }
 }
