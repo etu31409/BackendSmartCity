@@ -124,13 +124,20 @@ export class EditerComponent implements OnInit {
     this.commerce.openingPeriod = null;
 
     if (!isNewCommerce) {
-      this.boutiqueService.updateCommerce(this.commerce).subscribe();
+      this.boutiqueService.updateCommerce(this.commerce).subscribe(
+        elem =>{
+          this.goBack();
+        }
+      );
     }
     else {
       //this.commerce.rowVersion = null;
-      this.boutiqueService.addCommerce(this.commerce).subscribe();
+      this.boutiqueService.addCommerce(this.commerce).subscribe(
+        elem => {
+          this.goBack();
+        }
+      );
     }
-    this.router.navigate(['/connecte']);
   }
 
   delete(): void {
