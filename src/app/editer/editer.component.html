@@ -111,7 +111,7 @@
                 <app-actualite [actualite]='commerce.actualite' [idCommerce]='commerce.idCommerce'></app-actualite>
         </div>
         <div *ngIf="commerce.openingPeriod">
-            <app-horaire [openingPeriod]='commerce.openingPeriod'></app-horaire>
+            <app-horaire [openingPeriod]='commerce.openingPeriod' [idCommerce]='commerce.idCommerce'></app-horaire>
         </div>
     </div>
     <div class="buttonFlex">
