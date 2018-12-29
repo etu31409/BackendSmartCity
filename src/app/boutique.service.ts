@@ -73,7 +73,11 @@ export class BoutiqueService {
       })
     };
     var tf = new TransferFile(file, idCommerce.toString());
-    return this.http.post<any>(`${Constantes.URL_API}Image`, file, Options);
+    return this.http.post<any>(`${Constantes.URL_API}Image`, tf, Options);
+  }
+
+  deleteImage(idImage : number, idCommerce: number): Observable<ImageCommerce>{
+    return this.http.delete<ImageCommerce>(`${Constantes.URL_API}Image?idImage=${idImage}&idCommerce=${idCommerce}`, this.httpOptions);
   }
 
   updateOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{
