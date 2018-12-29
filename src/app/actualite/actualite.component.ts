@@ -28,4 +28,10 @@ export class ActualiteComponent implements OnInit {
       }
     );
   }
+
+  formatDate(date:Date){
+    var dateActu = new Date(date);
+    var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+    return dateActu.toLocaleString("fr-FR", options);
+  }
 }
