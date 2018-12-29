@@ -24,7 +24,6 @@
 
             <input type="date" formControlName="dateActu"
                     [ngModel]="today | date:'yyyy-MM-dd'"  
-                    (ngModelChange)="today = $event" 
                     name="dt" 
                     class="form-control form-control-rounded" #searchDate>
         </p>
