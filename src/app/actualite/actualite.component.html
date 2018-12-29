@@ -5,6 +5,7 @@
         <p>Id : {{elem.idActualite}}</p>
         <p>Libellé : {{elem.libelle}}</p>
         <p>Texte : {{elem.texte}}</p>
+        <p>Date : {{elem.date}}</p>
         <a routerLink="/editer-actualite/{{elem.idActualite}}/{{idCommerce}}/"><button>Modifier</button></a>
         <button (click)="delActualite(elem)">Supprimer</button>
     </li>

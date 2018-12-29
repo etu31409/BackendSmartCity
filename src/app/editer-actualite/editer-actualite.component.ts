@@ -15,8 +15,10 @@ export class EditerActualiteComponent implements OnInit {
   private idCommerce:number;
   private editActualiteForm = new FormGroup({
     libelle : new FormControl('', Validators.required),
-    texte: new FormControl('')
+    texte: new FormControl(''),
+    dateActu: new FormControl('mm/dd/yyyy')
   });
+  private today: Date;
   constructor(
     private route: ActivatedRoute,
     private boutiqueService: BoutiqueService,
@@ -24,6 +26,7 @@ export class EditerActualiteComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.today = new Date();
     this.getActualite();
   }
   getActualite(): void{
@@ -61,6 +64,8 @@ export class EditerActualiteComponent implements OnInit {
     this.actualite.idCommerce = this.idCommerce;
     this.actualite.libelle = this.editActualiteForm.get("libelle").value;
     this.actualite.texte = this.editActualiteForm.get("texte").value;
+    let date:string = this.editActualiteForm.controls.dateActu.value;
+    this.actualite.date = new Date(this.editActualiteForm.controls.dateActu.value);
     if(isNewActualite){
       this.boutiqueService.addActualite(this.actualite).subscribe(
         elem =>{

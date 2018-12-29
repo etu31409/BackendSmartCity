@@ -17,7 +17,7 @@ import { ActualiteComponent } from './actualite/actualite.component';
 import { HoraireComponent } from './horaire/horaire.component';
 import { EditHoraireComponent } from './edit-horaire/edit-horaire.component';
 import { EditerActualiteComponent } from './editer-actualite/editer-actualite.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,8 @@ import { EditerActualiteComponent } from './editer-actualite/editer-actualite.co
     NgbModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
