@@ -90,7 +90,8 @@
     <div *ngIf="commerce">
         <div *ngIf="commerce.imageCommerce">
             <div *ngFor="let photo of commerce.imageCommerce">
-                <img class="images" src="{{photo.url}}"/> 
+                <img class="images" src="{{photo.url}}"/>
+                <button (click)="deleteImage(photo.idImageCommerce)">Supprimer</button>
             </div>
         </div>
     </div>

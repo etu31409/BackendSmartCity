@@ -68,12 +68,19 @@ export class BoutiqueService {
   addImage(file : any, idCommerce : number):Observable<any>{
     var Options = {
       headers: new HttpHeaders({
-        'Content-Type':  'multipart/form-data',
-        'Authorization':  'Bearer ' + localStorage.getItem("token"),
+        'Authorization':  'Bearer ' + localStorage.getItem("token")
       })
     };
-    var tf = new TransferFile(file, idCommerce.toString());
-    return this.http.post<any>(`${Constantes.URL_API}Image`, file, Options);
+    const formData = new FormData();
+    formData.append("IdCommerce",idCommerce.toString());
+    //formData.append("File",file);
+    //Ci dessus passe "[Object] [Object]" a la place de file
+    //Si formData+File, erreur car pas le bon type passer a l'API
+    return this.http.post<any>(`${Constantes.URL_API}Image`,formData, Options);
+  }
+
+  deleteImage(idImage : number, idCommerce: number): Observable<ImageCommerce>{
+    return this.http.delete<ImageCommerce>(`${Constantes.URL_API}Image?idImage=${idImage}&idCommerce=${idCommerce}`, this.httpOptions);
   }
 
   updateOpeningPeriod(elem : OpeningPeriod): Observable<OpeningPeriod>{

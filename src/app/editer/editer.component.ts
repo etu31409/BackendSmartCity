@@ -143,6 +143,10 @@ export class EditerComponent implements OnInit {
     this.goBack();
   }
 
+  deleteImage(idImage: number): void{
+    this.boutiqueService.deleteImage(idImage, this.commerce.idCommerce).subscribe();
+  }
+
   upload(): void {
     var test = this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
   }
