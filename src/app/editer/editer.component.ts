@@ -46,7 +46,7 @@ export class EditerComponent implements OnInit {
       nom: "Bar"
     }
   ];
-
+  private categorieSelectionnee;
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -79,9 +79,12 @@ export class EditerComponent implements OnInit {
       adresseMail: this.commerce.adresseMail,
     });
     //maj de la catégorie
-    this.formCategorie.setValue({
-      categorie: this.commerce.idCategorie
-    });
+    // this.formCategorie.setValue({
+    //   categorie: this.commerce.idCategorie
+    //   //categorie: this.categories[2]
+    // });
+    //this.formCategorie.controls['categorie'].setValue(this.commerce.idCategorie, {onlySelf: true})
+    if(this.commerce.idCategorie) this.categorieSelectionnee = this.categories[this.commerce.idCategorie -1];
     this.telephoneMobile.patchValue(this.commerce.numeroGsm);
     this.telephoneFixe.patchValue(this.commerce.numeroFixe);
     this.description.patchValue(this.commerce.description);
@@ -144,17 +147,16 @@ export class EditerComponent implements OnInit {
     var test = this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
   }
 
-  categoryName(name:string){
+  categoryName(name:string):number{
     switch(name){
-      case this.categories[0].nom :
+      case "Restaurant" :
         return 1;
-        break;
-      case this.categories[1].nom :
+      case "Bar" :
         return 2;
-        break;
-      case this.categories[2].nom :
+      case "Magasin" :
         return 3;
-        break;
+      default:
+        return 1;
     }
   }
 }

@@ -17,8 +17,8 @@
                 <label>
                     <div *ngIf="commerce">
                             Catégorie :
-                            <select formControlName="categorie">
-                                <option *ngFor="let cat of categories">
+                            <select formControlName="categorie" [(ngModel)]="categorieSelectionnee">
+                                <option *ngFor="let cat of categories" [ngValue]="cat">
                                         {{cat.nom}}
                                 </option>
                             </select>
