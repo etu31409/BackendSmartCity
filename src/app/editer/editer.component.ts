@@ -111,8 +111,8 @@ export class EditerComponent implements OnInit {
     this.commerce.rue = this.editCommerceForm.get("rue").value;
     this.commerce.numero = this.editCommerceForm.get("numero").value;
     this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
-    let test = this.formCategorie.get("categorie").value;
-    this.commerce.idCategorie = this.categoryName(this.formCategorie.get("categorie").value);
+    let test = this.formCategorie.get("categorie").value.nom;
+    this.commerce.idCategorie = this.categoryName(this.formCategorie.get("categorie").value.nom);
     this.commerce.description = this.description.value;
     this.commerce.idUser = Utils.getUserId();
     this.commerce.numeroFixe = this.telephoneFixe.value;
@@ -155,9 +155,9 @@ export class EditerComponent implements OnInit {
     switch(name){
       case "Restaurant" :
         return 1;
-      case "Bar" :
-        return 2;
       case "Magasin" :
+        return 2;
+      case "Bar" :
         return 3;
       default:
         return 1;

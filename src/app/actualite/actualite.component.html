@@ -5,6 +5,9 @@
         <p>Id : {{elem.idActualite}}</p>
         <p>Libellé : {{elem.libelle}}</p>
         <p>Texte : {{elem.texte}}</p>
+        <div *ngIf="elem.date">
+            <p>Date : {{formatDate(elem.date)}}</p>
+        </div>
         <a routerLink="/editer-actualite/{{elem.idActualite}}/{{idCommerce}}/"><button>Modifier</button></a>
         <button (click)="delActualite(elem)">Supprimer</button>
     </li>
