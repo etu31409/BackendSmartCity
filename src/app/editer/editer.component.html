@@ -98,7 +98,7 @@
 
     <div>
         <!--- upload d'une image --->
-        <form [formGroup]="uploadImage">
+        <form [formGroup]="uploadImage" method="POST" enctype="multipart/form-data">
             <div>
                 <p>Upload one or more files using this form:</p>
                 <input type="file" [formControl]="file"/>
