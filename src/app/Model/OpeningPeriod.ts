@@ -5,5 +5,5 @@ export class OpeningPeriod{
     jour:number;
     idCommerce:number;
     dureeOuverture:Date;
-    rowVersion:number[];
+    RowVersion:number;
 }

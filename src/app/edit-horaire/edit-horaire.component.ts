@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./edit-horaire.component.css']
 })
 export class EditHoraireComponent implements OnInit {
-  private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+  private tabJour = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 
 
   editOpeningPeriod = new FormGroup({
@@ -53,7 +53,9 @@ export class EditHoraireComponent implements OnInit {
       end: this.openingPeriod.horaireFin,
       day: this.openingPeriod.jour
     });
-    if(this.openingPeriod.jour) this.jourSelectionne = this.tabJour[this.openingPeriod.jour];
+    if(this.openingPeriod.jour >= 0){
+      this.jourSelectionne = this.tabJour[this.openingPeriod.jour];
+    } 
   }
 
   goBack(): void {

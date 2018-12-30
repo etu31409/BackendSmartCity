@@ -47,4 +47,12 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
     }
     return jour;
   }
+
+  delOpeningPeriod(elem){
+    this.boutiqueService.deleteOpeningPeriod(elem).subscribe(
+      elem =>{
+        window.location.reload();
+      }
+    );
+  }
 }
