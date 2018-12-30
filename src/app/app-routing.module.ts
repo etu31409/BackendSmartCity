@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'aide', canActivate : [ConnecteDetailGuard], component: AideComponent},
   {path:'compte', canActivate : [ConnecteDetailGuard], component: CompteComponent},
   {path:'editer-horaire', canActivate : [ConnecteDetailGuard], component: EditHoraireComponent},
-  {path:'editer-horaire/:id', canActivate : [EditerDetailGuard], component: EditHoraireComponent},
+  {path:'editer-horaire/:id/:idCommerce', canActivate : [EditerDetailGuard], component: EditHoraireComponent},
   {path:'editer-actualite/:id/:idCommerce', canActivate : [EditerDetailGuard], component: EditerActualiteComponent},
   {path:'editer-actualite', canActivate : [ConnecteDetailGuard], component: EditerActualiteComponent},
   {path: '', redirectTo: '/connexion', pathMatch: 'full' },

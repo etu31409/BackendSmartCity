@@ -20,12 +20,13 @@ export class EditHoraireComponent implements OnInit {
     day: new FormControl('', Validators.required)
   });
 
-  openingPeriod: OpeningPeriod;
-
+  private openingPeriod: OpeningPeriod;
+  private idCommerce: number;
+  private jourSelectionne:string;
   constructor(
     private route: ActivatedRoute,
     private boutiqueService: BoutiqueService,
-    private location: Location
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -35,6 +36,7 @@ export class EditHoraireComponent implements OnInit {
   getOpeningPeriod(): void{
     //si nouveau horaire, va mettre 0 dans l'url, aucun commerce n'a 0 comme identifiant
     const id = +this.route.snapshot.paramMap.get('id');
+    this.idCommerce = +this.route.snapshot.paramMap.get('idCommerce');
     if (id != 0) {
       this.boutiqueService.getOpeningPeriod(id).subscribe(op => {
         this.openingPeriod = op;
@@ -51,10 +53,11 @@ export class EditHoraireComponent implements OnInit {
       end: this.openingPeriod.horaireFin,
       day: this.openingPeriod.jour
     });
+    if(this.openingPeriod.jour) this.jourSelectionne = this.tabJour[this.openingPeriod.jour];
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/editer', this.idCommerce]);
   }
 
   save(): void{
@@ -64,23 +67,26 @@ export class EditHoraireComponent implements OnInit {
       isNewOpeningPeriod = true;
     }
     
-    //if (isNewOpeningPeriod) this.openingPeriod.idHoraire = null;
-    //this.openingPeriod.horaireDebut = new Date(this.editOpeningPeriod.get("start").value);
-    //this.openingPeriod.horaireFin = new Date(this.editOpeningPeriod.get("end").value);
-    this.openingPeriod.horaireDebut = new Date(10).toJSON();
-    this.openingPeriod.horaireFin = new Date(17).toJSON();
-    //this.openingPeriod.jour = this.tabJour.findIndex(this.editOpeningPeriod.get("day").value) ;
-    this.openingPeriod.jour = 1;
-    this.openingPeriod.idCommerce = 13;
+    this.openingPeriod.horaireDebut = this.editOpeningPeriod.get("start").value;
+    this.openingPeriod.horaireFin = this.editOpeningPeriod.get("end").value;
+    this.openingPeriod.jour = this.tabJour.indexOf(this.editOpeningPeriod.get("day").value);
+    this.openingPeriod.idCommerce = this.idCommerce;
     
     if (!isNewOpeningPeriod) {
-      this.boutiqueService.updateOpeningPeriod(this.openingPeriod).subscribe();
+      this.boutiqueService.updateOpeningPeriod(this.openingPeriod).subscribe(
+        elem =>{
+          this.goBack();
+        }
+      );
     }
     else {
-      this.openingPeriod.rowVersion = null;
-      this.boutiqueService.addOpeningPeriod(this.openingPeriod).subscribe();
+      this.boutiqueService.addOpeningPeriod(this.openingPeriod).subscribe(
+        elem=>{
+          this.goBack();
+        }
+      );
     }
-    this.goBack();
+    
   }
 
 }

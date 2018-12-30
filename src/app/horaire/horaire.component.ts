@@ -11,7 +11,7 @@ import { Horaire } from '../Model/Horaire';
 })
 export class HoraireComponent implements OnInit {
 @Input() openingPeriod:OpeningPeriod[];
-
+@Input() idCommerce:number;
 private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
   private openingPeriodForm = new FormGroup({
       heureDebut: new FormControl(''),
@@ -29,24 +29,22 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
   jour(numJour:number):string{
     let jour="";
     switch(numJour){
+      case 0: jour="Dimanche";
+        break;
       case 1: jour="Lundi";
+        break;
       case 2: jour="Mardi";
+        break;
       case 3 : jour="Mercredi";
+        break;  
       case 4 : jour="Jeudi";
+        break;
       case 5 : jour="Vendredi";
+        break;
       case 6 : jour="Samedi";
-      default : jour="Dimanche";
+        break;
+      default : jour="Pas de jour lisible";
     }
     return jour;
-  }
-
-  //TODO: Refresh page Apres avoir effectué une action
-
-  modifOpeningPeriod(elem : OpeningPeriod):void{
-    this.boutiqueService.updateOpeningPeriod(elem).subscribe();
-  }
-
-  delOpeningPeriod(elem : OpeningPeriod):void{
-    this.boutiqueService.deleteOpeningPeriod(elem).subscribe();
   }
 }

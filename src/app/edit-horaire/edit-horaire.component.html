@@ -9,20 +9,20 @@
       <p>
           <label>
               Heure de début :
-              <input type="text" formControlName="start">
+              <input type="time" formControlName="start">
           </label>
       </p>    
       <p>
           <label>
               Heure de fin :
-              <input type="text" formControlName="end">
+              <input type="time" formControlName="end">
           </label>
       </p>
       <p>
           <label>
               Jour :              
-                <select formControlName="day">
-                    <option *ngFor="let jour of tabJour">
+                <select formControlName="day" [(ngModel)]="jourSelectionne">
+                    <option *ngFor="let jour of tabJour" [ngValue]="jour">
                             {{jour}}
                     </option>
                 </select>
