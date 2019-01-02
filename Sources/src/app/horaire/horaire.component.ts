@@ -3,6 +3,8 @@ import { OpeningPeriod } from '../Model/OpeningPeriod';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BoutiqueService } from '../boutique.service';
 import { Horaire } from '../Model/Horaire';
+import { Utils } from '../Utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-horaire',
@@ -20,7 +22,7 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
   );
 
   constructor(
-    private boutiqueService: BoutiqueService
+    private boutiqueService: BoutiqueService, private router:Router
   ) { }
 
   ngOnInit() {
@@ -52,6 +54,10 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
     this.boutiqueService.deleteOpeningPeriod(elem).subscribe(
       elem =>{
         window.location.reload();
+      },
+      error => {
+        Utils.errorHandler(error.status);
+        this.router.navigate(['/editer', this.idCommerce]);
       }
     );
   }

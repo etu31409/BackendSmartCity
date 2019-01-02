@@ -143,8 +143,14 @@ export class EditerComponent implements OnInit {
   }
 
   delete(): void {
-    this.boutiqueService.deleteCommerce(this.commerce).subscribe();
-    this.goBack();
+    this.boutiqueService.deleteCommerce(this.commerce).subscribe(
+      elem => {
+        this.goBack();
+      },
+      error => {
+        Utils.errorHandler(error.status);
+      }
+    );
   }
 
   deleteImage(idImage: number): void{

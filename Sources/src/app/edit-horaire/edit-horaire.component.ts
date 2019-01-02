@@ -86,7 +86,7 @@ export class EditHoraireComponent implements OnInit {
         },
         error => {
           Utils.errorHandler(error.status);
-          this.router.navigate(['/connexion']);
+          this.router.navigate(['/editer', this.idCommerce]);
         }
       );
     }
@@ -97,7 +97,7 @@ export class EditHoraireComponent implements OnInit {
         },
         error => {
           Utils.errorHandler(error.status);
-          this.router.navigate(['/connexion']);
+          this.router.navigate(['/editer', this.idCommerce]);
         }
       );
     }

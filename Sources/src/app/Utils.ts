@@ -19,6 +19,9 @@ export class Utils
             case 500 :
               alert(Constantes.PROBLEM_API);
               break;
+            case 409 :
+              alert(Constantes.COMPETITOR_ACCESS)
+              break;
             default: 
               alert(Constantes.UNEXPECTED_ERROR + " " + status);
           }

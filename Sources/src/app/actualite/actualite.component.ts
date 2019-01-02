@@ -3,6 +3,7 @@ import { BoutiqueService } from '../boutique.service';
 import { Actualite } from '../Model/Actualite';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'app-actualite',
@@ -25,6 +26,10 @@ export class ActualiteComponent implements OnInit {
     this.boutiqueService.deleteActualite(elem).subscribe(
       elem =>{
         window.location.reload();
+      },
+      error => {
+        Utils.errorHandler(error.status);
+        this.router.navigate(['/editer', this.idCommerce]);
       }
     );
   }
