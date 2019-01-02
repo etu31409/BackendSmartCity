@@ -4,6 +4,7 @@ import { BoutiqueService } from '../boutique.service';
 import { OpeningPeriod } from '../Model/OpeningPeriod';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Utils } from '../Utils';
+import { Constantes } from '../Constantes';
 
 @Component({
   selector: 'app-edit-horaire',
@@ -62,7 +63,7 @@ export class EditHoraireComponent implements OnInit {
     this.router.navigate(['/editer', this.idCommerce]);
   }
 
-  save(): void{
+  save(){
     let isNewOpeningPeriod = false;
     if (this.openingPeriod == null) {
       this.openingPeriod = new OpeningPeriod();
@@ -71,6 +72,10 @@ export class EditHoraireComponent implements OnInit {
     
     this.openingPeriod.horaireDebut = this.editOpeningPeriod.get("start").value;
     this.openingPeriod.horaireFin = this.editOpeningPeriod.get("end").value;
+    if(this.openingPeriod.horaireDebut > this.openingPeriod.horaireFin){
+      alert(Constantes.BAD_OPENINGPERIOD);
+      return false;
+    }
     this.openingPeriod.jour = this.tabJour.indexOf(this.editOpeningPeriod.get("day").value);
     this.openingPeriod.idCommerce = this.idCommerce;
     
