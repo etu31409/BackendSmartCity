@@ -28,8 +28,8 @@ export class EditerComponent implements OnInit {
 
   editCommerceForm = new FormGroup({
     nomCommerce: new FormControl('', Validators.required),
-    rue: new FormControl('', Validators.required),
-    numero: new FormControl('', [Validators.minLength(1), Validators.required]),
+    rue: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    numero: new FormControl('', [Validators.required]),
     adresseMail: new FormControl('', [Validators.required, Validators.email]),
   });
   uploadImage = new FormGroup({});
