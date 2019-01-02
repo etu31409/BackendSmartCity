@@ -1,17 +1,17 @@
-# Comment lancer notre API une fois que vous avez cloné le projet sur votre machine ?
+# Comment lancer notre application web Angular version 6 une fois que vous avez cloné le projet sur votre machine ?
 
-Nous avons utilisé la version 2.1.500 de dotnet Core, si vous ne l'avez pas, vous pouvez la télécharger à cette [adresse](https://dotnet.microsoft.com/download)
+Avant toute chose, vous devez vous assurer d'avoir NodeJs installé sur votre machine, pour cela, tapez la commande 
+*node --version* dans une invite de commande. Si NodeJs n'est pas installé, vous pouvez l'installer via ce lien [adresse](https://nodejs.org/en/)
 
 Nous vous conseillons d'utiliser l'environement Visual Studio Code.
 
-Une fois visual studio code lancé, visual studio code vous proposera d'effetuer un *restore*
-accepter (si il ne vous le propose pas vous pouver lancer manuellement la commande dans le terminal *dotnet restore*)
+Une fois le projet cloné sur votre machine, votre IDE soulignera les imports de modules (@angular/core), c'est normale, 
+ils ne sont pas encore installé sur votre machine.
 
-Cette commande permet de mettre à jour les références notamment.
+Pour ce faire, vous avez besoin d'installer l'interface de ligne de commande de Angular (Angular CLI).
+Tapez dans l'invite de commande *npm install -g @angular/cli*.
+Cet outil génère les modules dont nous avons besoin pour faire fonctionner l'application.
 
-Pour compiler le projet utiliser la commande dotnet *dotnet build*
+Nous avons utilisé la version 6 de Angular.
 
-Pour lancer le projet utiliser la commande dotnet *dotnet run*
-
-## Comment cryptons nous les mots de passe ?
- Nous utilisons BCrypt [https://github.com/BcryptNet/bcrypt.net](https://github.com/BcryptNet/bcrypt.net)
+Finalement, une fois que vous vous ètes positionné dans le bon répertoire (vous pouvez utiliser la commande *cd .\Sources\*), vous pouvez lancer l'application via *ng serve*.
