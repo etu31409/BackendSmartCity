@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BoutiqueService } from '../boutique.service';
 import { Commerce } from '../Model/Commerce';
 import { Router } from '@angular/router';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'app-connecte',
@@ -26,7 +27,7 @@ export class ConnecteComponent implements OnInit {
         console.log(this.commerces);
       },
       error => {
-        alert((error.status == 401) ? "Votre session est expiré !" : "Une erreur a été rencontré !");
+        Utils.errorHandler(error.status);
         this.router.navigate(['/connexion']);
       }
     );

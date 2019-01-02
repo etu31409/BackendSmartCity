@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BoutiqueService } from '../boutique.service';
 import { Actualite } from '../Model/Actualite';
 import { Location } from '@angular/common';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'app-editer-actualite',
@@ -70,6 +71,10 @@ export class EditerActualiteComponent implements OnInit {
       this.boutiqueService.addActualite(this.actualite).subscribe(
         elem =>{
           this.goBack();
+        },
+        error => {
+          Utils.errorHandler(error.status);
+          this.router.navigate(['/connexion']);
         }
       );
     }
@@ -77,6 +82,10 @@ export class EditerActualiteComponent implements OnInit {
       this.boutiqueService.updateActualite(this.actualite).subscribe(
         elem =>{
           this.goBack();
+        },
+        error => {
+          Utils.errorHandler(error.status);
+          this.router.navigate(['/connexion']);
         }
       );
     }

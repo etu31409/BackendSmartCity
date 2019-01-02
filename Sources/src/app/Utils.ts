@@ -9,4 +9,18 @@ export class Utils
         let userId = JSON.parse(atob(jwt_token[1])).uid;
         return userId;
       }
+
+    static errorHandler(status:number):void{
+        switch(status)
+          {
+            case 401 :
+              alert(Constantes.SESSION_TIMED_OUT);
+              break;
+            case 500 :
+              alert(Constantes.PROBLEM_API);
+              break;
+            default: 
+              alert(Constantes.UNEXPECTED_ERROR + " " + status);
+          }
+    }
 }

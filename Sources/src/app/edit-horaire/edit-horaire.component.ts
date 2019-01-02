@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { BoutiqueService } from '../boutique.service';
 import { OpeningPeriod } from '../Model/OpeningPeriod';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'app-edit-horaire',
@@ -78,6 +78,10 @@ export class EditHoraireComponent implements OnInit {
       this.boutiqueService.updateOpeningPeriod(this.openingPeriod).subscribe(
         elem =>{
           this.goBack();
+        },
+        error => {
+          Utils.errorHandler(error.status);
+          this.router.navigate(['/connexion']);
         }
       );
     }
@@ -85,6 +89,10 @@ export class EditHoraireComponent implements OnInit {
       this.boutiqueService.addOpeningPeriod(this.openingPeriod).subscribe(
         elem=>{
           this.goBack();
+        },
+        error => {
+          Utils.errorHandler(error.status);
+          this.router.navigate(['/connexion']);
         }
       );
     }

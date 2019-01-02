@@ -118,6 +118,10 @@ export class EditerComponent implements OnInit {
       this.boutiqueService.updateCommerce(this.commerce).subscribe(
         elem =>{
           this.goBack();
+        },
+        error => {
+          Utils.errorHandler(error.status);
+          this.router.navigate(['/connexion']);
         }
       );
     }
@@ -126,6 +130,10 @@ export class EditerComponent implements OnInit {
       this.boutiqueService.addCommerce(this.commerce).subscribe(
         elem => {
           this.goBack();
+        },
+        error => {
+          Utils.errorHandler(error.status);
+          this.router.navigate(['/connexion']);
         }
       );
     }

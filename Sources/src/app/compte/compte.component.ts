@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BoutiqueService } from '../boutique.service';
 import { AuthService } from '../auth.service';
-import { parseLazyRoute } from '@angular/compiler/src/aot/lazy_routes';
-import { getDefaultService } from 'selenium-webdriver/chrome';
 import { User } from '../Model/User';
-import { Constantes } from '../Constantes';
 import { Utils } from '../Utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-compte',
@@ -17,13 +15,7 @@ export class CompteComponent implements OnInit {
   private user:User;
   private roles:string;
   private token:string;
-  constructor(private authService:AuthService, private boutiqueService:BoutiqueService) { 
-    // this.authService.notify().subscribe(
-    //   token=>{
-    //     this.token = token;
-    //   }
-    // );
-    //si on s'abonne içi, désabonne le token dans boutiqueService
+  constructor(private authService:AuthService, private boutiqueService:BoutiqueService, private router:Router) { 
   }
 
   ngOnInit() {
@@ -36,6 +28,10 @@ export class CompteComponent implements OnInit {
         {
           this.roles += userRole.role.name + "    ";
         }
+      },
+      error => {
+        Utils.errorHandler(error.status);
+        this.router.navigate(['/connexion']);
       }
     );
   }
