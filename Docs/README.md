@@ -13,4 +13,4 @@ Tapez dans l'invite de commande *npm install -g @angular/cli*.
 Cet outil génère les modules dont nous avons besoin pour faire fonctionner l'application.
 
 
-Finalement, une fois que vous vous ètes positionné dans le bon répertoire (vous pouvez utiliser la commande *cd .\Sources\ *), vous pouvez lancer l'application via *ng serve*. (Ctrl)
+Finalement, une fois que vous vous ètes positionné dans le bon répertoire (vous pouvez utiliser la commande *cd .\Sources\ *), vous pouvez lancer l'application via *ng serve*.
