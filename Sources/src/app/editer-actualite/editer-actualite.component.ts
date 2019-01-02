@@ -12,6 +12,7 @@ import { Utils } from '../Utils';
   styleUrls: ['./editer-actualite.component.css']
 })
 export class EditerActualiteComponent implements OnInit {
+  private canCheckForm = false;
   private actualite:Actualite;
   private idCommerce:number;
   private editActualiteForm = new FormGroup({
@@ -47,6 +48,8 @@ export class EditerActualiteComponent implements OnInit {
       libelle: this.actualite.libelle,
       texte: this.actualite.texte
     });
+    //met canCheckForm à true;
+    this.canCheckForm = true;
   }
 
   goBack(): void {

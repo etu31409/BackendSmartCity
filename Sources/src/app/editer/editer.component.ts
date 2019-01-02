@@ -12,6 +12,7 @@ import { Utils } from '../Utils';
   styleUrls: ['./editer.component.css']
 })
 export class EditerComponent implements OnInit {
+  private canCheckForm = false;
   telephoneMobile = new FormControl('');
   telephoneFixe = new FormControl('');
   description = new FormControl('');
@@ -85,6 +86,8 @@ export class EditerComponent implements OnInit {
     this.produitPhare.patchValue(this.commerce.produitPhare);
     this.parcoursProduitPhare.patchValue(this.commerce.parcoursProduitPhare);
     this.urlPageFacebook.patchValue(this.commerce.urlPageFacebook);
+    //met canCheckForm à true;
+    this.canCheckForm = true;
   }
 
 

@@ -1,10 +1,13 @@
-<div *ngIf="!editCommerceForm.valid" class="p-3 mb-2 bg-danger text-white">
-    <div *ngIf="editCommerceForm.get('nomCommerce').invalid && editCommerceForm.get('nomCommerce').errors.required">Le nom du commerce est requise</div>
-    <div *ngIf="editCommerceForm.get('rue').invalid && editCommerceForm.get('rue').errors.required" [class]>La rue est requise</div>
-    <div *ngIf="editCommerceForm.get('rue').invalid && editCommerceForm.get('rue').errors.minlength">La rue doit comporter au minimum 5 caractères</div>
-    <div *ngIf="editCommerceForm.get('adresseMail').invalid && editCommerceForm.get('adresseMail').errors.required">L'adresse email est requise</div>
-    <div *ngIf="editCommerceForm.get('numero').invalid && editCommerceForm.get('numero').errors.required">Le numéro est requis</div>
+<div *ngIf="canCheckForm">
+    <div *ngIf="!editCommerceForm.valid" class="p-3 mb-2 bg-danger text-white">
+        <div *ngIf="editCommerceForm.get('nomCommerce').invalid && editCommerceForm.get('nomCommerce').errors.required">Le nom du commerce est requis</div>
+        <div *ngIf="editCommerceForm.get('rue').invalid && editCommerceForm.get('rue').errors.required" [class]>La rue est requise</div>
+        <div *ngIf="editCommerceForm.get('rue').invalid && editCommerceForm.get('rue').errors.minlength">La rue doit comporter au minimum 5 caractères</div>
+        <div *ngIf="editCommerceForm.get('adresseMail').invalid && editCommerceForm.get('adresseMail').errors.required">L'adresse email est requise</div>
+        <div *ngIf="editCommerceForm.get('numero').invalid && editCommerceForm.get('numero').errors.required">Le numéro est requis</div>
+    </div>
 </div>
+
 <div *ngIf="commerce">
     <h2>{{commerce.nomCommerce}}</h2>
 </div>

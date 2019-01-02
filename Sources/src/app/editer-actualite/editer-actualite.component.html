@@ -1,3 +1,8 @@
+<div *ngIf="canCheckForm">
+    <div *ngIf="!editActualiteForm.valid" class="p-3 mb-2 bg-danger text-white">
+        <div *ngIf="editActualiteForm.get('libelle').invalid && editActualiteForm.get('libelle').errors.required">Le libellé est requis</div>
+    </div>
+</div>
 <div *ngIf="actualite">
     <h2>{{actualite.libelle}}</h2>
 </div>
