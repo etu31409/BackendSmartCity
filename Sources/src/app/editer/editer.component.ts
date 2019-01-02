@@ -30,7 +30,7 @@ export class EditerComponent implements OnInit {
     nomCommerce: new FormControl('', Validators.required),
     rue: new FormControl('', Validators.required),
     numero: new FormControl('', [Validators.minLength(1), Validators.required]),
-    adresseMail: new FormControl('', Validators.required),
+    adresseMail: new FormControl('', [Validators.required, Validators.email]),
   });
   uploadImage = new FormGroup({});
 
@@ -78,12 +78,6 @@ export class EditerComponent implements OnInit {
       numero: this.commerce.numero,
       adresseMail: this.commerce.adresseMail,
     });
-    //maj de la catégorie
-    // this.formCategorie.setValue({
-    //   categorie: this.commerce.idCategorie
-    //   //categorie: this.categories[2]
-    // });
-    //this.formCategorie.controls['categorie'].setValue(this.commerce.idCategorie, {onlySelf: true})
     if(this.commerce.idCategorie) this.categorieSelectionnee = this.categories[this.commerce.idCategorie -1];
     this.telephoneMobile.patchValue(this.commerce.numeroGsm);
     this.telephoneFixe.patchValue(this.commerce.numeroFixe);
