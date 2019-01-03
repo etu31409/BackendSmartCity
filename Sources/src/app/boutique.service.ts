@@ -66,21 +66,20 @@ export class BoutiqueService {
   }
 
   addImage(file: any, idCommerce: number): Observable<any> {
-    var Options = {
-      //J'essaye de passer l'id dans les headers comme ça juste le fichier a passer dans le corps de la requete
-      headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + localStorage.getItem("token"),
-        'Content-Type': 'multipart/form-data',
-        'idCommerce':idCommerce.toString()
-      })
-    };
-    const formData = new FormData();
-    formData.append("IdCommerce", idCommerce.toString());
-    formData.append("File", file);
+    if(!file || file.length===0)
+      return;
+    const formData: FormData = new FormData();
+    formData.append('file', file[0]);
+    formData.append('IdCommerce', idCommerce.toString());
 
-    //Ci dessus passe "[Object] [Object]" a la place de file
-    //Si formData+File, erreur car pas le bon type passer a l'API
-    return this.http.post<any>(`${Constantes.URL_API}Image`, file, Options);
+    this.http.post<ImageCommerce>("http://localhost:5000/api/Photos", formData)
+      .subscribe((uploadResult) => {
+        console.log("Le fichier a été uploadé");
+        console.log(uploadResult);
+      }, (error) => {
+        console.error("Erreur lors de l'upload");
+        console.error(error);
+      });
   }
 
   deleteImage(idImage: number, idCommerce: number): Observable<ImageCommerce> {

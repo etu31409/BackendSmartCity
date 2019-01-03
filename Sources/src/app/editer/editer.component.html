@@ -107,13 +107,14 @@
 
     <div>
         <!--- upload d'une image --->
-        <form [formGroup]="uploadImage" method="POST" enctype="multipart/form-data">
-            <div>
-                <p>Upload one or more files using this form:</p>
-                <input type="file" [formControl]="file"/>
-                <button (click)="upload()">Upload</button>
+        <form [formGroup]="uploadImage">
+            <div class="form-group">
+              <label for="fichier">Fichier</label>
+              <input class="form-control" type="file" id="fichier" formControlName="fichier" (change)="onFileChange($event)"
+                autoComplete="off">
             </div>
-        </form> 
+            <button  class="btn btn-primary" type="submit" (click)="upload()">Envoyer</button>
+          </form>
     </div>
 
     <div *ngIf="commerce">
