@@ -8,7 +8,7 @@ Cette application cliente permet de se connecter à son compte NConnect et de g�
 
 * Nous vous conseillons d'utiliser l'environement Visual Studio Code [installation](https://code.visualstudio.com/).
 
-* Git pour cloner le projet. Pour le télécharger, rendez-vous à cette [adresse](https://git-scm.com/downloads);
+* Git pour cloner le projet. Pour le télécharger, rendez-vous à cette [adresse](https://git-scm.com/downloads).
 
 ## Clone
 
