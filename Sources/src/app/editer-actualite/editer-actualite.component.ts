@@ -80,7 +80,8 @@ export class EditerActualiteComponent implements OnInit {
           if(error.status == 401){
             this.router.navigate(['/connexion']);  
           }
-          this.router.navigate(['/editer', this.idCommerce]);        }
+          this.router.navigate(['/editer', this.idCommerce]);
+        }
       );
     }
     else{

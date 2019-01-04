@@ -5,6 +5,7 @@ import { OpeningPeriod } from '../Model/OpeningPeriod';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Utils } from '../Utils';
 import { Constantes } from '../Constantes';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-edit-horaire',
@@ -27,7 +28,8 @@ export class EditHoraireComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private boutiqueService: BoutiqueService,
-    private router:Router
+    private router:Router,
+    private authService:AuthService
   ) { }
 
   ngOnInit() {
@@ -86,7 +88,7 @@ export class EditHoraireComponent implements OnInit {
         },
         error => {
           Utils.errorHandler(error.status);
-          if(error.status == 401){
+          if(error.status == 401 || error.status == 0){
             this.router.navigate(['/connexion']);  
           }
           this.router.navigate(['/editer', this.idCommerce]);        }
@@ -102,6 +104,7 @@ export class EditHoraireComponent implements OnInit {
           if(error.status == 401){
             this.router.navigate(['/connexion']);  
           }
+          this.authService.logout();
           this.router.navigate(['/editer', this.idCommerce]);        }
       );
     }

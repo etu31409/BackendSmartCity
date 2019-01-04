@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Token } from './Model/token';
 import { Router } from '@angular/router';
 import { Constantes } from './Constantes';
+import { Utils } from './Utils';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,11 @@ export class AuthService {
       this.tokenSubscriber.next(res.access_token);
       localStorage.setItem(Constantes.TOKEN_ID, (res.access_token));
       this.router.navigate(['/connecte']);
-    });
+    },
+    error => {
+      Utils.errorHandler(error.status);
+     }
+    );
   }
 
   notify():Observable<string>{
