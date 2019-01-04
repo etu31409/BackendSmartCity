@@ -10,6 +10,7 @@ import { TransferFile } from './Model/TransferFile';
 import { Constantes } from './Constantes';
 import { User } from './Model/User';
 import { Actualite } from './Model/Actualite';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,10 @@ export class BoutiqueService {
       'Authorization': 'Bearer ' + localStorage.getItem(Constantes.TOKEN_ID)
     })
   };
-
+  uploadForm = new FormGroup({
+    idConceptLie: new FormControl("Lieu", Validators.required),
+    fichier: new FormControl(null, Validators.required)
+  });
   constructor(private http: HttpClient, private authService: AuthService) {
     this.authService.notify().subscribe(
       token => {
@@ -76,16 +80,12 @@ export class BoutiqueService {
     const formData: FormData = new FormData();
     formData.append('file', file[0], file[0].name);
     //idCommerce.toString() -> l'API reçoit ""
-    formData.append('IdCommerce', idCommerce.toString());
-
+    this.uploadForm.patchValue({
+      idConceptLie :idCommerce
+    });
+    const fileUploadInfo = this.uploadForm.value;
+    formData.append('IdCommerce', fileUploadInfo.idConceptLie);
     return this.http.post<ImageCommerce>(`${Constantes.URL_API}Image`, formData, Options);
-      /*.subscribe((uploadResult) => {
-        console.log("Le fichier a été uploadé");
-        console.log(uploadResult);
-      }, (error) => {
-        console.error("Erreur lors de l'upload");
-        console.error(error);
-      });*/
   }
 
   deleteImage(idImage: number, idCommerce: number): Observable<ImageCommerce> {

@@ -70,7 +70,12 @@ export class EditerComponent implements OnInit {
         if (this.commerce != null) {
           this.preFillForm();
         }
-      });
+      },error => {
+        Utils.errorHandler(error.status);
+        this.router.navigate(['/connexion']);
+      }
+      
+      );
     }
   }
 
@@ -156,11 +161,29 @@ export class EditerComponent implements OnInit {
   }
 
   deleteImage(idImage: number): void{
-    this.boutiqueService.deleteImage(idImage, this.commerce.idCommerce).subscribe();
+    this.boutiqueService.deleteImage(idImage, this.commerce.idCommerce).subscribe(
+      (uploadResult) => {
+        console.log("Le fichier a été supprimé");
+        console.log(uploadResult);
+        location.reload();
+      }, (error) => {
+        console.error("Erreur lors de la suppression");
+        console.error(error);
+      }
+    );
   }
 
   upload(): void {
-    this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
+    this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe(
+      (uploadResult) => {
+        console.log("Le fichier a été uploadé");
+        console.log(uploadResult);
+        location.reload();
+      }, (error) => {
+        console.error("Erreur lors de l'upload");
+        console.error(error);
+      }
+    );
   }
 
   onFileChange(event) {
