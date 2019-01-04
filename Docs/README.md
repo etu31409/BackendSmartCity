@@ -1,14 +1,14 @@
 # Application cliente NConnect
 Cette application client permet en se connectant à son compte NConnect de manager les commerces lié à l'utilisateur (ajout/modificaiton/suppresion).
 #Prérequis
-⋅⋅*.Avant toute chose, vous devez vous assurer d'avoir NodeJs installé sur votre machine, pour cela, tapez la commande 
+*.Avant toute chose, vous devez vous assurer d'avoir NodeJs installé sur votre machine, pour cela, tapez la commande 
 *node --version* dans une invite de commande. Si NodeJs n'est pas installé, vous pouvez l'installer via ce lien [adresse](https://nodejs.org/en/)
 
-⋅⋅*.Nous vous conseillons d'utiliser l'environement Visual Studio Code [installation](https://code.visualstudio.com/).
+*.Nous vous conseillons d'utiliser l'environement Visual Studio Code [installation](https://code.visualstudio.com/).
 
-⋅⋅*.Git. Pour le télécharger, rendez-vous à cette [adresse](https://git-scm.com/downloads);
+*.Git. Pour le télécharger, rendez-vous à cette [adresse](https://git-scm.com/downloads);
 #Installation
-⋅⋅*.Une fois le projet cloné sur votre machine, votre IDE soulignera les imports de modules (@angular/core), c'est normal, 
+*.Une fois le projet cloné sur votre machine, votre IDE soulignera les imports de modules (@angular/core), c'est normal, 
 ils ne sont pas encore installés sur votre machine.
 
 Pour ce faire, tapez dans l'invite de commande *npm install*.
