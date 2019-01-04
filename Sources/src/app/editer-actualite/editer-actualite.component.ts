@@ -5,6 +5,7 @@ import { BoutiqueService } from '../boutique.service';
 import { Actualite } from '../Model/Actualite';
 import { Location } from '@angular/common';
 import { Utils } from '../Utils';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-editer-actualite',
@@ -25,7 +26,8 @@ export class EditerActualiteComponent implements OnInit {
     private route: ActivatedRoute,
     private boutiqueService: BoutiqueService,
     private location: Location,
-    private router: Router) { }
+    private router: Router,
+    private authService:AuthService) { }
 
   ngOnInit() {
     this.today = new Date();
@@ -78,6 +80,7 @@ export class EditerActualiteComponent implements OnInit {
         error => {
           Utils.errorHandler(error.status);
           if(error.status == 401){
+            this.authService.logout();
             this.router.navigate(['/connexion']);  
           }
           this.router.navigate(['/editer', this.idCommerce]);
@@ -92,6 +95,7 @@ export class EditerActualiteComponent implements OnInit {
         error => {
           Utils.errorHandler(error.status);
           if(error.status == 401){
+            this.authService.logout();
             this.router.navigate(['/connexion']);  
           }
           this.router.navigate(['/editer', this.idCommerce]);

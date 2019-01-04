@@ -5,6 +5,7 @@ import { BoutiqueService } from '../boutique.service';
 import { Horaire } from '../Model/Horaire';
 import { Utils } from '../Utils';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-horaire',
@@ -22,7 +23,7 @@ private tabJour = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", 
   );
 
   constructor(
-    private boutiqueService: BoutiqueService, private router:Router
+    private boutiqueService: BoutiqueService, private router:Router, private authService:AuthService
   ) { }
 
   ngOnInit() {

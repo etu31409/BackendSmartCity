@@ -41,15 +41,23 @@ export class EditHoraireComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.idCommerce = +this.route.snapshot.paramMap.get('idCommerce');
     if (id != 0) {
-      this.boutiqueService.getOpeningPeriod(id).subscribe(op => {
+      this.boutiqueService.getOpeningPeriod(id).subscribe(
+        op => {
         this.openingPeriod = op;
         if (this.openingPeriod != null) {
           this.preFillForm();
         }
-      });
+      },
+      error => {
+        Utils.errorHandler(error.status);
+        if(error.status == 401){
+          this.router.navigate(['/connexion']);  
+        }
+        this.authService.logout();
+        this.router.navigate(['/editer', this.idCommerce]);
+    });
     }
   }
-
   preFillForm(): void{
     this.editOpeningPeriod.patchValue({
       start: this.openingPeriod.horaireDebut,
@@ -91,6 +99,7 @@ export class EditHoraireComponent implements OnInit {
           if(error.status == 401 || error.status == 0){
             this.router.navigate(['/connexion']);  
           }
+          this.authService.logout();
           this.router.navigate(['/editer', this.idCommerce]);        }
       );
     }

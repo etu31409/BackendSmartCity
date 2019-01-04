@@ -5,6 +5,7 @@ import { BoutiqueService } from '../boutique.service';
 import { Commerce } from '../Model/Commerce';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Utils } from '../Utils';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-editer',
@@ -54,7 +55,8 @@ export class EditerComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private boutiqueService: BoutiqueService,
-    private router: Router
+    private router: Router,
+    private authService:AuthService
   ) { }
 
   ngOnInit() {
@@ -72,7 +74,11 @@ export class EditerComponent implements OnInit {
         }
       },error => {
         Utils.errorHandler(error.status);
-        this.router.navigate(['/connexion']);
+        if(error.status == 401){
+          this.authService.logout();
+          this.router.navigate(['/connexion']);  
+        }
+        this.router.navigate(['/editer', this.commerce.idCommerce]);
       }
       
       );
@@ -131,7 +137,6 @@ export class EditerComponent implements OnInit {
         },
         error => {
           Utils.errorHandler(error.status);
-          this.router.navigate(['/connexion']);
         }
       );
     }
@@ -143,7 +148,6 @@ export class EditerComponent implements OnInit {
         },
         error => {
           Utils.errorHandler(error.status);
-          this.router.navigate(['/connexion']);
         }
       );
     }

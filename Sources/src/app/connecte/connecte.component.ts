@@ -28,9 +28,11 @@ export class ConnecteComponent implements OnInit {
         console.log(this.commerces);
       },
       error => {
-        this.authService.logout();
         Utils.errorHandler(error.status);
-        this.router.navigate(['/connexion']);
+        if(error.status == 401){
+          this.authService.logout();
+          this.router.navigate(['/connexion']);  
+        }
       }
     );
     
