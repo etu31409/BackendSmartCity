@@ -5,12 +5,9 @@ import { OpeningPeriod } from './Model/OpeningPeriod';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { map } from 'rxjs/operators';
-import { TransferFile } from './Model/TransferFile';
 import { Constantes } from './Constantes';
 import { User } from './Model/User';
 import { Actualite } from './Model/Actualite';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +20,6 @@ export class BoutiqueService {
       'Authorization': 'Bearer ' + localStorage.getItem(Constantes.TOKEN_ID)
     })
   };
-  uploadForm = new FormGroup({
-    idConceptLie: new FormControl("Lieu", Validators.required),
-    fichier: new FormControl(null, Validators.required)
-  });
   constructor(private http: HttpClient, private authService: AuthService) {
     this.authService.notify().subscribe(
       token => {
@@ -80,11 +73,8 @@ export class BoutiqueService {
     const formData: FormData = new FormData();
     formData.append('file', file[0], file[0].name);
     //idCommerce.toString() -> l'API reçoit ""
-    this.uploadForm.patchValue({
-      idConceptLie :idCommerce
-    });
-    const fileUploadInfo = this.uploadForm.value;
-    formData.append('IdCommerce', fileUploadInfo.idConceptLie);
+  
+    formData.append('IdCommerce', ""+idCommerce, file[0].name);
     return this.http.post<ImageCommerce>(`${Constantes.URL_API}Image`, formData, Options);
   }
 

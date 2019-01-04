@@ -20,7 +20,7 @@ export class AuthService {
   private myObservable:Observable<number>;
   private tokenObservable:Observable<string>;
   private tokenSubscriber: Subscriber<string>;
-  
+  private timer = null;
   constructor(private http:HttpClient, private router:Router) {
     this.tokenObservable=
     Observable.create(subscriber=>{
@@ -38,6 +38,7 @@ export class AuthService {
       this.token = res.access_token;
       this.tokenSubscriber.next(res.access_token);
       localStorage.setItem(Constantes.TOKEN_ID, (res.access_token));
+      this.suppressionTokenAutomatique((res.expires_in) * 1000);
       this.router.navigate(['/connecte']);
     },
     error => {
@@ -57,5 +58,15 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem(Constantes.TOKEN_ID);
+    if (this.timer != null){
+      clearTimeout(this.timer);
+    }
   }
+  suppressionTokenAutomatique(duree : number)
+  {
+  if (this.isAuthenticated()){
+    this.timer = setTimeout(this.logout, duree);
+    }
+  }
+
 }
