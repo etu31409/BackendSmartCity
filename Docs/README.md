@@ -1,15 +1,17 @@
-# Comment lancer notre application web Angular version 6 une fois que vous avez cloné le projet sur votre machine ?
-
-Avant toute chose, vous devez vous assurer d'avoir NodeJs installé sur votre machine, pour cela, tapez la commande 
+# Application cliente NConnect
+Cette application client permet en se connectant à son compte NConnect de manager les commerces lié à l'utilisateur (ajout/modificaiton/suppresion).
+#Prérequis
+⋅⋅1.Avant toute chose, vous devez vous assurer d'avoir NodeJs installé sur votre machine, pour cela, tapez la commande 
 *node --version* dans une invite de commande. Si NodeJs n'est pas installé, vous pouvez l'installer via ce lien [adresse](https://nodejs.org/en/)
 
-Nous vous conseillons d'utiliser l'environement Visual Studio Code.
+⋅⋅1.Nous vous conseillons d'utiliser l'environement Visual Studio Code [installation](https://code.visualstudio.com/).
 
-Une fois le projet cloné sur votre machine, votre IDE soulignera les imports de modules (@angular/core), c'est normal, 
+⋅⋅1.Git. Pour le télécharger, rendez-vous à cette [adresse](https://git-scm.com/downloads);
+#Installation
+⋅⋅1.Une fois le projet cloné sur votre machine, votre IDE soulignera les imports de modules (@angular/core), c'est normal, 
 ils ne sont pas encore installés sur votre machine.
 
-Pour ce faire, vous avez besoin d'installer l'interface de ligne de commande de Angular (Angular CLI).
-Tapez dans l'invite de commande *npm install -g @angular/cli*.
+Pour ce faire, tapez dans l'invite de commande *npm install*.
 Cet outil génère les modules dont nous avons besoin pour faire fonctionner l'application.
 
 

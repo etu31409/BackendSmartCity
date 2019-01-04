@@ -30,6 +30,7 @@ export class Utils
               break;
             case 403 :
               alert(Constantes.FORBIDDEN);
+              break;
             case 500 :
               alert(Constantes.PROBLEM_API);
               break;
