@@ -25,15 +25,17 @@ export class EditerComponent implements OnInit {
     });
   commerce: Commerce;
 
-  file = new FormControl('');
-
   editCommerceForm = new FormGroup({
     nomCommerce: new FormControl('', Validators.required),
     rue: new FormControl('', [Validators.required, Validators.minLength(5)]),
     numero: new FormControl('', [Validators.required]),
     adresseMail: new FormControl('', [Validators.required, Validators.email]),
   });
-  uploadImage = new FormGroup({});
+  
+  file: File[];
+  uploadForm = new FormGroup({
+    fichier: new FormControl(null)
+  });
 
   //TODO récupérer les catégorie depuis l'API
   categories = [
@@ -158,7 +160,15 @@ export class EditerComponent implements OnInit {
   }
 
   upload(): void {
-    var test = this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
+    this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe();
+  }
+
+  onFileChange(event) {
+    let reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      this.file = event.target.files;
+    }
   }
 
   categoryName(name:string):number{

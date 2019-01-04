@@ -66,20 +66,26 @@ export class BoutiqueService {
   }
 
   addImage(file: any, idCommerce: number): Observable<any> {
+    var Options = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem(Constantes.TOKEN_ID)
+      })
+    };
     if(!file || file.length===0)
       return;
     const formData: FormData = new FormData();
-    formData.append('file', file[0]);
+    formData.append('file', file[0], file[0].name);
+    //idCommerce.toString() -> l'API reçoit ""
     formData.append('IdCommerce', idCommerce.toString());
 
-    this.http.post<ImageCommerce>("http://localhost:5000/api/Photos", formData)
-      .subscribe((uploadResult) => {
+    return this.http.post<ImageCommerce>(`${Constantes.URL_API}Image`, formData, Options);
+      /*.subscribe((uploadResult) => {
         console.log("Le fichier a été uploadé");
         console.log(uploadResult);
       }, (error) => {
         console.error("Erreur lors de l'upload");
         console.error(error);
-      });
+      });*/
   }
 
   deleteImage(idImage: number, idCommerce: number): Observable<ImageCommerce> {

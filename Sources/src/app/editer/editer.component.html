@@ -107,7 +107,7 @@
 
     <div>
         <!--- upload d'une image --->
-        <form [formGroup]="uploadImage">
+        <form [formGroup]="uploadForm">
             <div class="form-group">
               <label for="fichier">Fichier</label>
               <input class="form-control" type="file" id="fichier" formControlName="fichier" (change)="onFileChange($event)"
