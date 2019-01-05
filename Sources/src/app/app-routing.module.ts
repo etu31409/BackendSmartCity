@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'editer-actualite', canActivate : [ConnecteDetailGuard], component: EditerActualiteComponent},
   {path: '', redirectTo: '/connexion', pathMatch: 'full' },
 ];
-
+//vu qu'on ne peut pas ajouter plrs gardes sur une même acolade, plrs path qui mène à la même route (comme ça plrs garde pour une route)
 
 @NgModule({
   exports: [ RouterModule ],

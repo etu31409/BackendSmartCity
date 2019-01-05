@@ -6,6 +6,7 @@ import { Actualite } from '../Model/Actualite';
 import { Location } from '@angular/common';
 import { Utils } from '../Utils';
 import { AuthService } from '../auth.service';
+import { Commerce } from '../Model/Commerce';
 
 @Component({
   selector: 'app-editer-actualite',
@@ -21,6 +22,7 @@ export class EditerActualiteComponent implements OnInit {
     texte: new FormControl('', Validators.maxLength(50)),
     dateActu: new FormControl('mm/dd/yyyy')
   });
+  private commerce:Commerce;
   private today: Date;
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +46,10 @@ export class EditerActualiteComponent implements OnInit {
         }
       });
     }
+    //recupérer le commerce pour le passer à throwNewRequestGoogleFirebase afin d'afficher le libellé du commerce dans le titre
+    this.boutiqueService.getCommerce(this.idCommerce).subscribe(
+      commerce => this.commerce = commerce
+    );
   }
   preFillForm(): void{
     this.editActualiteForm.patchValue({
@@ -76,6 +82,7 @@ export class EditerActualiteComponent implements OnInit {
       this.boutiqueService.addActualite(this.actualite).subscribe(
         elem =>{
           this.goBack();
+          this.boutiqueService.throwNewRequestGoogleFirebase(this.actualite, this.commerce.nomCommerce).subscribe();
         },
         error => {
           Utils.errorHandler(error.status);

@@ -111,4 +111,26 @@ export class BoutiqueService {
   getActualite(id: number): Observable<Actualite> {
     return this.http.get<Actualite>(`${Constantes.URL_API}Actualites/${id}`, this.httpOptions);
   }
+
+  throwNewRequestGoogleFirebase(actulite:Actualite, nomCommerce:string): Observable<any>{
+    let body={
+      "to": 
+        "/topics/Commerces"
+      ,
+      "data": {
+        "extra_information": "Notification envoyé depuis Angular"
+      },
+      "notification": {
+        "title": nomCommerce + " vient de publier une nouvelle annonce !",
+        "text": actulite.libelle + ", " + actulite.texte
+      }
+    };
+    var Options = {
+      headers: new HttpHeaders({
+        'Authorization': 'Key=AAAAkYhaPt8:APA91bFxofTu12BqO49ttL-wlGdWakXEH3D997uVNBsUWLUsNfzjN7qMGN5Pf-JSJ_P2X0JB-g2xEXOonBNQfO_sC1R6BxCt8mLYHPQsLjFcAkmZqNuBJdXZOIoMHUEbaa_YCng840tZ',
+        'Content-Type': 'application/json'
+        })
+    };
+    return this.http.post<any>(`https://fcm.googleapis.com/fcm/send`, body, Options);
+  }
 }
