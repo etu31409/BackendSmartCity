@@ -17,8 +17,8 @@ export class EditerActualiteComponent implements OnInit {
   private actualite:Actualite;
   private idCommerce:number;
   private editActualiteForm = new FormGroup({
-    libelle : new FormControl('', Validators.required),
-    texte: new FormControl(''),
+    libelle : new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    texte: new FormControl('', Validators.maxLength(50)),
     dateActu: new FormControl('mm/dd/yyyy')
   });
   private today: Date;

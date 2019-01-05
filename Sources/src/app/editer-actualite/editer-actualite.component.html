@@ -1,6 +1,8 @@
 <div *ngIf="canCheckForm">
     <div *ngIf="!editActualiteForm.valid" class="p-3 mb-2 bg-danger text-white">
         <div *ngIf="editActualiteForm.get('libelle').invalid && editActualiteForm.get('libelle').errors.required">Le libellé est requis</div>
+        <div *ngIf="editActualiteForm.get('libelle').invalid && editActualiteForm.get('libelle').errors.maxlength">Le libellé est de 30 caractères maximum !</div>
+        <div *ngIf="editActualiteForm.get('libelle').invalid && editActualiteForm.get('texte').errors.maxlength">Le texte est de 50 caractères maximum !</div>
     </div>
 </div>
 <div *ngIf="actualite">
