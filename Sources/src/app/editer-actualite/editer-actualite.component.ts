@@ -76,9 +76,9 @@ export class EditerActualiteComponent implements OnInit {
     this.actualite.idCommerce = this.idCommerce;
     this.actualite.libelle = this.editActualiteForm.get("libelle").value;
     this.actualite.texte = this.editActualiteForm.get("texte").value;
-    let date:string = this.editActualiteForm.controls.dateActu.value;
     this.actualite.date = new Date(this.editActualiteForm.controls.dateActu.value);
     if(isNewActualite){
+      this.canCheckForm = true;
       this.boutiqueService.addActualite(this.actualite).subscribe(
         elem =>{
           this.goBack();
