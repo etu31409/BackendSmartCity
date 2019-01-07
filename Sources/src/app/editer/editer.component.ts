@@ -14,13 +14,12 @@ import { Categorie } from '../Model/Categorie';
   styleUrls: ['./editer.component.css']
 })
 export class EditerComponent implements OnInit {
-  private canCheckForm = false;
-  telephoneMobile = new FormControl('');
-  telephoneFixe = new FormControl('');
+  telephoneMobile = new FormControl('', [Validators.pattern('^[0-9]*$'), Validators.maxLength(10), Validators.minLength(10)]);
+  telephoneFixe = new FormControl('',[Validators.pattern('^[0-9]*$'), Validators.maxLength(9), Validators.minLength(9)]);
   description = new FormControl('');
   produitPhare = new FormControl('');
   parcoursProduitPhare = new FormControl('');
-  urlPageFacebook = new FormControl('');
+  urlPageFacebook = new FormControl('', Validators.pattern('.*www.facebook.com.*'));
   formCategorie = new FormGroup(
     {
       categorie: new FormControl('', Validators.required)
@@ -30,7 +29,7 @@ export class EditerComponent implements OnInit {
   editCommerceForm = new FormGroup({
     nomCommerce: new FormControl('', Validators.required),
     rue: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    numero: new FormControl('', [Validators.required]),
+    numero: new FormControl('', [Validators.required, Validators.min(1)]),
     adresseMail: new FormControl('', [Validators.required, Validators.email]),
   });
   
@@ -104,14 +103,12 @@ export class EditerComponent implements OnInit {
       adresseMail: this.commerce.adresseMail,
     });
     if(this.commerce.idCategorie) this.categorieSelectionnee = this.categories[this.commerce.idCategorie -1];
-    this.telephoneMobile.patchValue(this.commerce.numeroGsm);
-    this.telephoneFixe.patchValue(this.commerce.numeroFixe);
+    if(this.commerce.numeroGsm)this.telephoneMobile.patchValue('0'+this.commerce.numeroGsm);
+    if(this.commerce.numeroFixe)this.telephoneFixe.patchValue('0'+this.commerce.numeroFixe);
     this.description.patchValue(this.commerce.description);
     this.produitPhare.patchValue(this.commerce.produitPhare);
     this.parcoursProduitPhare.patchValue(this.commerce.parcoursProduitPhare);
     this.urlPageFacebook.patchValue(this.commerce.urlPageFacebook);
-    //met canCheckForm à true;
-    this.canCheckForm = true;
   }
 
 
@@ -152,7 +149,6 @@ export class EditerComponent implements OnInit {
       );
     }
     else {
-      this.canCheckForm = true;
       this.boutiqueService.addCommerce(this.commerce).subscribe(
         elem => {
           this.goBack();
