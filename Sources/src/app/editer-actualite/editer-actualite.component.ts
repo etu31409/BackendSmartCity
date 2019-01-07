@@ -53,8 +53,8 @@ export class EditerActualiteComponent implements OnInit {
   }
   preFillForm(): void{
     this.editActualiteForm.patchValue({
-      libelle: this.actualite.libelle,
-      texte: this.actualite.texte
+      libelle: this.actualite.libelle.trim(),
+      texte: this.actualite.texte.trim()
     });
     //met canCheckForm à true;
     this.canCheckForm = true;

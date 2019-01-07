@@ -25,14 +25,12 @@
         <form [formGroup]="formCategorie">
             <p>
                 <label>
-                    <div *ngIf="commerce">
-                            Catégorie :
-                            <select formControlName="categorie" [(ngModel)]="categorieSelectionnee">
-                                <option *ngFor="let cat of categories" [ngValue]="cat">
-                                        {{cat.nom}}
-                                </option>
-                            </select>
-                    </div>
+                    Catégorie :
+                    <select formControlName="categorie" [(ngModel)]="categorieSelectionnee">
+                        <option *ngFor="let cat of categories" [ngValue]="cat">
+                                {{cat.nom}}
+                        </option>
+                    </select>
                 </label>
             </p>
         </form>
@@ -95,29 +93,30 @@
             </label>
         </p>
     </form>
-    <h3>Photo(s) :</h3>
     <div *ngIf="commerce">
-        <div *ngIf="commerce.imageCommerce">
-            <div *ngFor="let photo of commerce.imageCommerce">
-                <img class="images" src="{{photo.url}}"/>
-                <button (click)="deleteImage(photo.idImageCommerce)">Supprimer</button>
+    <h3>Photo(s) :</h3>
+        <div *ngIf="commerce">
+            <div *ngIf="commerce.imageCommerce">
+                <div *ngFor="let photo of commerce.imageCommerce">
+                    <img class="images" src="{{photo.url}}"/>
+                    <button (click)="deleteImage(photo.idImageCommerce)">Supprimer</button>
+                </div>
             </div>
         </div>
-    </div>
+        <div>
+        
+            <!--- upload d'une image --->
+            <form [formGroup]="uploadForm">
+                <div class="form-group">
+                <label for="fichier">Fichier</label>
+                <input class="form-control" type="file" id="fichier" formControlName="fichier" (change)="onFileChange($event)"
+                    autoComplete="off">
+                </div>
+                <button  class="btn btn-primary" type="submit" (click)="upload()">Envoyer</button>
+            </form>
+        </div>
 
-    <div>
-        <!--- upload d'une image --->
-        <form [formGroup]="uploadForm">
-            <div class="form-group">
-              <label for="fichier">Fichier</label>
-              <input class="form-control" type="file" id="fichier" formControlName="fichier" (change)="onFileChange($event)"
-                autoComplete="off">
-            </div>
-            <button  class="btn btn-primary" type="submit" (click)="upload()">Envoyer</button>
-          </form>
-    </div>
-
-    <div *ngIf="commerce">
+    
         <div *ngIf="commerce.actualite">
                 <app-actualite [actualite]='commerce.actualite' [idCommerce]='commerce.idCommerce'></app-actualite>
         </div>

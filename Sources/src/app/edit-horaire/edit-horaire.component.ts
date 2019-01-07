@@ -50,11 +50,7 @@ export class EditHoraireComponent implements OnInit {
       },
       error => {
         Utils.errorHandler(error.status);
-        if(error.status == 401){
-          this.router.navigate(['/connexion']);  
-        }
-        this.authService.logout();
-        this.router.navigate(['/editer', this.idCommerce]);
+        this.errorHandler(error);
     });
     }
   }
@@ -82,7 +78,7 @@ export class EditHoraireComponent implements OnInit {
     
     this.openingPeriod.horaireDebut = this.editOpeningPeriod.get("start").value;
     this.openingPeriod.horaireFin = this.editOpeningPeriod.get("end").value;
-    if(this.openingPeriod.horaireDebut > this.openingPeriod.horaireFin){
+    if(this.openingPeriod.horaireDebut >= this.openingPeriod.horaireFin){
       alert(Constantes.BAD_OPENINGPERIOD);
       return false;
     }

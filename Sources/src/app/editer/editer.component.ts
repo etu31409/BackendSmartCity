@@ -72,6 +72,9 @@ export class EditerComponent implements OnInit {
         if (this.commerce != null) {
           this.preFillForm();
         }
+        else{
+          this.categorieSelectionnee = 0;
+        }
       },error => {
         Utils.errorHandler(error.status);
         if(error.status == 401){
