@@ -15,12 +15,11 @@ import { errorHandler } from '@angular/platform-browser/src/browser';
   styleUrls: ['./editer-actualite.component.css']
 })
 export class EditerActualiteComponent implements OnInit {
-  private canCheckForm = false;
   private actualite:Actualite;
   private idCommerce:number;
   private editActualiteForm = new FormGroup({
     libelle : new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    texte: new FormControl('', Validators.maxLength(50)),
+    texte: new FormControl('', [Validators.maxLength(50), Validators.required]),
     dateActu: new FormControl('mm/dd/yyyy')
   });
   private commerce:Commerce;
@@ -57,8 +56,6 @@ export class EditerActualiteComponent implements OnInit {
       libelle: this.actualite.libelle.trim(),
       texte: this.actualite.texte.trim()
     });
-    //met canCheckForm à true;
-    this.canCheckForm = true;
   }
 
   goBack(): void {
@@ -79,7 +76,6 @@ export class EditerActualiteComponent implements OnInit {
     this.actualite.texte = this.editActualiteForm.get("texte").value;
     this.actualite.date = new Date(this.editActualiteForm.controls.dateActu.value);
     if(isNewActualite){
-      this.canCheckForm = true;
       this.boutiqueService.addActualite(this.actualite).subscribe(
         elem =>{
           this.goBack();
