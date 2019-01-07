@@ -110,6 +110,7 @@ export class EditHoraireComponent implements OnInit {
 
   errorHandler(error:any){
     console.log(error);
+    alert(error.error.Message);
           Utils.errorHandler(error.status);
           if(error.status == 401 || error.status == 0){
             this.authService.logout();
