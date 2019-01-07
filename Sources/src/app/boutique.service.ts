@@ -115,7 +115,7 @@ export class BoutiqueService {
   throwNewRequestGoogleFirebase(actulite:Actualite, nomCommerce:string): Observable<any>{
     let body={
       "to": 
-        "/topics/Commerces"
+        "/topics/" + nomCommerce.replace(" ", "")
       ,
       "data": {
         "extra_information": "Notification envoyé depuis Angular"
