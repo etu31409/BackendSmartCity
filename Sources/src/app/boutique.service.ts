@@ -127,7 +127,7 @@ export class BoutiqueService {
     };
     var Options = {
       headers: new HttpHeaders({
-        'Authorization': 'Key=AAAAkYhaPt8:APA91bFxofTu12BqO49ttL-wlGdWakXEH3D997uVNBsUWLUsNfzjN7qMGN5Pf-JSJ_P2X0JB-g2xEXOonBNQfO_sC1R6BxCt8mLYHPQsLjFcAkmZqNuBJdXZOIoMHUEbaa_YCng840tZ',
+        'Authorization': 'Key=' + Constantes.CLE_GOOGLE_FIREBASE,
         'Content-Type': 'application/json'
         })
     };
