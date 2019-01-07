@@ -141,7 +141,7 @@ export class EditerComponent implements OnInit {
       );
     }
     else {
-      //this.commerce.rowVersion = null;
+      this.canCheckForm = true;
       this.boutiqueService.addCommerce(this.commerce).subscribe(
         elem => {
           this.goBack();

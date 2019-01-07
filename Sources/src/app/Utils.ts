@@ -25,6 +25,9 @@ export class Utils
     static errorHandler(status:number):void{
         switch(status)
           {
+            case 400 :
+              alert(Constantes.CONTENT_ERROR);
+              break;
             case 401 :
               alert(Constantes.SESSION_TIMED_OUT);
               break;

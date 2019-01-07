@@ -95,13 +95,7 @@ export class EditHoraireComponent implements OnInit {
           this.goBack();
         },
         error => {
-          console.log(error);
-          Utils.errorHandler(error.status);
-          if(error.status == 401 || error.status == 0){
-            this.authService.logout();
-            this.router.navigate(['/connexion']);  
-          }
-          this.router.navigate(['/editer', this.idCommerce]);        
+          this.errorHandler(error);
         }
       );
     }
@@ -111,15 +105,20 @@ export class EditHoraireComponent implements OnInit {
           this.goBack();
         },
         error => {
-          Utils.errorHandler(error.status);
-          if(error.status == 401){
-            this.authService.logout();
-            this.router.navigate(['/connexion']);  
-          }
-          this.router.navigate(['/editer', this.idCommerce]);        }
+          this.errorHandler(error);        
+        }
       );
     }
     
   }
 
+  errorHandler(error:any){
+    console.log(error);
+          Utils.errorHandler(error.status);
+          if(error.status == 401 || error.status == 0){
+            this.authService.logout();
+            this.router.navigate(['/connexion']);  
+          }
+          this.router.navigate(['/editer', this.idCommerce]);  
+  }
 }
