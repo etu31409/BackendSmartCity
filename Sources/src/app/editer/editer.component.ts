@@ -132,7 +132,7 @@ export class EditerComponent implements OnInit {
     this.commerce.rue = this.editCommerceForm.get("rue").value;
     this.commerce.numero = this.editCommerceForm.get("numero").value;
     this.commerce.adresseMail = this.editCommerceForm.get("adresseMail").value;
-    this.commerce.idCategorie = this.categoryName(this.formCategorie.get("categorie").value.nom);
+    this.commerce.idCategorie = this.categoryName(this.formCategorie.get("categorie").value.libelle);
     this.commerce.description = this.description.value;
     this.commerce.idUser = Utils.getUserId();
     this.commerce.numeroFixe = this.telephoneFixe.value;
