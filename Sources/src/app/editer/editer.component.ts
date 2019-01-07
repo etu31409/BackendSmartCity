@@ -203,8 +203,6 @@ export class EditerComponent implements OnInit {
 
   categoryName(name:string):number{
     switch(name){
-      case "Restaurant" :
-        return 1;
       case "Magasin" :
         return 2;
       case "Bar" :
