@@ -24,70 +24,70 @@ export class EditHoraireComponent implements OnInit {
 
   private openingPeriod: OpeningPeriod;
   private idCommerce: number;
-  private jourSelectionne:string;
+  private jourSelectionne: string;
   constructor(
     private route: ActivatedRoute,
     private boutiqueService: BoutiqueService,
-    private router:Router,
-    private authService:AuthService
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
     this.getOpeningPeriod();
   }
 
-  getOpeningPeriod(): void{
+  getOpeningPeriod(): void {
     //si nouveau horaire, va mettre 0 dans l'url, aucun commerce n'a 0 comme identifiant
     const id = +this.route.snapshot.paramMap.get('id');
     this.idCommerce = +this.route.snapshot.paramMap.get('idCommerce');
     if (id != 0) {
       this.boutiqueService.getOpeningPeriod(id).subscribe(
         op => {
-        this.openingPeriod = op;
-        if (this.openingPeriod != null) {
-          this.preFillForm();
-        }
-      },
-      error => {
-        Utils.errorHandler(error.status);
-        this.errorHandler(error);
-    });
+          this.openingPeriod = op;
+          if (this.openingPeriod != null) {
+            this.preFillForm();
+          }
+        },
+        error => {
+          Utils.errorHandler(error.status);
+          this.errorHandler(error);
+        });
     }
   }
-  preFillForm(): void{
+  preFillForm(): void {
     this.editOpeningPeriod.patchValue({
       start: this.openingPeriod.horaireDebut,
       end: this.openingPeriod.horaireFin,
       day: this.openingPeriod.jour
     });
-    if(this.openingPeriod.jour >= 0){
+    if (this.openingPeriod.jour >= 0) {
       this.jourSelectionne = this.tabJour[this.openingPeriod.jour];
-    } 
+    }
   }
 
   goBack(): void {
     this.router.navigate(['/editer', this.idCommerce]);
   }
 
-  save(){
+  save() {
     let isNewOpeningPeriod = false;
     if (this.openingPeriod == null) {
       this.openingPeriod = new OpeningPeriod();
       isNewOpeningPeriod = true;
     }
-    
+
     this.openingPeriod.horaireDebut = this.editOpeningPeriod.get("start").value;
     this.openingPeriod.horaireFin = this.editOpeningPeriod.get("end").value;
-    if(this.openingPeriod.horaireDebut >= this.openingPeriod.horaireFin){
+    if (this.openingPeriod.horaireDebut >= this.openingPeriod.horaireFin) {
       alert(Constantes.BAD_OPENINGPERIOD);
       return false;
     }
     this.openingPeriod.jour = this.tabJour.indexOf(this.editOpeningPeriod.get("day").value);
     this.openingPeriod.idCommerce = this.idCommerce;
-    
+
     if (!isNewOpeningPeriod) {
       this.boutiqueService.updateOpeningPeriod(this.openingPeriod).subscribe(
-        elem =>{
+        elem => {
           this.goBack();
         },
         error => {
@@ -97,23 +97,25 @@ export class EditHoraireComponent implements OnInit {
     }
     else {
       this.boutiqueService.addOpeningPeriod(this.openingPeriod).subscribe(
-        elem=>{
+        elem => {
           this.goBack();
         },
         error => {
-          this.errorHandler(error);        
+          this.errorHandler(error);
         }
       );
     }
-    
+
   }
 
-  errorHandler(error:any){
+  errorHandler(error: any) {
+    console.log(error);
+    alert(error.error.Message);
     Utils.errorHandler(error.status);
-    if(error.status == 401 || error.status == 0){
+    if (error.status == 401 || error.status == 0) {
       this.authService.logout();
-      this.router.navigate(['/connexion']);  
+      this.router.navigate(['/connexion']);
     }
-    this.router.navigate(['/editer', this.idCommerce]);  
+    this.router.navigate(['/editer', this.idCommerce]);
   }
 }
