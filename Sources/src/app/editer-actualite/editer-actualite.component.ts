@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { Utils } from '../Utils';
 import { AuthService } from '../auth.service';
 import { Commerce } from '../Model/Commerce';
+import { errorHandler } from '@angular/platform-browser/src/browser';
 
 @Component({
   selector: 'app-editer-actualite',
@@ -85,12 +86,7 @@ export class EditerActualiteComponent implements OnInit {
           this.boutiqueService.throwNewRequestGoogleFirebase(this.actualite, this.commerce.nomCommerce).subscribe();
         },
         error => {
-          Utils.errorHandler(error.status);
-          if(error.status == 401){
-            this.authService.logout();
-            this.router.navigate(['/connexion']);  
-          }
-          this.router.navigate(['/editer', this.idCommerce]);
+          this.errorHandler(error);
         }
       );
     }
@@ -100,14 +96,19 @@ export class EditerActualiteComponent implements OnInit {
           this.goBack();
         },
         error => {
-          Utils.errorHandler(error.status);
-          if(error.status == 401){
-            this.authService.logout();
-            this.router.navigate(['/connexion']);  
-          }
-          this.router.navigate(['/editer', this.idCommerce]);
+          this.errorHandler(error);
         }
       );
     }
+  }
+
+  errorHandler(error: any) {
+    if(error.status ==400) alert(error.error.Message);
+    else Utils.errorHandler(error.status);
+    if (error.status == 401 || error.status == 0) {
+      this.authService.logout();
+      this.router.navigate(['/connexion']);
+    }
+    this.router.navigate(['/editer', this.idCommerce]);
   }
 }

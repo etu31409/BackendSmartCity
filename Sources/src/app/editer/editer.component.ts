@@ -147,7 +147,7 @@ export class EditerComponent implements OnInit {
           this.goBack();
         },
         error => {
-          Utils.errorHandler(error.status);
+          this.errorHandler(error);
         }
       );
     }
@@ -158,7 +158,7 @@ export class EditerComponent implements OnInit {
           this.goBack();
         },
         error => {
-          Utils.errorHandler(error.status);
+          this.errorHandler(error);
         }
       );
     }
@@ -170,7 +170,7 @@ export class EditerComponent implements OnInit {
         this.goBack();
       },
       error => {
-        Utils.errorHandler(error.status);
+        this.errorHandler(error);
       }
     );
   }
@@ -178,12 +178,9 @@ export class EditerComponent implements OnInit {
   deleteImage(idImage: number): void{
     this.boutiqueService.deleteImage(idImage, this.commerce.idCommerce).subscribe(
       (uploadResult) => {
-        console.log("Le fichier a été supprimé");
-        console.log(uploadResult);
         location.reload();
       }, (error) => {
-        console.error("Erreur lors de la suppression");
-        console.error(error);
+        this.errorHandler(error);
       }
     );
   }
@@ -191,14 +188,21 @@ export class EditerComponent implements OnInit {
   upload(): void {
     this.boutiqueService.addImage(this.file, this.commerce.idCommerce).subscribe(
       (uploadResult) => {
-        console.log("Le fichier a été uploadé");
-        console.log(uploadResult);
         location.reload();
       }, (error) => {
-        console.error("Erreur lors de l'upload");
-        console.error(error);
+        this.errorHandler(error);
       }
     );
+  }
+
+  errorHandler(error: any) {
+    if(error.status ==400) alert(error.error.Message);
+    else Utils.errorHandler(error.status);
+    if (error.status == 401 || error.status == 0) {
+      this.authService.logout();
+      this.router.navigate(['/connexion']);
+    }
+    location.reload();
   }
 
   onFileChange(event) {
