@@ -53,7 +53,6 @@ export class EditerComponent implements OnInit {
   private categorieSelectionnee;
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
     private boutiqueService: BoutiqueService,
     private router: Router,
     private authService:AuthService
@@ -66,7 +65,12 @@ export class EditerComponent implements OnInit {
 
   getCategorie(){
     this.boutiqueService.getCategories().subscribe(
-      categorie => this.categories = categorie
+      categorie => 
+      {
+        this.categories = categorie;
+        if(this.commerce)
+          this.categorieSelectionnee = this.categories[this.commerce.idCategorie -1];
+      }
     );
   }
 

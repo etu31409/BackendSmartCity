@@ -19,7 +19,7 @@ export class EditerActualiteComponent implements OnInit {
   private idCommerce:number;
   private editActualiteForm = new FormGroup({
     libelle : new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    texte: new FormControl('', [Validators.maxLength(50), Validators.required]),
+    texte: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     dateActu: new FormControl('mm/dd/yyyy')
   });
   private commerce:Commerce;
@@ -59,7 +59,6 @@ export class EditerActualiteComponent implements OnInit {
   }
 
   goBack(): void {
-    //this.location.back();
     this.router.navigate(['/editer', this.idCommerce]);
   }
 
