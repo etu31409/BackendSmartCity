@@ -49,7 +49,6 @@ export class EditHoraireComponent implements OnInit {
           }
         },
         error => {
-          Utils.errorHandler(error.status);
           this.errorHandler(error);
         });
     }

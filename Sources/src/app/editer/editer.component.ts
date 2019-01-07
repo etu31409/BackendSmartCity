@@ -38,18 +38,6 @@ export class EditerComponent implements OnInit {
     fichier: new FormControl(null)
   });
   private categories:Categorie[];
-  //TODO récupérer les catégorie depuis l'API
-  // categories = [
-  //   {
-  //     nom: "Restaurant"
-  //   },
-  //   {
-  //     nom: "Magasin"
-  //   },
-  //   {
-  //     nom: "Bar"
-  //   }
-  // ];
   private categorieSelectionnee;
   constructor(
     private route: ActivatedRoute,
@@ -106,7 +94,9 @@ export class EditerComponent implements OnInit {
       numero: this.commerce.numero,
       adresseMail: this.commerce.adresseMail,
     });
-    if(this.commerce.idCategorie) this.categorieSelectionnee = this.categories[this.commerce.idCategorie -1];
+    if(this.categories){
+      if(this.commerce.idCategorie) this.categorieSelectionnee = this.categories[this.commerce.idCategorie -1];
+    }
     if(this.commerce.numeroGsm)this.telephoneMobile.patchValue('0'+this.commerce.numeroGsm);
     if(this.commerce.numeroFixe)this.telephoneFixe.patchValue('0'+this.commerce.numeroFixe);
     this.description.patchValue(this.commerce.description);
