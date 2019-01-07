@@ -73,8 +73,8 @@ export class BoutiqueService {
     const formData: FormData = new FormData();
     formData.append('file', file[0], file[0].name);
     //idCommerce.toString() -> l'API reçoit ""
-  
-    formData.append('IdCommerce', ""+idCommerce, file[0].name);
+    
+    formData.append('IdCommerce', ''+idCommerce);
     return this.http.post<ImageCommerce>(`${Constantes.URL_API}Image`, formData, Options);
   }
 
