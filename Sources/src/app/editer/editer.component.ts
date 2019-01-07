@@ -6,6 +6,7 @@ import { Commerce } from '../Model/Commerce';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Utils } from '../Utils';
 import { AuthService } from '../auth.service';
+import { Categorie } from '../Model/Categorie';
 
 @Component({
   selector: 'app-editer',
@@ -37,19 +38,19 @@ export class EditerComponent implements OnInit {
   uploadForm = new FormGroup({
     fichier: new FormControl(null)
   });
-
+  private categories:Categorie[];
   //TODO récupérer les catégorie depuis l'API
-  categories = [
-    {
-      nom: "Restaurant"
-    },
-    {
-      nom: "Magasin"
-    },
-    {
-      nom: "Bar"
-    }
-  ];
+  // categories = [
+  //   {
+  //     nom: "Restaurant"
+  //   },
+  //   {
+  //     nom: "Magasin"
+  //   },
+  //   {
+  //     nom: "Bar"
+  //   }
+  // ];
   private categorieSelectionnee;
   constructor(
     private route: ActivatedRoute,
@@ -60,7 +61,14 @@ export class EditerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getCategorie();
     this.getCommerce();
+  }
+
+  getCategorie(){
+    this.boutiqueService.getCategories().subscribe(
+      categorie => this.categories = categorie
+    );
   }
 
   getCommerce(): void {

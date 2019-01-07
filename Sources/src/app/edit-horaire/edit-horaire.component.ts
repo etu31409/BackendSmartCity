@@ -109,12 +109,11 @@ export class EditHoraireComponent implements OnInit {
   }
 
   errorHandler(error:any){
-    console.log(error);
-          Utils.errorHandler(error.status);
-          if(error.status == 401 || error.status == 0){
-            this.authService.logout();
-            this.router.navigate(['/connexion']);  
-          }
-          this.router.navigate(['/editer', this.idCommerce]);  
+    Utils.errorHandler(error.status);
+    if(error.status == 401 || error.status == 0){
+      this.authService.logout();
+      this.router.navigate(['/connexion']);  
+    }
+    this.router.navigate(['/editer', this.idCommerce]);  
   }
 }
