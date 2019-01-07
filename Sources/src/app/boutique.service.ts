@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { Constantes } from './Constantes';
 import { User } from './Model/User';
 import { Actualite } from './Model/Actualite';
+import { Categorie } from './Model/Categorie';
 
 @Injectable({
   providedIn: 'root'
@@ -132,5 +133,9 @@ export class BoutiqueService {
         })
     };
     return this.http.post<any>(`https://fcm.googleapis.com/fcm/send`, body, Options);
+  }
+
+  getCategories():Observable<Categorie[]>{
+    return this.http.get<Categorie[]>(`${Constantes.URL_API}Categories`, this.httpOptions);
   }
 }

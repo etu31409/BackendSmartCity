@@ -28,7 +28,7 @@
                     Catégorie :
                     <select formControlName="categorie" [(ngModel)]="categorieSelectionnee">
                         <option *ngFor="let cat of categories" [ngValue]="cat">
-                                {{cat.nom}}
+                                {{cat.libelle}}
                         </option>
                     </select>
                 </label>
