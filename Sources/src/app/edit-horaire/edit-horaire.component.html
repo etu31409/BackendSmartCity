@@ -32,7 +32,7 @@
   </form>
 
   <div class="buttonFlex">
-      <button class="btn btn-lg btn-primary" (click)="save()">Enregistrer</button>
+      <button class="btn btn-lg btn-primary" (click)="save()" [disabled]="!editOpeningPeriod.valid">Enregistrer</button>
       <button class="btn btn-lg btn-primary" (click)="goBack()">Retour</button>
   </div>
 </div>
